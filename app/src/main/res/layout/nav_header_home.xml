@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/space_colors_blue_purple_stars"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <LinearLayout
+        android:id="@+id/lv_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_5dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_activity_editar_perfil_logo"
+                android:layout_width="@dimen/margin_100dp"
+                android:layout_height="@dimen/margin_100dp"
+                android:background="@drawable/bg_photo_user"
+                android:layout_centerInParent="true"/>
+
+            <ImageView
+                android:id="@+id/iv_nav_header_photo"
+                android:layout_width="@dimen/margin_60dp"
+                android:layout_height="@dimen/margin_60dp"
+                android:background="@drawable/user"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_nav_header_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_5dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/font_16sp"
+            android:text="Ricarlo Silva" />
+
+        <TextView
+            android:id="@+id/tv_nav_header_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_5dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/font_10sp"
+            android:text="Ricarlo Silva" />
+
+
+        <Button
+            android:id="@+id/bt_nav_header_edit_perfil"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_40dp"
+            android:textAllCaps="false"
+            android:text="Editar Perfil"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="@dimen/margin_35dp"
+            android:layout_marginLeft="@dimen/margin_15dp"
+            android:layout_marginRight="@dimen/margin_15dp"
+            android:background="@drawable/bg_quadrado_white"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/margin_15dp"
+            android:background="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_50dp"
+            android:layout_marginRight="@dimen/margin_15dp"
+            android:layout_below="@+id/view1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/margin_20dp"
+                android:layout_height="@dimen/margin_20dp"
+                android:background="@drawable/logo"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+
+            <TextView
+                android:id="@+id/tv_nav_home"
+                style="@style/nav_item"
+                android:text="@string/nav_home"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/margin_15dp"
+            android:background="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_50dp"
+            android:layout_marginRight="@dimen/margin_15dp"
+            android:layout_below="@id/view2"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/margin_20dp"
+                android:layout_height="@dimen/margin_20dp"
+                android:background="@drawable/logo"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+
+            <TextView
+                android:id="@+id/tv_nav_logout"
+                style="@style/nav_item"
+                android:text="@string/nav_logout"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/margin_15dp"
+            android:background="@color/colorPrimary" />
+
+    </LinearLayout>
+
+</LinearLayout>

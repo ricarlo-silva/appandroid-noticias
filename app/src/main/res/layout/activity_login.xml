@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/space_colors_blue_purple_stars"
+    tools:context=".ui.activity.LoginActivity">
+
+    <!--<include layout="@layout/toolbar_default" />-->
+
+    <LinearLayout
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_margin="@dimen/margin_15dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_activity_login_logo"
+            android:layout_width="@dimen/margin_100dp"
+            android:layout_height="@dimen/margin_100dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/logo"
+            android:contentDescription=""
+            android:layout_gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:id="@+id/lv_activity_login_usuario"
+            style="@style/layout_edit"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:layout_width="@dimen/margin_30dp"
+                android:layout_height="@dimen/margin_30dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/logo"/>
+
+            <EditText
+                android:id="@+id/ed_email_login_activity"
+                style="@style/edt_default"
+                android:hint="@string/email"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lv_activity_login_senha"
+            style="@style/layout_edit"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:layout_width="@dimen/margin_30dp"
+                android:layout_height="@dimen/margin_30dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/logo"/>
+
+            <EditText
+                android:id="@+id/ed_password_login_activity"
+                style="@style/edt_default"
+                android:inputType="textPassword"
+                android:hint="@string/senha"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_activity_login_logar"
+            style="@style/bt_default"
+            android:text="@string/login"
+            android:layout_marginTop="@dimen/margin_40dp"/>
+
+        <TextView
+            android:id="@+id/tv_activity_login_criar_conta"
+            style="@style/tv_conta"
+            android:layout_marginTop="@dimen/margin_25dp"
+            android:layout_marginLeft="@dimen/margin_5dp"
+            android:textColor="@color/colorWhite"
+            android:text="@string/criar_conta"
+            android:layout_gravity="left"/>
+    </LinearLayout>
+
+</RelativeLayout>
