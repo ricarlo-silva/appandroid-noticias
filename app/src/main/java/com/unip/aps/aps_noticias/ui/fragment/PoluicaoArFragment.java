@@ -73,14 +73,13 @@ public class PoluicaoArFragment extends BaseFragment {
         NoticiaModel noticia;
         for (int i = 0; i < 10; i++){
             noticia = new NoticiaModel();
-            noticia.setIdPerfil(i);
-            noticia.setFotoPerfil("");
-            noticia.setNomePerfil("Ricarlo");
-            noticia.setDataHora("2016-09-05T12:35:18-03:00");
-            noticia.setIdPublicacao(i);
-            noticia.setTextoPublicacao(getString(R.string.large_text));
-            noticia.setTituloPublicacao("Title " + i);
-            noticia.setQuantidadeVotos(i);
+            noticia.setId(String.valueOf(i));
+            //noticia.setFotoPerfil("");
+            //noticia.setNomePerfil("Ricarlo");
+            noticia.setData_publicacao("2016-09-05T12:35:18-03:00");
+            noticia.setDescricao(getString(R.string.large_text));
+            noticia.setTitulo("Title " + i);
+            //noticia.setIds_person_voto();
             noticiaList.add(noticia);
         }
 

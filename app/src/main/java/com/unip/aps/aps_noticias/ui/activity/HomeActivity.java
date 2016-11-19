@@ -118,7 +118,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void setDataNavigationView(){
-        tv_nome.setText(usuario.getNomePerfil());
+        tv_nome.setText(usuario.getName());
         tv_email.setText(usuario.getEmail());
     }
 

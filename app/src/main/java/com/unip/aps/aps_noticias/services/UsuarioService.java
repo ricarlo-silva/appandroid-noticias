@@ -25,7 +25,7 @@ public class UsuarioService {
 
 
     public interface OnCriarUsuario{
-        void onSuccess();
+        void onSuccess(UsuarioModel usuario);
         void onError(String error);
     }
     public static void criarUsuario(UsuarioModel usuario, final OnCriarUsuario callback){
@@ -36,13 +36,21 @@ public class UsuarioService {
         }
 
         iApsNoticias = ServiceGenerator.createService(IApsNoticias.class);
-        Call<JsonObject> call = iApsNoticias.inserirUsuario(ApsNoticiasUtils.objectToString(usuario));
+        Call<JsonObject> call = iApsNoticias.inserirUsuario(usuario);
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if(response != null && callback != null) {
-                    if (response.code() == 200)
-                        callback.onSuccess();
+                if(response.body() != null && callback != null) {
+                    if (response.body().has("error") && response.body().get("error").getAsBoolean() == false ){
+
+                        Type type = new TypeToken<UsuarioModel>() {}.getType();
+                        callback.onSuccess((UsuarioModel) new Gson().fromJson(response.body().get("data").toString(), type));
+
+                    } else if (response.body().has("message")){
+                        callback.onError(response.body().get("message").toString());
+                    } else{
+                        callback.onError(ApsNoticiasApp.getInstance().getString(R.string.error_generico));
+                    }
                 }else{
                     if(callback != null)
                         callback.onError(ApsNoticiasApp.getInstance().getString(R.string.error_generico));
@@ -72,14 +80,20 @@ public class UsuarioService {
         }
 
         iApsNoticias = ServiceGenerator.createService(IApsNoticias.class);
-        Call<JsonObject> call = iApsNoticias.loginUsuario(ApsNoticiasUtils.objectToString(usuario));
+        Call<JsonObject> call = iApsNoticias.loginUsuario(usuario);
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if(response != null && callback != null) {
-                    if (response.code() == 200){
+                if(response.body() != null && callback != null) {
+                    if (response.body().has("error") && response.body().get("error").getAsBoolean() == false ){
+
                         Type type = new TypeToken<UsuarioModel>() {}.getType();
-                        callback.onSuccess((UsuarioModel) new Gson().fromJson(response.body().toString(), type));
+                        callback.onSuccess((UsuarioModel) new Gson().fromJson(response.body().get("data").toString(), type));
+
+                    } else if (response.body().has("message")){
+                        callback.onError(response.body().get("message").toString());
+                    } else{
+                        callback.onError(ApsNoticiasApp.getInstance().getString(R.string.error_generico));
                     }
                 }else{
                     if(callback != null)
@@ -102,7 +116,7 @@ public class UsuarioService {
         void onSuccess(UsuarioModel usuario);
         void onError(String error);
     }
-    public static void getUsuario(long id, final OnGetUsuario callback){
+    public static void getUsuario(String id, final OnGetUsuario callback){
 
         if (!ApsNoticiasUtils.isOnline(ApsNoticiasApp.getInstance())){
             callback.onError(ApsNoticiasApp.getInstance().getString(R.string.sem_conexao));
@@ -114,10 +128,16 @@ public class UsuarioService {
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if(response != null && callback != null) {
-                    if (response.code() == 200){
+                if(response.body() != null && callback != null) {
+                    if (response.body().has("error") && response.body().get("error").getAsBoolean() == false ){
+
                         Type type = new TypeToken<UsuarioModel>() {}.getType();
-                        callback.onSuccess((UsuarioModel) new Gson().fromJson(response.body().toString(), type));
+                        callback.onSuccess((UsuarioModel) new Gson().fromJson(response.body().get("data").toString(), type));
+
+                    } else if (response.body().has("message")){
+                        callback.onError(response.body().get("message").toString());
+                    } else{
+                        callback.onError(ApsNoticiasApp.getInstance().getString(R.string.error_generico));
                     }
                 }else{
                     if(callback != null)
@@ -137,7 +157,7 @@ public class UsuarioService {
 
 
     public interface OnAlterarUsuario{
-        void onSuccess();
+        void onSuccess(UsuarioModel usuario);
         void onError(String error);
     }
     public static void alterarUsuario(UsuarioModel usuario, final OnAlterarUsuario callback){
@@ -148,51 +168,23 @@ public class UsuarioService {
         }
 
         iApsNoticias = ServiceGenerator.createService(IApsNoticias.class);
-        Call<JsonObject> call = iApsNoticias.alterarUsuario(ApsNoticiasUtils.objectToString(usuario));
+        Call<JsonObject> call = iApsNoticias.alterarUsuario(usuario);
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if(response != null && callback != null) {
-                    if (response.code() == 200)
-                        callback.onSuccess();
-                }else{
-                    if(callback != null)
+                if (response.body() != null && callback != null) {
+                    if (response.body().has("error") && response.body().get("error").getAsBoolean() == false) {
+
+                        Type type = new TypeToken<UsuarioModel>() {
+                        }.getType();
+                        callback.onSuccess((UsuarioModel) new Gson().fromJson(response.body().get("data").toString(), type));
+
+                    } else if (response.body().has("message")) {
+                        callback.onError(response.body().get("message").toString());
+                    } else {
                         callback.onError(ApsNoticiasApp.getInstance().getString(R.string.error_generico));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                if(callback != null)
-                    callback.onError(ApsNoticiasApp.getInstance().getString(R.string.error_generico));
-            }
-        });
-    }
-
-
-
-
-    public interface OnExcluirUsuario{
-        void onSuccess();
-        void onError(String error);
-    }
-    public static void excluirUsuario(UsuarioModel usuario, final OnExcluirUsuario callback){
-
-
-        if (!ApsNoticiasUtils.isOnline(ApsNoticiasApp.getInstance())){
-            callback.onError(ApsNoticiasApp.getInstance().getString(R.string.sem_conexao));
-            return;
-        }
-
-        iApsNoticias = ServiceGenerator.createService(IApsNoticias.class);
-        Call<JsonObject> call = iApsNoticias.excluirUsuario(ApsNoticiasUtils.objectToString(usuario));
-        call.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if(response != null && callback != null) {
-                    if (response.code() == 200)
-                        callback.onSuccess();
-                }else{
+                    }
+                } else {
                     if(callback != null)
                         callback.onError(ApsNoticiasApp.getInstance().getString(R.string.error_generico));
                 }

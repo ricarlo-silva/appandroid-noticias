@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.unip.aps.aps_noticias.R;
 import com.unip.aps.aps_noticias.app.ApsNoticiasApp;
 import com.unip.aps.aps_noticias.model.UsuarioModel;
+import com.unip.aps.aps_noticias.services.UsuarioService;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
@@ -74,7 +75,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             UsuarioModel user = new UsuarioModel();
             user.setEmail(email);
             user.setSenha(senha);
-            user.setNomePerfil("Ricarlo");
+            //user.setName("Ricarlo");
 
             login(user);
 
@@ -85,28 +86,28 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     private void login(UsuarioModel user){
 
-        ApsNoticiasApp.getInstance().saveUser(user);
-        openActivity(LoginActivity.this, HomeActivity.class);
-        finish();
+//        ApsNoticiasApp.getInstance().saveUser(user);
+//        openActivity(LoginActivity.this, HomeActivity.class);
+//        finish();
 
-//        showProgressDialog(true, getString(R.string.realizando_login));
-//        UsuarioService.loginUsuario(usuario, new UsuarioService.OnLoginUsuario() {
-//            @Override
-//            public void onSuccess(UsuarioModel usuario) {
-//                showProgressDialog(false, null);
-//
-//                ApsNoticiasApp.getInstance().saveUser(user);
-//
-//                openActivity(LoginActivity.this, HomeActivity.class);
-//                finish();
-//
-//            }
-//
-//            @Override
-//            public void onError(String error) {
-//                showProgressDialog(false, null);
-//                Toast.makeText(LoginActivity.this, error, Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        showProgressDialog(true, getString(R.string.realizando_login));
+        UsuarioService.loginUsuario(user, new UsuarioService.OnLoginUsuario() {
+            @Override
+            public void onSuccess(UsuarioModel usuario) {
+                showProgressDialog(false, null);
+
+                ApsNoticiasApp.getInstance().saveUser(usuario);
+
+                openActivity(LoginActivity.this, HomeActivity.class);
+                finish();
+
+            }
+
+            @Override
+            public void onError(String error) {
+                showProgressDialog(false, null);
+                Toast.makeText(LoginActivity.this, error, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

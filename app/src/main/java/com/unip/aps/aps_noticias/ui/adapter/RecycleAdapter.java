@@ -106,20 +106,20 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         NoticiaModel noticia = postsList.get(position);
 
-        if(!TextUtils.isEmpty(noticia.getFotoPerfil())){
-            Glide.with(context).load(noticia.getFotoPerfil())
-                    .placeholder(ContextCompat.getDrawable(context, R.drawable.user))
-                    .crossFade()
-                    .bitmapTransform(new CropCircleTransformation(context))
-                    .into(holder.iv_foto_user);
-        }else{
-            holder.iv_foto_user.setImageResource(R.drawable.user);
-        }
-
-        holder.tv_nome_user.setText(noticia.getNomePerfil());
+//        if(!TextUtils.isEmpty(noticia.getFotoPerfil())){
+//            Glide.with(context).load(noticia.getFotoPerfil())
+//                    .placeholder(ContextCompat.getDrawable(context, R.drawable.user))
+//                    .crossFade()
+//                    .bitmapTransform(new CropCircleTransformation(context))
+//                    .into(holder.iv_foto_user);
+//        }else{
+//            holder.iv_foto_user.setImageResource(R.drawable.user);
+//        }
+//
+//        holder.tv_nome_user.setText(noticia.getNomePerfil());
 
         try {
-            holder.tv_data.setText(ApsNoticiasUtils.converteDatePost(noticia.getDataHora()));
+            holder.tv_data.setText(ApsNoticiasUtils.converteDatePost(noticia.getData_publicacao()));
             holder.tv_data.setVisibility(View.VISIBLE);
 
         } catch (ParseException e) {
@@ -127,9 +127,9 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
             holder.tv_data.setVisibility(View.INVISIBLE);
         }
 
-        holder.tv_titulo.setText(noticia.getTituloPublicacao());
-        holder.tv_conteudo.setText(noticia.getTextoPublicacao());
-        holder.tv_votos.setText(String.format("%d curtiram", noticia.getQuantidadeVotos()));
+        holder.tv_titulo.setText(noticia.getTitulo());
+        holder.tv_conteudo.setText(noticia.getDescricao());
+        holder.tv_votos.setText(String.format("%d votos", noticia.getIds_person_voto() != null ? noticia.getIds_person_voto().size(): 0));
     }
 
     @Override

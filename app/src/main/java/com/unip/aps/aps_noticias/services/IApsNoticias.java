@@ -1,6 +1,8 @@
 package com.unip.aps.aps_noticias.services;
 
 import com.google.gson.JsonObject;
+import com.unip.aps.aps_noticias.model.CurtidaModel;
+import com.unip.aps.aps_noticias.model.UsuarioModel;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -17,45 +19,49 @@ import retrofit2.http.Path;
 public interface IApsNoticias {
 
 
-    String URL_BASE = "http://ec2-52-67-22-2.sa-east-1.compute.amazonaws.com:8080/";
+    String URL_BASE = "http://ec2-52-67-22-2.sa-east-1.compute.amazonaws.com:8080/MongoDBWebapp/";
+    //String URL_BASE = "http://192.168.0.102:8080/MongoDBWebapp/";
 
     /*
     * ################ USUÁRIO #################
     * */
 
-    @POST("/usuario/inserir")
-    Call<JsonObject> inserirUsuario(@Body String usuario);
+    @POST("usuario/inserir")
+    Call<JsonObject> inserirUsuario(@Body UsuarioModel usuario);
 
-    @GET("/usuario/{id}")
-    Call<JsonObject> getUsuario(@Path("id") long id);
+    @GET("usuario/{id}")
+    Call<JsonObject> getUsuario(@Path("id") String id);
 
-    @POST("/usuario/login")
-    Call<JsonObject> loginUsuario(@Body String usuario);
+    @POST("usuario/login")
+    Call<JsonObject> loginUsuario(@Body UsuarioModel usuario);
 
-    @PUT("/usuario/alterar")
-    Call<JsonObject> alterarUsuario(@Body String usuario);
+    @POST("usuario/alterar")
+    Call<JsonObject> alterarUsuario(@Body UsuarioModel usuario);
 
-    @DELETE("/usuario/excluir")
-    Call<JsonObject> excluirUsuario(@Body String usuario);
+    @DELETE("usuario/excluir")
+    Call<JsonObject> excluirUsuario(@Body UsuarioModel usuario);
 
 
     /*
     * ################ NOTÍCIAS #################
     * */
 
-    @POST("/noticia/inserir")
+    @POST("noticia/inserir")
     Call<JsonObject> inserirNoticia(@Body String usuario);
 
-    //@GET("/noticia/{id}")
-    //Call<JsonObject> getNoticia(@Path("id") long id);
+    @GET("noticia/getNewsById/{id}")
+    Call<JsonObject> getNoticiaById(@Path("id") long id);
 
-    @GET("/noticia/{type}")
+    @GET("noticia/getNewsByType/{type}")
     Call<JsonObject> getNoticiaByType(@Path("type") long type);
 
-    @PUT("/noticia/alterar")
+    @PUT("noticia/alterar")
     Call<JsonObject> alterarNoticia(@Body String usuario);
 
-    @DELETE("/noticia/excluir")
+    @DELETE("noticia/excluir")
     Call<JsonObject> excluirNoticia(@Body String usuario);
+
+    @POST("noticia/createLike")
+    Call<JsonObject> createLike(CurtidaModel curtida);
 
 }

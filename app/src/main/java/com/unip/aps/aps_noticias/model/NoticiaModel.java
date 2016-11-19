@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by ricarlo on 12/11/2016.
@@ -11,194 +12,131 @@ import java.io.Serializable;
 
 public class NoticiaModel implements Serializable{
 
-    @SerializedName("IdPerfil")
+    @SerializedName("id")
     @Expose
-    private int idPerfil;
-    @SerializedName("NomePerfil")
+    private String id;
+    @SerializedName("id_person")
     @Expose
-    private String nomePerfil;
-    @SerializedName("FotoPerfil")
+    private String id_person;
+    @SerializedName("titulo")
     @Expose
-    private String fotoPerfil;
-    @SerializedName("IdPublicacao")
+    private String titulo;
+    @SerializedName("descricao")
     @Expose
-    private int idPublicacao;
-    @SerializedName("TituloPublicacao")
+    private String descricao;
+    @SerializedName("data_publicacao")
     @Expose
-    private String tituloPublicacao;
-    @SerializedName("TextoPublicacao")
+    private String data_publicacao;
+    @SerializedName("ids_person_voto")
     @Expose
-    private String textoPublicacao;
-    @SerializedName("DataHora")
-    @Expose
-    private String dataHora;
-    @SerializedName("QuantidadeVotos")
-    @Expose
-    private int quantidadeVotos;
-    @SerializedName("Voto")
-    @Expose
-    private boolean voto;
+    private List<String> ids_person_voto;
 
     /**
      *
      * @return
-     * The idPerfil
+     * The id
      */
-    public int getIdPerfil() {
-        return idPerfil;
+    public String getId() {
+        return id;
     }
 
     /**
      *
-     * @param idPerfil
-     * The IdPerfil
+     * @param id
+     * The id
      */
-    public void setIdPerfil(int idPerfil) {
-        this.idPerfil = idPerfil;
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
      *
      * @return
-     * The nomePerfil
+     * The id_person
      */
-    public String getNomePerfil() {
-        return nomePerfil;
+    public String getId_person() {
+        return id_person;
     }
 
     /**
      *
-     * @param nomePerfil
-     * The NomePerfil
+     * @param id_person
+     * The id_person
      */
-    public void setNomePerfil(String nomePerfil) {
-        this.nomePerfil = nomePerfil;
-    }
-
-    /**
-     *
-     * @return
-     * The fotoPerfil
-     */
-    public String getFotoPerfil() {
-        return fotoPerfil;
-    }
-
-    /**
-     *
-     * @param fotoPerfil
-     * The FotoPerfil
-     */
-    public void setFotoPerfil(String fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
+    public void setId_person(String id_person) {
+        this.id_person = id_person;
     }
 
     /**
      *
      * @return
-     * The idPublicacao
+     * The titulo
      */
-    public int getIdPublicacao() {
-        return idPublicacao;
+    public String getTitulo() {
+        return titulo;
     }
 
     /**
      *
-     * @param idPublicacao
-     * The IdPublicacao
+     * @param titulo
+     * The titulo
      */
-    public void setIdPublicacao(int idPublicacao) {
-        this.idPublicacao = idPublicacao;
-    }
-
-    /**
-     *
-     * @return
-     * The tituloPublicacao
-     */
-    public String getTituloPublicacao() {
-        return tituloPublicacao;
-    }
-
-    /**
-     *
-     * @param tituloPublicacao
-     * The TituloPublicacao
-     */
-    public void setTituloPublicacao(String tituloPublicacao) {
-        this.tituloPublicacao = tituloPublicacao;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     /**
      *
      * @return
-     * The textoPublicacao
+     * The descricao
      */
-    public String getTextoPublicacao() {
-        return textoPublicacao;
+    public String getDescricao() {
+        return descricao;
     }
 
     /**
      *
-     * @param textoPublicacao
-     * The TextoPublicacao
+     * @param descricao
+     * The descricao
      */
-    public void setTextoPublicacao(String textoPublicacao) {
-        this.textoPublicacao = textoPublicacao;
-    }
-
-    /**
-     *
-     * @return
-     * The dataHora
-     */
-    public String getDataHora() {
-        return dataHora;
-    }
-
-    /**
-     *
-     * @param dataHora
-     * The DataHora
-     */
-    public void setDataHora(String dataHora) {
-        this.dataHora = dataHora;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     /**
      *
      * @return
-     * The quantidadeVotos
+     * The data_publicacao
      */
-    public int getQuantidadeVotos() {
-        return quantidadeVotos;
+    public String getData_publicacao() {
+        return data_publicacao;
     }
 
     /**
      *
-     * @param quantidadeVotos
-     * The QuantidadeVotos
+     * @param data_publicacao
+     * The data_publicacao
      */
-    public void setQuantidadeVotos(int quantidadeVotos) {
-        this.quantidadeVotos = quantidadeVotos;
+    public void setData_publicacao(String data_publicacao) {
+        this.data_publicacao = data_publicacao;
     }
 
     /**
      *
      * @return
-     * The voto
+     * The ids_person_voto
      */
-    public boolean getVoto() {
-        return voto;
+    public List<String> getIds_person_voto() {
+        return ids_person_voto;
     }
 
     /**
      *
-     * @param voto
-     * The QuantidadeComentarios
+     * @param ids_person_voto
+     * The ids_person_voto
      */
-    public void setVoto(boolean voto) {
-        this.voto = voto;
+    public void setIds_person_voto(List<String> ids_person_voto) {
+        this.ids_person_voto = ids_person_voto;
     }
 
 }

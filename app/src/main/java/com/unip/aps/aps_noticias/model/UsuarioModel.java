@@ -11,59 +11,59 @@ import java.io.Serializable;
 
 public class UsuarioModel implements Serializable {
 
-    @SerializedName("IdPerfil")
+    @SerializedName("id")
     @Expose
-    private int idPerfil;
-    @SerializedName("NomePerfil")
+    private String id;
+    @SerializedName("name")
     @Expose
-    private String nomePerfil;
-    @SerializedName("FotoPerfil")
+    private String name;
+    @SerializedName("fotoPerfil")
     @Expose
     private String fotoPerfil;
-    @SerializedName("Email")
+    @SerializedName("email")
     @Expose
     private String email;
-    @SerializedName("Token")
+    @SerializedName("token")
     @Expose
     private String token;
-    @SerializedName("Senha")
+    @SerializedName("senha")
     @Expose
     private String senha;
 
     /**
      *
      * @return
-     * The idPerfil
+     * The id
      */
-    public int getIdPerfil() {
-        return idPerfil;
+    public String getId() {
+        return id;
     }
 
     /**
      *
-     * @param idPerfil
-     * The IdPerfil
+     * @param id
+     * The id
      */
-    public void setIdPerfil(int idPerfil) {
-        this.idPerfil = idPerfil;
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
      *
      * @return
-     * The nomePerfil
+     * The name
      */
-    public String getNomePerfil() {
-        return nomePerfil;
+    public String getName() {
+        return name;
     }
 
     /**
      *
-     * @param nomePerfil
-     * The NomePerfil
+     * @param name
+     * The name
      */
-    public void setNomePerfil(String nomePerfil) {
-        this.nomePerfil = nomePerfil;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -96,7 +96,7 @@ public class UsuarioModel implements Serializable {
     /**
      *
      * @param email
-     * The Email
+     * The email
      */
     public void setEmail(String email) {
         this.email = email;
@@ -114,7 +114,7 @@ public class UsuarioModel implements Serializable {
     /**
      *
      * @param token
-     * The Token
+     * The token
      */
     public void setToken(String token) {
         this.token = token;
@@ -132,7 +132,7 @@ public class UsuarioModel implements Serializable {
     /**
      *
      * @param senha
-     * The Senha
+     * The senha
      */
     public void setSenha(String senha) {
         this.senha = senha;

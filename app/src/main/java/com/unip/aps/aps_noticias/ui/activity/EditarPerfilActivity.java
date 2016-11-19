@@ -28,7 +28,7 @@ public class EditarPerfilActivity extends BaseActivity {
         setUpToolBar("Editar Perfil");
 
         ed_nome = (EditText) findViewById(R.id.ed_nome_editar_activity);
-        ed_nome.setText(usuario.getNomePerfil());
+        ed_nome.setText(usuario.getName());
         ed_email = (EditText) findViewById(R.id.ed_email_editar_activity);
         ed_email.setText(usuario.getEmail());
         ed_senha = (EditText) findViewById(R.id.ed_senha_editar_activity);
@@ -51,7 +51,7 @@ public class EditarPerfilActivity extends BaseActivity {
         if (!TextUtils.isEmpty(nome) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha)) {
 
             UsuarioModel user = new UsuarioModel();
-            user.setNomePerfil(nome);
+            user.setName(nome);
             user.setEmail(email);
             user.setSenha(senha);
 
@@ -63,25 +63,25 @@ public class EditarPerfilActivity extends BaseActivity {
     }
 
     private void salvar(UsuarioModel user){
-        ApsNoticiasApp.getInstance().saveUser(user);
-        finish();
+//        ApsNoticiasApp.getInstance().saveUser(user);
+//        finish();
 
-//        showProgressDialog(true, getString(R.string.salvando_usuario));
-//        UsuarioService.alterarUsuario(usuario, new UsuarioService.OnAlterarUsuario() {
-//            @Override
-//            public void onSuccess() {
-//                showProgressDialog(false, null);
-//
-//                ApsNoticiasApp.getInstance().saveUser(user);
-//                finish();
-//            }
-//
-//            @Override
-//            public void onError(String error) {
-//                showProgressDialog(false, null);
-//                Toast.makeText(EditarPerfilActivity.this, error, Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        showProgressDialog(true, getString(R.string.salvando_usuario));
+        UsuarioService.alterarUsuario(user, new UsuarioService.OnAlterarUsuario() {
+            @Override
+            public void onSuccess(UsuarioModel usuario) {
+                showProgressDialog(false, null);
+
+                ApsNoticiasApp.getInstance().saveUser(usuario);
+                finish();
+            }
+
+            @Override
+            public void onError(String error) {
+                showProgressDialog(false, null);
+                Toast.makeText(EditarPerfilActivity.this, error, Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

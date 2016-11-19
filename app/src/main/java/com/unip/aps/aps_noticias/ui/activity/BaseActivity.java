@@ -127,4 +127,13 @@ public class BaseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
     }
+
+    protected void shareNoticia(String title, String url_pub) {
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+        share.putExtra(Intent.EXTRA_TEXT, title + "\n\n" + url_pub);
+        startActivity(share);
+    }
 }

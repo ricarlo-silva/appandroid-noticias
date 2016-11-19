@@ -85,7 +85,7 @@
                 android:layout_height="100dp"
                 android:layout_below="@id/tv_title"
                 android:padding="@dimen/margin_5dp"
-                android:text="textoPublicacao textoPublicacao textoPublicacao...."
+                android:text="descricao descricao descricao...."
                 android:ellipsize="end"
                 android:textSize="@dimen/font_12sp"
                 android:id="@+id/tv_conteudo"/>

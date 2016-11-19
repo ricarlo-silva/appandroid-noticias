@@ -1,6 +1,5 @@
 package com.unip.aps.aps_noticias.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -48,7 +47,7 @@ public class CriarContaActivity extends BaseActivity {
         if (!TextUtils.isEmpty(nome) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha)) {
 
             UsuarioModel user = new UsuarioModel();
-            user.setNomePerfil(nome);
+            user.setName(nome);
             user.setEmail(email);
             user.setSenha(senha);
 
@@ -60,26 +59,26 @@ public class CriarContaActivity extends BaseActivity {
     }
 
     private void criarConta(UsuarioModel user){
-        ApsNoticiasApp.getInstance().saveUser(user);
-        setResult(RESULT_OK);
-        finish();
+//        ApsNoticiasApp.getInstance().saveUser(user);
+//        setResult(RESULT_OK);
+//        finish();
 
-//        showProgressDialog(true, getString(R.string.criando_usuario));
-//        UsuarioService.criarUsuario(usuario, new UsuarioService.OnCriarUsuario() {
-//            @Override
-//            public void onSuccess() {
-//                showProgressDialog(false, null);
-//
-//                ApsNoticiasApp.getInstance().saveUser(user);
-//                setResult(RESULT_OK);
-//                finish();
-//            }
-//
-//            @Override
-//            public void onError(String error) {
-//                showProgressDialog(false, null);
-//                Toast.makeText(CriarContaActivity.this, error, Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        showProgressDialog(true, getString(R.string.criando_usuario));
+        UsuarioService.criarUsuario(user, new UsuarioService.OnCriarUsuario() {
+            @Override
+            public void onSuccess(UsuarioModel usuario) {
+                showProgressDialog(false, null);
+
+                ApsNoticiasApp.getInstance().saveUser(usuario);
+                setResult(RESULT_OK);
+                finish();
+            }
+
+            @Override
+            public void onError(String error) {
+                showProgressDialog(false, null);
+                Toast.makeText(CriarContaActivity.this, error, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
