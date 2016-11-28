@@ -111,6 +111,36 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_50dp"
             android:layout_marginRight="@dimen/margin_15dp"
+            android:layout_below="@+id/view1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/margin_20dp"
+                android:layout_height="@dimen/margin_20dp"
+                android:background="@drawable/logo"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+
+            <TextView
+                android:id="@+id/tv_nav_my_news"
+                style="@style/nav_item"
+                android:text="@string/nav_my_news"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/margin_15dp"
+            android:background="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_50dp"
+            android:layout_marginRight="@dimen/margin_15dp"
             android:layout_below="@id/view2"
             android:orientation="horizontal">
 

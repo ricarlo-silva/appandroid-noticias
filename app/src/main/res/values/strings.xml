@@ -22,9 +22,26 @@
     <string name="salvando_usuario">Salvando usuário...</string>
     <string name="usuario_atualizado">Usuário atualizado com sucesso.</string>
 
+
+    <!-- Activity publicar news -->
+    <string name="publicar">Publicar</string>
+    <string name="title">Titulo</string>
+    <string name="descricao">Descrição</string>
+    <string name="tipo">Tipo</string>
+    <string name="publicando">Publicando...</string>
+    <string name="sucesso_publicao">Nova publicação realizada com sucesso.</string>
+
+    <string-array  name="tipos">
+        <item>Selecione...</item>
+        <item>poluição do ar</item>
+        <item>trãnsito</item>
+        <item>desmatamento</item>
+    </string-array >
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_home">Home</string>
+    <string name="nav_my_news">Minhas Publicações</string>
     <string name="nav_logout">Logout</string>
     <string name="sair">Deseja realmente sair?</string>
     <string name="sim">Sim</string>

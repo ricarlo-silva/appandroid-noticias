@@ -2,6 +2,7 @@ package com.unip.aps.aps_noticias.services;
 
 import com.google.gson.JsonObject;
 import com.unip.aps.aps_noticias.model.CurtidaModel;
+import com.unip.aps.aps_noticias.model.NoticiaModel;
 import com.unip.aps.aps_noticias.model.UsuarioModel;
 
 import retrofit2.Call;
@@ -19,8 +20,8 @@ import retrofit2.http.Path;
 public interface IApsNoticias {
 
 
-    //String URL_BASE = "http://ec2-52-67-22-2.sa-east-1.compute.amazonaws.com:8080/MongoDBWebapp/";
-    String URL_BASE = "http://192.168.0.102:8080/MongoDBWebapp/";
+    String URL_BASE = "http://ec2-52-67-22-2.sa-east-1.compute.amazonaws.com:8080/MongoDBWebapp/";
+    //String URL_BASE = "http://192.168.0.102:8080/MongoDBWebapp/";
 
     /*
     * ################ USUÁRIO #################
@@ -51,5 +52,14 @@ public interface IApsNoticias {
 
     @POST("noticia/curtir")
     Call<JsonObject> createLike(@Body CurtidaModel curtida);
+
+    @POST("noticia/inserir")
+    Call<JsonObject> inserirNoticia(@Body NoticiaModel usuario);
+
+    @POST("noticia/alterar")
+    Call<JsonObject> alterarNoticia(@Body NoticiaModel usuario);
+
+    @POST("noticia/deletar")
+    Call<JsonObject> deletarNoticia(@Body NoticiaModel usuario);
 
 }

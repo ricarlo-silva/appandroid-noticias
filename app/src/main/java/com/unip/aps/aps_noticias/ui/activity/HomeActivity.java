@@ -110,9 +110,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         bt_edit_perfil.setOnClickListener(this);
 
         TextView tv_home = (TextView) nav.findViewById(R.id.tv_nav_home);
+        TextView tv_my_news = (TextView) nav.findViewById(R.id.tv_nav_my_news);
         TextView tv_logout = (TextView) nav.findViewById(R.id.tv_nav_logout);
 
         tv_home.setOnClickListener(this);
+        tv_my_news.setOnClickListener(this);
         tv_logout.setOnClickListener(this);
 
     }
@@ -131,6 +133,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 hideNavigationView();
                 break;
             case R.id.tv_nav_home:
+                hideNavigationView();
+                break;
+            case R.id.tv_nav_my_news:
+                openActivity(this, PublicarNoticiaActivity.class);
                 hideNavigationView();
                 break;
             case R.id.tv_nav_logout:

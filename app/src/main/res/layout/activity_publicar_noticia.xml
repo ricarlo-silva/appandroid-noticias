@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_publicar_noticia"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.unip.aps.aps_noticias.ui.activity.PublicarNoticiaActivity">
+
+    <include layout="@layout/toolbar_default" />
+
+    <LinearLayout
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/margin_15dp"
+        android:layout_marginRight="@dimen/margin_15dp"
+        android:orientation="vertical"
+        android:layout_above="@+id/bt_activity_publicar_news">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorPrimary">
+
+            <EditText
+                android:id="@+id/ed_title_activity_publicar_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="title"
+                android:textColorHint="@color/colorPrimary" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/sp_tipo_activity_publicar_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawSelectorOnTop="true"
+            android:entries="@array/tipos"></Spinner>
+
+        <android.support.design.widget.TextInputLayout
+            android:paddingTop="@dimen/margin_15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/colorPrimary">
+
+            <EditText
+                android:id="@+id/ed_descricao_activity_publicar_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:hint="conteúdo"
+                android:textColorHint="@color/colorPrimary"
+                android:textColorHighlight="@color/colorPrimaryDark"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/bt_activity_publicar_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_15dp"
+        android:text="@string/publicar"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
