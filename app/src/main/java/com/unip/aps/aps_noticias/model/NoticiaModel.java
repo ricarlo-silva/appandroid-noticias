@@ -15,21 +15,27 @@ public class NoticiaModel implements Serializable{
     @SerializedName("id")
     @Expose
     private String id;
-    @SerializedName("id_person")
+    @SerializedName("person")
     @Expose
-    private String id_person;
+    private UsuarioModel person;
     @SerializedName("titulo")
     @Expose
     private String titulo;
+    @SerializedName("tipo")
+    @Expose
+    private String tipo;
     @SerializedName("descricao")
     @Expose
     private String descricao;
     @SerializedName("data_publicacao")
     @Expose
     private String data_publicacao;
-    @SerializedName("ids_person_voto")
+    @SerializedName("votou")
     @Expose
-    private List<String> ids_person_voto;
+    private boolean votou;
+    @SerializedName("curtidas")
+    @Expose
+    private List<CurtidaModel> curtidas;
 
     /**
      *
@@ -52,19 +58,19 @@ public class NoticiaModel implements Serializable{
     /**
      *
      * @return
-     * The id_person
+     * The person
      */
-    public String getId_person() {
-        return id_person;
+    public UsuarioModel getPerson() {
+        return person;
     }
 
     /**
      *
-     * @param id_person
-     * The id_person
+     * @param person
+     * The person
      */
-    public void setId_person(String id_person) {
-        this.id_person = id_person;
+    public void setPerson(UsuarioModel person) {
+        this.person = person;
     }
 
     /**
@@ -83,6 +89,24 @@ public class NoticiaModel implements Serializable{
      */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    /**
+     *
+     * @return
+     * The tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     *
+     * @param tipo
+     * The tipo
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     /**
@@ -124,19 +148,37 @@ public class NoticiaModel implements Serializable{
     /**
      *
      * @return
-     * The ids_person_voto
+     * The votou
      */
-    public List<String> getIds_person_voto() {
-        return ids_person_voto;
+    public boolean getVotou() {
+        return votou;
     }
 
     /**
      *
-     * @param ids_person_voto
-     * The ids_person_voto
+     * @param votou
+     * The votou
      */
-    public void setIds_person_voto(List<String> ids_person_voto) {
-        this.ids_person_voto = ids_person_voto;
+    public void setVotou(boolean votou) {
+        this.votou = votou;
+    }
+
+    /**
+     *
+     * @return
+     * The curtidas
+     */
+    public List<CurtidaModel> getCurtidas() {
+        return curtidas;
+    }
+
+    /**
+     *
+     * @param curtidas
+     * The curtidas
+     */
+    public void setCurtidas(List<CurtidaModel> curtidas) {
+        this.curtidas = curtidas;
     }
 
 }

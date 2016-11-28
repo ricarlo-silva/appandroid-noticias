@@ -175,8 +175,7 @@ public class UsuarioService {
                 if (response.body() != null && callback != null) {
                     if (response.body().has("error") && response.body().get("error").getAsBoolean() == false) {
 
-                        Type type = new TypeToken<UsuarioModel>() {
-                        }.getType();
+                        Type type = new TypeToken<UsuarioModel>() {}.getType();
                         callback.onSuccess((UsuarioModel) new Gson().fromJson(response.body().get("data").toString(), type));
 
                     } else if (response.body().has("message")) {

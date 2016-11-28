@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.unip.aps.aps_noticias.R;
 import com.unip.aps.aps_noticias.model.CurtidaModel;
 import com.unip.aps.aps_noticias.model.NoticiaModel;
@@ -21,6 +22,8 @@ public class DetalheNoticiaActivity extends BaseActivity {
     private TextView tv_texto;
     private ImageView iv_like_yes;
     private ImageView iv_like_no;
+    private TextView tv_like_yes;
+    private TextView tv_like_no;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class DetalheNoticiaActivity extends BaseActivity {
         setSupportActionBar(toolbar);
 
         getBundle();
+        getNoticia();
         initView();
         setData();
 
@@ -55,6 +59,8 @@ public class DetalheNoticiaActivity extends BaseActivity {
         tv_texto = (TextView) findViewById(R.id.tv_text_detalhe_noticia);
         iv_like_yes = (ImageView) findViewById(R.id.iv_like_yes);
         iv_like_no = (ImageView)findViewById(R.id.iv_like_no);
+        tv_like_yes = (TextView) findViewById(R.id.tv_like_yes);
+        tv_like_no = (TextView)findViewById(R.id.tv_like_no);
 
         iv_like_yes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,26 +81,77 @@ public class DetalheNoticiaActivity extends BaseActivity {
     private void setData(){
         setTitle(noticia.getTitulo());
         tv_texto.setText(noticia.getDescricao());
+        setCurtidas();
+    }
+
+    private void setCurtidas(){
+        int like_yes = 0;
+        int like_no = 0;
+        for(CurtidaModel curtida: noticia.getCurtidas()){
+            if(curtida.getLike())
+                like_yes++;
+            else
+                like_no++;
+
+            // se usuário logado já tiver curtido
+            if(curtida.getId_person().equals(usuario.getId()))
+                changeLike(curtida.getLike());
+        }
+        tv_like_yes.setText(String.valueOf(like_yes));
+        tv_like_no.setText(String.valueOf(like_no));
+    }
+
+    private void changeLike(boolean like){
+        if(like) {
+            iv_like_yes.setSelected(true);
+            iv_like_no.setSelected(false);
+        }else{
+            iv_like_yes.setSelected(false);
+            iv_like_no.setSelected(true);
+        }
     }
 
     private void createLike(boolean like){
         CurtidaModel curtida = new CurtidaModel();
-        curtida.setIdPerson(usuario.getId());
-        curtida.setIdNews(noticia.getId());
+        curtida.setId_person(usuario.getId());
+        curtida.setId_news(noticia.getId());
         curtida.setLike(like);
-        Toast.makeText(this, "Curtiu:" + like, Toast.LENGTH_SHORT).show();
 
-//        NoticiaService.createLike(curtida, new NoticiaService.OnCreateLike() {
-//            @Override
-//            public void onSuccess(NoticiaModel noticia) {
-//
-//            }
-//
-//            @Override
-//            public void onError(String error) {
-//
-//            }
-//        });
+        System.out.println(new Gson().toJson(usuario));
+
+        NoticiaService.createLike(curtida, new NoticiaService.OnCreateLike() {
+            @Override
+            public void onSuccess(NoticiaModel _noticia) {
+                if(_noticia != null) {
+                    noticia = _noticia;
+                    setCurtidas();
+                }
+
+            }
+
+            @Override
+            public void onError(String error) {
+                Toast.makeText(DetalheNoticiaActivity.this, error, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getNoticia(){
+
+        NoticiaService.getNewsById(noticia.getId(), new NoticiaService.OnGetNewsById() {
+            @Override
+            public void onSuccess(NoticiaModel _noticia) {
+                if(_noticia != null) {
+                    noticia = _noticia;
+                    setCurtidas();
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                Toast.makeText(DetalheNoticiaActivity.this, error, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

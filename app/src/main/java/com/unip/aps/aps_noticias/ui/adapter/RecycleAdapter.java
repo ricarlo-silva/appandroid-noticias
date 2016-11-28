@@ -12,10 +12,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.unip.aps.aps_noticias.R;
+import com.unip.aps.aps_noticias.model.CurtidaModel;
 import com.unip.aps.aps_noticias.model.NoticiaModel;
 import com.unip.aps.aps_noticias.util.ApsNoticiasUtils;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
@@ -46,7 +50,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         public TextView tv_titulo;
         public TextView tv_conteudo;
         public TextView tv_ver_mais;
-        public TextView tv_votos;
+        public TextView tv_like_yes;
+        public TextView tv_like_no;
         final RecycleAdapter adapter;
 
         public ViewHolder(View v, RecycleAdapter adapter) {
@@ -57,7 +62,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
             tv_titulo = (TextView) v.findViewById(R.id.tv_title);
             tv_conteudo = (TextView) v.findViewById(R.id.tv_conteudo);
             tv_ver_mais = (TextView) v.findViewById(R.id.tv_ver_mais);
-            tv_votos = (TextView) v.findViewById(R.id.tv_votos);
+            tv_like_yes = (TextView) v.findViewById(R.id.tv_like_yes);
+            tv_like_no = (TextView) v.findViewById(R.id.tv_like_no);
 
             this.adapter = adapter;
             tv_ver_mais.setOnClickListener(this);
@@ -106,17 +112,17 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         NoticiaModel noticia = postsList.get(position);
 
-//        if(!TextUtils.isEmpty(noticia.getFotoPerfil())){
-//            Glide.with(context).load(noticia.getFotoPerfil())
-//                    .placeholder(ContextCompat.getDrawable(context, R.drawable.user))
-//                    .crossFade()
-//                    .bitmapTransform(new CropCircleTransformation(context))
-//                    .into(holder.iv_foto_user);
-//        }else{
-//            holder.iv_foto_user.setImageResource(R.drawable.user);
-//        }
-//
-//        holder.tv_nome_user.setText(noticia.getNomePerfil());
+        if(!TextUtils.isEmpty(noticia.getPerson().getPhoto())){
+            Glide.with(context).load(noticia.getPerson().getPhoto())
+                    .placeholder(ContextCompat.getDrawable(context, R.drawable.bg_photo))
+                    .crossFade()
+                    .bitmapTransform(new CropCircleTransformation(context))
+                    .into(holder.iv_foto_user);
+        }else{
+            holder.iv_foto_user.setImageResource(R.drawable.bg_photo);
+        }
+
+        holder.tv_nome_user.setText(noticia.getPerson().getName());
 
         try {
             holder.tv_data.setText(ApsNoticiasUtils.converteDatePost(noticia.getData_publicacao()));
@@ -129,11 +135,25 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
 
         holder.tv_titulo.setText(noticia.getTitulo());
         holder.tv_conteudo.setText(noticia.getDescricao());
-        holder.tv_votos.setText(String.format("%d votos", noticia.getIds_person_voto() != null ? noticia.getIds_person_voto().size(): 0));
+
+        setCurtidas(holder, noticia);
     }
 
     @Override
     public int getItemCount() {
         return postsList.size();
+    }
+
+    private void setCurtidas(ViewHolder holder, NoticiaModel noticia){
+        int like_yes = 0;
+        int like_no = 0;
+        for(CurtidaModel curtida: noticia.getCurtidas()){
+            if(curtida.getLike())
+                like_yes++;
+            else
+                like_no++;
+        }
+        holder.tv_like_yes.setText(String.valueOf(like_yes));
+        holder.tv_like_no.setText(String.valueOf(like_no));
     }
 }

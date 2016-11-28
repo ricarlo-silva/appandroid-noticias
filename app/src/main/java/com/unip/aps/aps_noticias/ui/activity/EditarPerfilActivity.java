@@ -51,6 +51,7 @@ public class EditarPerfilActivity extends BaseActivity {
         if (!TextUtils.isEmpty(nome) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha)) {
 
             UsuarioModel user = new UsuarioModel();
+            user.setId(usuario.getId());
             user.setName(nome);
             user.setEmail(email);
             user.setSenha(senha);
@@ -63,8 +64,6 @@ public class EditarPerfilActivity extends BaseActivity {
     }
 
     private void salvar(UsuarioModel user){
-//        ApsNoticiasApp.getInstance().saveUser(user);
-//        finish();
 
         showProgressDialog(true, getString(R.string.salvando_usuario));
         UsuarioService.alterarUsuario(user, new UsuarioService.OnAlterarUsuario() {
@@ -72,6 +71,7 @@ public class EditarPerfilActivity extends BaseActivity {
             public void onSuccess(UsuarioModel usuario) {
                 showProgressDialog(false, null);
 
+                Toast.makeText(EditarPerfilActivity.this, R.string.usuario_atualizado, Toast.LENGTH_SHORT).show();
                 ApsNoticiasApp.getInstance().saveUser(usuario);
                 finish();
             }

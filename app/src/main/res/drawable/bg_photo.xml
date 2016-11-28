@@ -3,13 +3,13 @@
     <item>
         <layer-list>
             <item>
-                <bitmap android:gravity="center" android:src="@drawable/photo"/>
+                <bitmap android:gravity="center" android:src="@drawable/photo_user"/>
             </item>
-            <item>
+            <!--<item>
                 <shape android:shape="oval">
                     <solid android:color="@color/colorWhiteTrans"/>
                 </shape>
-            </item>
+            </item>-->
         </layer-list>
     </item>
 </selector>

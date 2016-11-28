@@ -66,29 +66,12 @@ public class DesmatamentoFragment extends BaseFragment {
 
         recyclerView.setAdapter(adapter);
 
-        setDataFake();
-    }
-
-    private void setDataFake(){
-        NoticiaModel noticia;
-        for (int i = 0; i < 10; i++){
-            noticia = new NoticiaModel();
-            noticia.setId(String.valueOf(i));
-            //noticia.setFotoPerfil("");
-            //noticia.setNomePerfil("Ricarlo");
-            noticia.setData_publicacao("2016-09-05T12:35:18-03:00");
-            noticia.setDescricao(getString(R.string.large_text));
-            noticia.setTitulo("Title " + i);
-            //noticia.setIds_person_voto();
-            noticiaList.add(noticia);
-        }
-
-        adapter.notifyDataSetChanged();
+        getNoticiasPoluicao();
     }
 
     private void getNoticiasPoluicao(){
 
-        int type = 3;
+        String type = "3";
 
         showProgressDialog(true, getString(R.string.carregando));
         NoticiaService.getNoticiasByType(type, new NoticiaService.OnGetNotices() {

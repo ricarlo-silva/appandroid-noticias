@@ -61,6 +61,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == CriarContaActivity.REQUEST_CRIAR_CONTA && resultCode == RESULT_OK){
+            Toast.makeText(this, R.string.boas_vindas, Toast.LENGTH_SHORT).show();
             openActivity(this, HomeActivity.class);
             finish();
         }
@@ -75,7 +76,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             UsuarioModel user = new UsuarioModel();
             user.setEmail(email);
             user.setSenha(senha);
-            //user.setName("Ricarlo");
 
             login(user);
 
@@ -86,18 +86,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     private void login(UsuarioModel user){
 
-//        ApsNoticiasApp.getInstance().saveUser(user);
-//        openActivity(LoginActivity.this, HomeActivity.class);
-//        finish();
-
         showProgressDialog(true, getString(R.string.realizando_login));
         UsuarioService.loginUsuario(user, new UsuarioService.OnLoginUsuario() {
             @Override
             public void onSuccess(UsuarioModel usuario) {
                 showProgressDialog(false, null);
+                Toast.makeText(LoginActivity.this, R.string.boas_vindas, Toast.LENGTH_SHORT).show();
 
                 ApsNoticiasApp.getInstance().saveUser(usuario);
-
                 openActivity(LoginActivity.this, HomeActivity.class);
                 finish();
 

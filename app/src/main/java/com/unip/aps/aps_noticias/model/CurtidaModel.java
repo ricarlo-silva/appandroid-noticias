@@ -13,10 +13,10 @@ public class CurtidaModel implements Serializable {
 
     @SerializedName("id_person")
     @Expose
-    private String idPerson;
+    private String id_person;
     @SerializedName("id_news")
     @Expose
-    private String idNews;
+    private String id_news;
     @SerializedName("like")
     @Expose
     private Boolean like;
@@ -24,37 +24,37 @@ public class CurtidaModel implements Serializable {
     /**
      *
      * @return
-     * The idPerson
+     * The id_person
      */
-    public String getIdPerson() {
-        return idPerson;
+    public String getId_person() {
+        return id_person;
     }
 
     /**
      *
-     * @param idPerson
+     * @param id_person
      * The id_person
      */
-    public void setIdPerson(String idPerson) {
-        this.idPerson = idPerson;
+    public void setId_person(String id_person) {
+        this.id_person = id_person;
     }
 
     /**
      *
      * @return
-     * The idNews
+     * The id_news
      */
-    public String getIdNews() {
-        return idNews;
+    public String getId_news() {
+        return id_news;
     }
 
     /**
      *
-     * @param idNews
+     * @param id_news
      * The id_news
      */
-    public void setIdNews(String idNews) {
-        this.idNews = idNews;
+    public void setId_news(String id_news) {
+        this.id_news = id_news;
     }
 
     /**
@@ -62,7 +62,7 @@ public class CurtidaModel implements Serializable {
      * @return
      * The like
      */
-    public Boolean getLike() {
+    public boolean getLike() {
         return like;
     }
 

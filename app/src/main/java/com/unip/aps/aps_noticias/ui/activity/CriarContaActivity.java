@@ -50,6 +50,7 @@ public class CriarContaActivity extends BaseActivity {
             user.setName(nome);
             user.setEmail(email);
             user.setSenha(senha);
+            user.setPhoto("");
 
             criarConta(user);
 
@@ -59,9 +60,6 @@ public class CriarContaActivity extends BaseActivity {
     }
 
     private void criarConta(UsuarioModel user){
-//        ApsNoticiasApp.getInstance().saveUser(user);
-//        setResult(RESULT_OK);
-//        finish();
 
         showProgressDialog(true, getString(R.string.criando_usuario));
         UsuarioService.criarUsuario(user, new UsuarioService.OnCriarUsuario() {

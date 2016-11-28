@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Noticias NOW</string>
+    <string name="boas_vindas">Bem-vindo ao Notícias NOW</string>
+
 
     <!-- Activity Login -->
     <string name="titulo_login">Login</string>
@@ -18,6 +20,7 @@
     <string name="salvar">Salvar</string>
     <string name="editar_perfil">Editar perfil</string>
     <string name="salvando_usuario">Salvando usuário...</string>
+    <string name="usuario_atualizado">Usuário atualizado com sucesso.</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

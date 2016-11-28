@@ -19,8 +19,8 @@ import retrofit2.http.Path;
 public interface IApsNoticias {
 
 
-    String URL_BASE = "http://ec2-52-67-22-2.sa-east-1.compute.amazonaws.com:8080/MongoDBWebapp/";
-    //String URL_BASE = "http://192.168.0.102:8080/MongoDBWebapp/";
+    //String URL_BASE = "http://ec2-52-67-22-2.sa-east-1.compute.amazonaws.com:8080/MongoDBWebapp/";
+    String URL_BASE = "http://192.168.0.102:8080/MongoDBWebapp/";
 
     /*
     * ################ USUÁRIO #################
@@ -38,30 +38,18 @@ public interface IApsNoticias {
     @POST("usuario/alterar")
     Call<JsonObject> alterarUsuario(@Body UsuarioModel usuario);
 
-    @DELETE("usuario/excluir")
-    Call<JsonObject> excluirUsuario(@Body UsuarioModel usuario);
-
 
     /*
     * ################ NOTÍCIAS #################
     * */
 
-    @POST("noticia/inserir")
-    Call<JsonObject> inserirNoticia(@Body String usuario);
-
     @GET("noticia/getNewsById/{id}")
-    Call<JsonObject> getNoticiaById(@Path("id") long id);
+    Call<JsonObject> getNoticiaById(@Path("id") String id);
 
     @GET("noticia/getNewsByType/{type}")
-    Call<JsonObject> getNoticiaByType(@Path("type") long type);
+    Call<JsonObject> getNoticiaByType(@Path("type") String type);
 
-    @PUT("noticia/alterar")
-    Call<JsonObject> alterarNoticia(@Body String usuario);
-
-    @DELETE("noticia/excluir")
-    Call<JsonObject> excluirNoticia(@Body String usuario);
-
-    @POST("noticia/createLike")
-    Call<JsonObject> createLike(CurtidaModel curtida);
+    @POST("noticia/curtir")
+    Call<JsonObject> createLike(@Body CurtidaModel curtida);
 
 }

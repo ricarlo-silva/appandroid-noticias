@@ -17,9 +17,9 @@ public class UsuarioModel implements Serializable {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("fotoPerfil")
+    @SerializedName("photo")
     @Expose
-    private String fotoPerfil;
+    private String photo;
     @SerializedName("email")
     @Expose
     private String email;
@@ -69,19 +69,19 @@ public class UsuarioModel implements Serializable {
     /**
      *
      * @return
-     * The fotoPerfil
+     * The photo
      */
-    public String getFotoPerfil() {
-        return fotoPerfil;
+    public String getPhoto() {
+        return photo;
     }
 
     /**
      *
-     * @param fotoPerfil
+     * @param photo
      * The FotoPerfil
      */
-    public void setFotoPerfil(String fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     /**
