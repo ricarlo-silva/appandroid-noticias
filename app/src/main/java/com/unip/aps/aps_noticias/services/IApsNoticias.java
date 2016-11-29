@@ -20,8 +20,8 @@ import retrofit2.http.Path;
 public interface IApsNoticias {
 
 
-    //String URL_BASE = "http://ec2-52-67-22-2.sa-east-1.compute.amazonaws.com:8080/MongoDBWebapp/";
-    String URL_BASE = "http://192.168.0.102:8080/MongoDBWebapp/";
+    String URL_BASE = "http://ec2-52-67-22-2.sa-east-1.compute.amazonaws.com:8080/MongoDBWebapp/";
+    //String URL_BASE = "http://192.168.0.102:8080/MongoDBWebapp/";
 
     /*
     * ################ USUÁRIO #################
