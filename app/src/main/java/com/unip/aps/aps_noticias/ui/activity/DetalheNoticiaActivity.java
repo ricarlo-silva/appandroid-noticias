@@ -94,7 +94,7 @@ public class DetalheNoticiaActivity extends BaseActivity {
                 like_no++;
 
             // se usuário logado já tiver curtido
-            if(curtida.getId_person().equals(usuario.getId()))
+            if(curtida.getId_person() != null && curtida.getId_person().equals(usuario.getId()))
                 changeLike(curtida.getLike());
         }
         tv_like_yes.setText(String.valueOf(like_yes));

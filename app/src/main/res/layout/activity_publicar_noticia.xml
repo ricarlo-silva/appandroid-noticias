@@ -32,9 +32,17 @@
                 android:id="@+id/ed_title_activity_publicar_news"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="title"
+                android:hint="@string/title"
                 android:textColorHint="@color/colorPrimary" />
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tipo"
+            android:paddingLeft="@dimen/margin_5dp"
+            android:textSize="@dimen/font_16sp"
+            android:textColor="@color/colorPrimary"/>
 
         <Spinner
             android:id="@+id/sp_tipo_activity_publicar_news"
@@ -54,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="top"
-                android:hint="conteúdo"
+                android:hint="@string/descricao"
                 android:textColorHint="@color/colorPrimary"
                 android:textColorHighlight="@color/colorPrimaryDark"/>
         </android.support.design.widget.TextInputLayout>

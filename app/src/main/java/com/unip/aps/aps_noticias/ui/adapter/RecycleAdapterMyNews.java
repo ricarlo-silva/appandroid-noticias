@@ -16,10 +16,7 @@ import com.unip.aps.aps_noticias.model.CurtidaModel;
 import com.unip.aps.aps_noticias.model.NoticiaModel;
 import com.unip.aps.aps_noticias.util.ApsNoticiasUtils;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
@@ -28,7 +25,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
  * Created by ricarlo on 12/11/2016.
  */
 
-public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder>{
+public class RecycleAdapterMyNews extends RecyclerView.Adapter<RecycleAdapterMyNews.ViewHolder>{
 
     private List<NoticiaModel> postsList;
     private Context context;
@@ -36,6 +33,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
 
     public interface Callback {
         void onItemClicked(int index);
+        void onItemUpdate(int index);
+        void onItemDelete(int index);
     }
 
     public void setCallback(Callback mCallback) {
@@ -52,9 +51,13 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         public TextView tv_ver_mais;
         public TextView tv_like_yes;
         public TextView tv_like_no;
-        final RecycleAdapter adapter;
+        public ImageView iv_like_yes;
+        public ImageView iv_like_no;
+        public ImageView iv_delete_my_news;
+        public ImageView iv_update_my_news;
+        final RecycleAdapterMyNews adapter;
 
-        public ViewHolder(View v, RecycleAdapter adapter) {
+        public ViewHolder(View v, RecycleAdapterMyNews adapter) {
             super(v);
             iv_foto_user = (ImageView) v.findViewById(R.id.iv_foto_user);
             tv_nome_user = (TextView) v.findViewById(R.id.tv_nome_user);
@@ -62,13 +65,31 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
             tv_titulo = (TextView) v.findViewById(R.id.tv_title);
             tv_conteudo = (TextView) v.findViewById(R.id.tv_conteudo);
             tv_ver_mais = (TextView) v.findViewById(R.id.tv_ver_mais);
+
             tv_like_yes = (TextView) v.findViewById(R.id.tv_like_yes);
+            tv_like_yes.setVisibility(View.GONE);
+
             tv_like_no = (TextView) v.findViewById(R.id.tv_like_no);
+            tv_like_no.setVisibility(View.GONE);
+
+            iv_like_yes = (ImageView) v.findViewById(R.id.iv_like_yes);
+            iv_like_yes.setVisibility(View.GONE);
+
+            iv_like_no = (ImageView) v.findViewById(R.id.iv_like_no);
+            iv_like_no.setVisibility(View.GONE);
+
+            iv_update_my_news = (ImageView) v.findViewById(R.id.iv_update_my_news);
+            iv_update_my_news.setVisibility(View.VISIBLE);
+
+            iv_delete_my_news = (ImageView) v.findViewById(R.id.iv_delete_my_news);
+            iv_delete_my_news.setVisibility(View.VISIBLE);
 
             this.adapter = adapter;
             tv_ver_mais.setOnClickListener(this);
             tv_titulo.setOnClickListener(this);
             tv_conteudo.setOnClickListener(this);
+            iv_update_my_news.setOnClickListener(this);
+            iv_delete_my_news.setOnClickListener(this);
         }
 
         @Override
@@ -81,21 +102,24 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
             switch (id){
                 case R.id.tv_ver_mais:
                     adapter.mCallback.onItemClicked(getAdapterPosition());
-
                     break;
                 case R.id.tv_title:
                     adapter.mCallback.onItemClicked(getAdapterPosition());
-
                     break;
                 case R.id.tv_conteudo:
                     adapter.mCallback.onItemClicked(getAdapterPosition());
-
+                    break;
+                case R.id.iv_update_my_news:
+                    adapter.mCallback.onItemUpdate(getAdapterPosition());
+                    break;
+                case R.id.iv_delete_my_news:
+                    adapter.mCallback.onItemDelete(getAdapterPosition());
                     break;
             }
         }
     }
 
-    public RecycleAdapter(Context context, List<NoticiaModel> noticiasList){
+    public RecycleAdapterMyNews(Context context, List<NoticiaModel> noticiasList){
         this.postsList = noticiasList;
         this.context = context;
     }
@@ -136,7 +160,6 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         holder.tv_titulo.setText(noticia.getTitulo());
         holder.tv_conteudo.setText(noticia.getDescricao());
 
-        setCurtidas(holder, noticia);
     }
 
     @Override
@@ -144,16 +167,4 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         return postsList.size();
     }
 
-    private void setCurtidas(ViewHolder holder, NoticiaModel noticia){
-        int like_yes = 0;
-        int like_no = 0;
-        for(CurtidaModel curtida: noticia.getCurtidas()){
-            if(curtida.getLike())
-                like_yes++;
-            else
-                like_no++;
-        }
-        holder.tv_like_yes.setText(String.valueOf(like_yes));
-        holder.tv_like_no.setText(String.valueOf(like_no));
-    }
 }

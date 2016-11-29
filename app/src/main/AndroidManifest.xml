@@ -46,7 +46,11 @@
         <activity
             android:name=".ui.activity.PublicarNoticiaActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />/>
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".ui.activity.ListaNoticiasUsuarioActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
     </application>
 
 </manifest>

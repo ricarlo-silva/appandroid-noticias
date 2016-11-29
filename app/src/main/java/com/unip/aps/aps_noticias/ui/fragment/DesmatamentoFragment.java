@@ -74,7 +74,7 @@ public class DesmatamentoFragment extends BaseFragment {
         String type = "3";
 
         showProgressDialog(true, getString(R.string.carregando));
-        NoticiaService.getNoticiasByType(type, new NoticiaService.OnGetNotices() {
+        NoticiaService.getNoticiasByType(type, new NoticiaService.OnGetNoticias() {
             @Override
             public void onSuccess(List<NoticiaModel> list) {
                 showProgressDialog(false, null);

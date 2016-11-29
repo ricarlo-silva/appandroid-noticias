@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_lista_noticias_usuario"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/indigo_200"
+    tools:context="com.unip.aps.aps_noticias.ui.activity.ListaNoticiasUsuarioActivity">
+
+    <include layout="@layout/toolbar_default" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_below="@id/toolbar"
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:paddingRight="@dimen/margin_10dp"
+        android:paddingLeft="@dimen/margin_10dp"
+        android:paddingTop="5dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_my_news">
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

@@ -136,7 +136,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 hideNavigationView();
                 break;
             case R.id.tv_nav_my_news:
-                openActivity(this, PublicarNoticiaActivity.class);
+                openActivity(this, ListaNoticiasUsuarioActivity.class);
                 hideNavigationView();
                 break;
             case R.id.tv_nav_logout:

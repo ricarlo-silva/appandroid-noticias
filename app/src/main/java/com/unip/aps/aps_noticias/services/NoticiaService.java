@@ -7,7 +7,6 @@ import com.unip.aps.aps_noticias.R;
 import com.unip.aps.aps_noticias.app.ApsNoticiasApp;
 import com.unip.aps.aps_noticias.model.CurtidaModel;
 import com.unip.aps.aps_noticias.model.NoticiaModel;
-import com.unip.aps.aps_noticias.model.UsuarioModel;
 import com.unip.aps.aps_noticias.util.ApsNoticiasUtils;
 
 import java.lang.reflect.Type;
@@ -25,11 +24,11 @@ public class NoticiaService {
 
     private static IApsNoticias iApsNoticias;
 
-    public interface OnGetNotices {
+    public interface OnGetNoticias {
         void onSuccess(List<NoticiaModel> list);
         void onError(String error);
     }
-    public static void getNoticiasByType(String type, final OnGetNotices callback){
+    public static void getNoticiasByType(String type, final OnGetNoticias callback){
 
         if (!ApsNoticiasUtils.isOnline(ApsNoticiasApp.getInstance())){
             callback.onError(ApsNoticiasApp.getInstance().getString(R.string.sem_conexao));
@@ -65,6 +64,49 @@ public class NoticiaService {
             }
         });
     }
+
+
+    public interface OnGetALLNoticiasPerson {
+        void onSuccess(List<NoticiaModel> list);
+        void onError(String error);
+    }
+    public static void getALLNoticiasPerson(String id_person, final OnGetALLNoticiasPerson callback){
+
+        if (!ApsNoticiasUtils.isOnline(ApsNoticiasApp.getInstance())){
+            callback.onError(ApsNoticiasApp.getInstance().getString(R.string.sem_conexao));
+            return;
+        }
+
+        iApsNoticias = ServiceGenerator.createService(IApsNoticias.class);
+        Call<JsonObject> call = iApsNoticias.getAllNoticiasPerson(id_person);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if(response.body() != null && callback != null) {
+                    if (response.body().has("error") && response.body().get("error").getAsBoolean() == false ){
+
+                        Type type = new TypeToken<List<NoticiaModel>>() {}.getType();
+                        callback.onSuccess((List<NoticiaModel>) new Gson().fromJson(response.body().get("data").toString(), type));
+
+                    } else if (response.body().has("message")){
+                        callback.onError(response.body().get("message").toString());
+                    } else{
+                        callback.onError(ApsNoticiasApp.getInstance().getString(R.string.error_generico));
+                    }
+                }else{
+                    if(callback != null)
+                        callback.onError(ApsNoticiasApp.getInstance().getString(R.string.error_generico));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                if(callback != null)
+                    callback.onError(ApsNoticiasApp.getInstance().getString(R.string.error_generico));
+            }
+        });
+    }
+
 
 
 
@@ -211,9 +253,7 @@ public class NoticiaService {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.body() != null && callback != null) {
                     if (response.body().has("error") && response.body().get("error").getAsBoolean() == false ){
-
-
-                        callback.onSuccess("ok");
+                        callback.onSuccess(response.body().get("message").toString());
 
                     } else if (response.body().has("message")){
                         callback.onError(response.body().get("message").toString());

@@ -24,19 +24,25 @@
 
 
     <!-- Activity publicar news -->
+    <string name="title_publicacao">Minha Publicação</string>
     <string name="publicar">Publicar</string>
-    <string name="title">Titulo</string>
+    <string name="title">Título</string>
     <string name="descricao">Descrição</string>
     <string name="tipo">Tipo</string>
     <string name="publicando">Publicando...</string>
     <string name="sucesso_publicao">Nova publicação realizada com sucesso.</string>
+    <string name="deletar_news">Deletar notícia?</string>
+    <string name="atualizar_news">Atualizar Publicação</string>
+    <string name="atualizar">Atualizar</string>
+    <string name="atualizando_news">Atualizando notícia...</string>
+    <string name="atualizando_news_sucesso">Notícia atualizada com sucesso.</string>
 
-    <string-array  name="tipos">
+    <string-array name="tipos">
         <item>Selecione...</item>
         <item>poluição do ar</item>
         <item>trãnsito</item>
         <item>desmatamento</item>
-    </string-array >
+    </string-array>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
