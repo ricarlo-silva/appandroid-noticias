@@ -29,6 +29,8 @@ public class ListaNoticiasUsuarioActivity extends BaseActivity {
     private List<NoticiaModel> noticiaList;
     private FrameLayout fl_add_news;
     private ImageView iv_add_news;
+    private FrameLayout fl_back;
+    private ImageView iv_back;
 
     private int index_delete;
 
@@ -43,6 +45,16 @@ public class ListaNoticiasUsuarioActivity extends BaseActivity {
 
     private void initView(){
 
+
+        fl_back = (FrameLayout) toolbar.findViewById(R.id.fl_back);
+        fl_back.setVisibility(View.VISIBLE);
+        iv_back = (ImageView) toolbar.findViewById(R.id.ivBack);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         fl_add_news = (FrameLayout) toolbar.findViewById(R.id.fl_settings);
         fl_add_news.setVisibility(View.VISIBLE);
         iv_add_news = (ImageView) toolbar.findViewById(R.id.ivSettings);
@@ -50,7 +62,7 @@ public class ListaNoticiasUsuarioActivity extends BaseActivity {
         iv_add_news.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity(ListaNoticiasUsuarioActivity.this, PublicarNoticiaActivity.class);
+                openActivityForResult(PublicarNoticiaActivity.class, PublicarNoticiaActivity.REQUEST_PUBLICACAO);
             }
         });
 
@@ -74,7 +86,7 @@ public class ListaNoticiasUsuarioActivity extends BaseActivity {
             @Override
             public void onItemUpdate(int index) {
                 NoticiaModel noticia = noticiaList.get(index);
-                openActivity(ListaNoticiasUsuarioActivity.this, PublicarNoticiaActivity.class, PublicarNoticiaActivity.BUNDLE_NOTICIA, noticia);
+                openActivityForResult(PublicarNoticiaActivity.class, PublicarNoticiaActivity.BUNDLE_NOTICIA, noticia,PublicarNoticiaActivity.REQUEST_PUBLICACAO);
             }
 
             @Override
@@ -115,7 +127,6 @@ public class ListaNoticiasUsuarioActivity extends BaseActivity {
     private void dialogDeletarNews(final NoticiaModel noticia){
         new MaterialDialog.Builder(this)
                 .title(R.string.app_name)
-                .backgroundColorRes(R.color.indigo_200)
                 .content(R.string.deletar_news)
                 .positiveText(R.string.sim)
                 .negativeText(R.string.nao)
@@ -152,7 +163,7 @@ public class ListaNoticiasUsuarioActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK){
+        if(requestCode == PublicarNoticiaActivity.REQUEST_PUBLICACAO&& resultCode == RESULT_OK){
             getAllNewsPerson();
         }
     }

@@ -39,9 +39,9 @@
 
     <string-array name="tipos">
         <item>Selecione...</item>
-        <item>poluição do ar</item>
-        <item>trãnsito</item>
-        <item>desmatamento</item>
+        <item>Poluição do ar</item>
+        <item>Trânsito</item>
+        <item>Desmatamento</item>
     </string-array>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

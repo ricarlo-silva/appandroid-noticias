@@ -130,32 +130,11 @@ public class ApsNoticiasUtils {
         return sucess;
     }
 
-    public static Date converteDateISO8601Formato(String input) throws ParseException {
-        TimeZone timeZone = TimeZone.getDefault();
-        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        //SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        f.setTimeZone(timeZone);
-        GregorianCalendar cal = new GregorianCalendar(timeZone);
-        cal.setTime(f.parse(input));
-        return cal.getTime();
-    }
-
-    public static String converteDatePublicacao(String input) throws ParseException {
-
-        Date date = converteDateISO8601Formato(input);
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        DateFormat df1 = new SimpleDateFormat("HH:mm");
-
-        String dataFormated = "Publicação "+ df.format(date) + " às " + df1.format(date);
-
-        return dataFormated;
-    }
-
     public static String converteDatePost(String input) throws ParseException {
 
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         Calendar cal = Calendar.getInstance();
-        Date date = converteDateISO8601Formato(input);
-        cal.setTime(date);
+        cal.setTime(df.parse(input));
 
         String[] days = new String[7];
         days[0] = "Dom";

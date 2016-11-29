@@ -44,6 +44,12 @@ public class PoluicaoArFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getNoticiasPoluicao();
+    }
+
     private void initView(View view){
         SwipeRefreshLayout swipe_refresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         swipe_refresh.setEnabled(false);
@@ -66,7 +72,7 @@ public class PoluicaoArFragment extends BaseFragment {
 
         recyclerView.setAdapter(adapter);
 
-        getNoticiasPoluicao();
+
     }
 
     private void getNoticiasPoluicao(){

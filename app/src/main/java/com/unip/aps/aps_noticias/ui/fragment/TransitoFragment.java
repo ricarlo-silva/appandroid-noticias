@@ -44,6 +44,12 @@ public class TransitoFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getNoticiasTransito();
+    }
+
     private void initView(View view){
         SwipeRefreshLayout swipe_refresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         swipe_refresh.setEnabled(false);
@@ -66,10 +72,10 @@ public class TransitoFragment extends BaseFragment {
 
         recyclerView.setAdapter(adapter);
 
-        getNoticiasPoluicao();
+        getNoticiasTransito();
     }
 
-    private void getNoticiasPoluicao(){
+    private void getNoticiasTransito(){
 
         String type = "2";
 

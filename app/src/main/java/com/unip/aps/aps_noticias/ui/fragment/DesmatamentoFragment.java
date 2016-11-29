@@ -44,6 +44,12 @@ public class DesmatamentoFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getNoticiasDesmatamento();
+    }
+
     private void initView(View view){
         SwipeRefreshLayout swipe_refresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         swipe_refresh.setEnabled(false);
@@ -66,10 +72,10 @@ public class DesmatamentoFragment extends BaseFragment {
 
         recyclerView.setAdapter(adapter);
 
-        getNoticiasPoluicao();
+        getNoticiasDesmatamento();
     }
 
-    private void getNoticiasPoluicao(){
+    private void getNoticiasDesmatamento(){
 
         String type = "3";
 

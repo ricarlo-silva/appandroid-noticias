@@ -149,7 +149,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private void logout(){
         new MaterialDialog.Builder(this)
                 .title(R.string.app_name)
-                .backgroundColorRes(R.color.indigo_200)
                 .content(R.string.sair)
                 .positiveText(R.string.sim)
                 .negativeText(R.string.nao)

@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -21,12 +23,15 @@ import java.util.ArrayList;
 public class PublicarNoticiaActivity extends BaseActivity {
 
     public static final String BUNDLE_NOTICIA = "bundle_noticia";
+    public static final int REQUEST_PUBLICACAO = 12321;
 
     private EditText ed_title;
     private Spinner sp_tipo;
     private EditText ed_descricao;
     private Button bt_publicar;
     private String type = "";
+    private FrameLayout fl_back;
+    private ImageView iv_back;
 
     private NoticiaModel noticia;
 
@@ -37,6 +42,16 @@ public class PublicarNoticiaActivity extends BaseActivity {
 
         setUpToolBar(getString(R.string.title_publicacao));
 
+
+        fl_back = (FrameLayout) toolbar.findViewById(R.id.fl_back);
+        fl_back.setVisibility(View.VISIBLE);
+        iv_back = (ImageView) toolbar.findViewById(R.id.ivBack);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         ed_title = (EditText) findViewById(R.id.ed_title_activity_publicar_news);
         ed_descricao = (EditText) findViewById(R.id.ed_descricao_activity_publicar_news);
@@ -103,11 +118,12 @@ public class PublicarNoticiaActivity extends BaseActivity {
                 noticia.setTipo(tipo);
                 noticia.setDescricao(descricao);
                 noticia.setPerson(usuario);
-                noticia.setCurtidas(new ArrayList<CurtidaModel>());
 
                 publicar(noticia);
             }
 
+        }else{
+            Toast.makeText(PublicarNoticiaActivity.this, R.string.preencher_campos, Toast.LENGTH_SHORT).show();
         }
     }
 

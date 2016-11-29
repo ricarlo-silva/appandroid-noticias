@@ -149,8 +149,8 @@ public class RecycleAdapterMyNews extends RecyclerView.Adapter<RecycleAdapterMyN
         holder.tv_nome_user.setText(noticia.getPerson().getName());
 
         try {
-            //holder.tv_data.setText(ApsNoticiasUtils.converteDatePost(noticia.getData_publicacao()));
-            //holder.tv_data.setVisibility(View.VISIBLE);
+            holder.tv_data.setText(ApsNoticiasUtils.converteDatePost(noticia.getData_publicacao()));
+            holder.tv_data.setVisibility(View.VISIBLE);
 
         } catch (Exception e) {
             e.printStackTrace();
