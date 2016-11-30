@@ -72,7 +72,7 @@ public class TransitoFragment extends BaseFragment {
 
         recyclerView.setAdapter(adapter);
 
-        getNoticiasTransito();
+
     }
 
     private void getNoticiasTransito(){

@@ -72,7 +72,6 @@ public class DesmatamentoFragment extends BaseFragment {
 
         recyclerView.setAdapter(adapter);
 
-        getNoticiasDesmatamento();
     }
 
     private void getNoticiasDesmatamento(){

@@ -149,7 +149,7 @@ public class ApsNoticiasUtils {
         int hourOfDay  = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
         int minute     = cal.get(Calendar.MINUTE);
 
-        String _date = String.format("%s às %d:%d", days[dayOfWeek - 1], hourOfDay, minute);
+        String _date = String.format("%s às %02d:%02d", days[dayOfWeek - 1], hourOfDay, minute);
 
         return _date;
     }
