@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@drawable/space_colors_blue_purple_stars"
-    tools:context=".ui.activity.CriarContaActivity">
+    tools:context="com.noticias_now.ui.activity.CriarContaActivity">
 
     <!--<include layout="@layout/toolbar_default" />-->
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/indigo_200"
-    tools:context="com.unip.aps.aps_noticias.ui.activity.ListaNoticiasUsuarioActivity">
+    tools:context="com.noticias_now.ui.activity.ListaNoticiasUsuarioActivity">
 
     <include layout="@layout/toolbar_default" />
 

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/margin_10dp"
     android:paddingRight="@dimen/margin_10dp"
-    tools:context=".ui.fragment.TransitoFragment">
+    tools:context="com.noticias_now.ui.fragment.TransitoFragment">
 
 
     <android.support.v4.widget.SwipeRefreshLayout
