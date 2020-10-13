@@ -6,7 +6,7 @@ package com.noticias_now.app;
 
 public class Constants {
 
-    public class SharedPreferences{
+    public static class SharedPreferences {
         public static final String PATH_APP = "path_app";
         public static final String DEVICE_TOKEN = "device_koken";
         public static final String DATA_USER = "data_user";

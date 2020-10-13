@@ -40,7 +40,7 @@ public class ApsNoticiasApp extends Application {
     }
 
     public boolean checkIfLoggedin() {
-        return (usuario != null) ? true : false;
+        return usuario != null;
     }
 
     public void saveUser(UsuarioModel user){
