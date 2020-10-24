@@ -32,7 +32,6 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createProgressDialog();
-        usuario = ApsNoticiasApp.getInstance().getUsuario();
 
     }
 
@@ -40,7 +39,6 @@ public class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         runningBackground = false;
-        ApsNoticiasApp.currentActivity = this;
         usuario = ApsNoticiasApp.getInstance().getUsuario();
     }
 
@@ -66,15 +64,6 @@ public class BaseActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(context, openActivity);
         intent.putExtra(extraName, (Serializable) extraValue);
-        startActivity(intent);
-    }
-
-    public void openActivity(Context context, Class<?> openActivity, Intent intentBundle) {
-        Intent intent = new Intent();
-        intent.setClass(context, openActivity);
-        if (intentBundle != null && intentBundle.getExtras() != null) {
-            intent.putExtras(intentBundle.getExtras());
-        }
         startActivity(intent);
     }
 

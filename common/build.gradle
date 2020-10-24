@@ -1,0 +1,69 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion versions.compileSdkVersion
+    buildToolsVersion versions.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        versionCode versions.versionCode
+        versionName versions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    api deps.kotlin.jdk
+
+    // Android
+    api deps.androidx.core
+    api deps.androidx.appcompat
+
+    // DI
+    api deps.koin.core
+    api deps.koin.android
+    api deps.koin.viewmodel
+
+    // Firebase
+//    implementation 'com.google.android.gms:play-services-ads:19.5.0'
+    implementation platform(deps.google.firebase.bom)
+    implementation deps.google.firebase.config
+    implementation deps.google.firebase.analytics
+    implementation deps.google.firebase.crashlytics
+    implementation deps.google.firebase.perf
+
+    // Play services
+    implementation deps.coroutines.playservices
+    implementation deps.google.play
+    api deps.google.play_ktx
+
+    // https://developer.android.com/jetpack/androidx/releases/lifecycle
+    api deps.androidx.lifecycle.viewmodel
+    api deps.androidx.lifecycle.runtime
+    api deps.androidx.lifecycle.livedata
+
+    // Test
+    testImplementation deps.junit
+    androidTestImplementation deps.androidx.test.junit
+    androidTestImplementation deps.androidx.test.espresso
+}
