@@ -2,11 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.noticias_now">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
-        android:name="com.noticias_now.app.ApsNoticiasApp"
+        android:name="com.noticias_now.app.ApsNewsApp"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
@@ -14,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.noticias_now.ui.activity.SplashActivity"
+            android:name="com.noticias_now.splash.SplashActivity"
+            android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreen">
             <intent-filter>
@@ -24,33 +22,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.noticias_now.ui.activity.LoginActivity"
+            android:name="com.noticias_now.login.LoginActivity"
+            android:label="@string/titulo_login"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreen" />
         <activity
-            android:name="com.noticias_now.ui.activity.CriarContaActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreen" />
+            android:name="com.noticias_now.account.register.RegisterActivity"
+            android:screenOrientation="portrait">
+            <nav-graph android:value="@navigation/nav_graph" />
+        </activity>
         <activity
-            android:name="com.noticias_now.ui.activity.EditarPerfilActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreen" />
+            android:name="com.noticias_now.account.update.EditProfileActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.noticias_now.ui.activity.HomeActivity"
+            android:name="com.noticias_now.home.HomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.noticias_now.ui.activity.DetalheNoticiaActivity"
+            android:name="com.noticias_now.details.DetailsNewsActivity"
             android:label="@string/title_activity_detalhe_noticia"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.noticias_now.ui.activity.PublicarNoticiaActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreen" />
+            android:name="com.noticias_now.publish.PublishNewsActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.noticias_now.ui.activity.ListaNoticiasUsuarioActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreen" />
+            android:name="com.noticias_now.list.UserNewsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 
 fun Context.openBrowser(url: String?, flags: Int? = null) {
     if (url.isNullOrEmpty()) return
@@ -28,4 +29,8 @@ fun Context.openPlayStore() {
 //    } catch (e: ActivityNotFoundException) {
 //        openBrowser("https://play.google.com/store/apps/details?id=$appPackageName")
 //    }
+}
+
+fun Context.showToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }

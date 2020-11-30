@@ -10,7 +10,7 @@ internal object InAppUpdateModule {
     val module = module {
 
         single<AppUpdateManager> {
-            AppUpdateManagerFactory.create(androidContext())
+            AppUpdateManagerFactory.create(get())
         }
 
         single {

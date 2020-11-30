@@ -16,6 +16,12 @@ class UpdateViewModel constructor(
         private val remoteConfigManager: IFirebaseRemoteConfigManager
 ) : ViewModel() {
 
+    companion object {
+        private const val DAYS = 30
+        // 0 until 5
+        private const val PRIORITY = 4
+    }
+
     val updateStatus = manager.requestUpdateFlow()
             .catch {
                 _events.postValue(Event.ToastEvent("Update info not available"))
@@ -30,8 +36,8 @@ class UpdateViewModel constructor(
             return isImmediateUpdateAllowed
                     &&
                     (currentIsOldVersion()
-                            || clientVersionStalenessDays ?: 0 > 30
-                            || updatePriority > 4)
+                            || clientVersionStalenessDays ?: 0 > DAYS
+                            || updatePriority > PRIORITY)
         }
     }
 
@@ -47,7 +53,7 @@ class UpdateViewModel constructor(
             }
             is AppUpdateResult.Available -> {
                 with(updateResult.updateInfo) {
-                    Log.d(TAG, "Update priority: $updatePriority")
+                    Log.d(TAG_UPDATE, "Update priority: $updatePriority")
                     when {
                         shouldLaunchImmediateUpdate(this) -> {
                             _events.postValue(
@@ -85,4 +91,4 @@ class UpdateViewModel constructor(
 }
 
 const val IN_APP_UPDATE_REQUEST_CODE = 123
-const val TAG = "IN_APP_UPDATE"
+const val TAG_UPDATE = "IN_APP_UPDATE"

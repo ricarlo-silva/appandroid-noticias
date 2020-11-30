@@ -10,7 +10,7 @@ internal object InAppReviewModule {
     val module = module {
 
         single<ReviewManager> {
-            ReviewManagerFactory.create(androidContext())
+            ReviewManagerFactory.create(get())
         }
 
         single {

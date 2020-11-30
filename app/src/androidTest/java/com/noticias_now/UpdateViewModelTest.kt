@@ -9,8 +9,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.testing.FakeAppUpdateManager
-import com.google.android.play.core.install.model.AppUpdateType
-import com.noticias_now.ui.activity.SplashActivity
+import com.noticias_now.splash.SplashActivity
 import org.hamcrest.CoreMatchers
 import org.junit.Assert
 import org.junit.Before

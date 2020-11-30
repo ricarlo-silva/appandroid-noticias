@@ -8,6 +8,7 @@ import org.junit.Test
 import org.junit.Before
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import br.com.ricarlo.common.inapp.review.ReviewViewModel
+import br.com.ricarlo.test.getOrAwaitValue
 import org.junit.Rule
 import org.junit.Assert.*
 
@@ -28,7 +29,7 @@ class ReviewViewModelTest {
     fun setup() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         fakeReviewManager = FakeReviewManager(context)
-        viewModel = ReviewViewModel(fakeReviewManager)
+//        viewModel = ReviewViewModel(fakeReviewManager)
     }
 
     @Test
