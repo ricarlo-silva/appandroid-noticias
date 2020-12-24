@@ -34,14 +34,14 @@ class UserRepositoryImpl(
 
     override suspend fun login(session: SessionQuery.SingIn) {
         return withContext(dispatchers.io()) {
-            launchIdling {
+//            launchIdling {
                 apiCall(dispatchers.io()) {
                     local.save(remote.login(SessionRequest(
                         email = session.email,
                         password = session.password
                     )).data)
                 }
-            }
+//            }
         }
 
 //        return wrapEspressoIdlingResource {

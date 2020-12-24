@@ -4,9 +4,9 @@ import com.noticias_now.model.UserModel
 
 interface IUserRepositoryLocal {
 
-    fun save(user: UserModel)
+    suspend fun save(user: UserModel)
 
-    fun delete()
+    suspend fun delete()
 
-    fun get(): UserModel?
+    suspend fun get(): UserModel?
 }

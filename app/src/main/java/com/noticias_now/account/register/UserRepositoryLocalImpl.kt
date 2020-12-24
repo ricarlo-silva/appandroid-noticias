@@ -1,27 +1,34 @@
 package com.noticias_now.account.register
 
-import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import br.com.ricarlo.network.fromJson
 import br.com.ricarlo.network.toJson
-import com.noticias_now.app.Constants
 import com.noticias_now.model.UserModel
-import br.com.ricarlo.common.util.ApsNoticiasUtils
+import com.ricarlo.storage.delete
+import com.ricarlo.storage.get
+import com.ricarlo.storage.save
 
-// TODO refactor all
 class UserRepositoryLocalImpl(
-        private val context: Context
+        private val storage: DataStore<Preferences>
 ) : IUserRepositoryLocal {
 
-    override fun save(user: UserModel) {
-        ApsNoticiasUtils.write(context, Constants.SharedPreferences.PATH_APP, Constants.SharedPreferences.DATA_USER, user.toJson())
+    companion object {
+        const val DATA_USER = "data_user"
     }
 
-    override fun delete() {
-        ApsNoticiasUtils.remove(context, Constants.SharedPreferences.PATH_APP, Constants.SharedPreferences.DATA_USER)
+    override suspend fun save(user: UserModel) {
+        user.toJson()?.let {
+            storage.save<String>(DATA_USER, it)
+        }
     }
 
-    override fun get(): UserModel? {
-        val jsonUser = ApsNoticiasUtils.read(context, Constants.SharedPreferences.PATH_APP, Constants.SharedPreferences.DATA_USER, null)
+    override suspend fun delete() {
+        storage.delete<String>(DATA_USER)
+    }
+
+    override suspend fun get(): UserModel? {
+        val jsonUser = storage.get<String>(DATA_USER)
         return fromJson<UserModel>(jsonUser)
     }
 }

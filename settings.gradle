@@ -1,3 +1,4 @@
+include ':storage'
 include ':test'
 include ':ui'
 include ':network'

@@ -27,20 +27,20 @@ android {
         consumerProguardFiles "consumer-rules.pro"
     }
 
-    signingConfigs {
-        release {
-            keyAlias keystoreProperties['key.alias']
-            keyPassword keystoreProperties['key.password']
-            storeFile file(keystoreProperties['store.file'])
-            storePassword keystoreProperties['store.password']
-        }
-    }
+//    signingConfigs {
+//        release {
+//            keyAlias keystoreProperties['key.alias']
+//            keyPassword keystoreProperties['key.password']
+//            storeFile file(keystoreProperties['store.file'])
+//            storePassword keystoreProperties['store.password']
+//        }
+//    }
 
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
         }
     }
 
@@ -71,6 +71,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(path: ':storage')
     implementation project(path: ':common')
     implementation project(path: ':network')
     implementation project(path: ':ui')

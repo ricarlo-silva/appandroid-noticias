@@ -3,6 +3,7 @@ package com.noticias_now.app
 import android.app.Application
 import br.com.ricarlo.common.di.CommonModule
 import com.noticias_now.di.AppModule
+import com.ricarlo.storage.di.StorageModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -21,7 +22,11 @@ class ApsNewsApp : Application() {
             // Android context
             androidContext(this@ApsNewsApp)
             // modules
-            modules(CommonModule.modules + AppModule.modules)
+            modules(
+                    CommonModule.modules +
+                            AppModule.modules +
+                            StorageModule.modules
+            )
         }
     }
 

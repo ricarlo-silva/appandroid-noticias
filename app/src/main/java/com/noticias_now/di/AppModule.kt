@@ -31,7 +31,7 @@ object AppModule {
                 }
 
                 single<IUserRepository> { UserRepositoryImpl(get(), get(), get()) }
-                single<IUserRepositoryLocal> { UserRepositoryLocalImpl(androidContext()) }
+                single<IUserRepositoryLocal> { UserRepositoryLocalImpl(get()) }
                 single<INewsRepository> { NewsRepositoryImpl(get(), get()) }
 
                 viewModel<RegisterViewModel> { RegisterViewModel(get(), get(), get()) }
