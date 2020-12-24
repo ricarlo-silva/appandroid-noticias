@@ -13,9 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.ricarlo.network.test
+package br.com.ricarlo.common.util.test
 
 import androidx.test.espresso.IdlingResource
+import androidx.test.espresso.idling.CountingIdlingResource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * Contains a static reference to [IdlingResource], only available in the 'mock' build type.
@@ -25,7 +32,7 @@ object EspressoIdlingResource {
     private const val RESOURCE = "GLOBAL"
 
     @JvmField
-    val countingIdlingResource = SimpleCountingIdlingResource(RESOURCE)
+    val countingIdlingResource = CountingIdlingResource(RESOURCE)//SimpleCountingIdlingResource(RESOURCE)
 
     fun increment() {
         countingIdlingResource.increment()
@@ -47,4 +54,15 @@ inline fun <T> wrapEspressoIdlingResource(function: () -> T): T {
     } finally {
         EspressoIdlingResource.decrement() // Set app as idle.
     }
+}
+
+fun CoroutineScope.launchIdling(
+        context: CoroutineContext = EmptyCoroutineContext,
+        start: CoroutineStart = CoroutineStart.DEFAULT,
+        block: suspend CoroutineScope.() -> Unit
+): Job {
+    EspressoIdlingResource.increment()
+    val job = this.launch(context, start, block)
+    job.invokeOnCompletion { EspressoIdlingResource.decrement() }
+    return job
 }

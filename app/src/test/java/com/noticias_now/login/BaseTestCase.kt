@@ -6,7 +6,7 @@ import junit.framework.TestCase
 import org.koin.core.module.Module
 import org.koin.test.KoinTest
 
-abstract class BaseTestCase : KoinTest, TestCase() {
+abstract class BaseTestCase : KoinTest {
 
     open fun testModules() = listOf<Module>()
 

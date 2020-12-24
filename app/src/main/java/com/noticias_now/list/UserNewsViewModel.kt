@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.ricarlo.common.util.ViewState
+import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
 import br.com.ricarlo.common.util.resources.IResourcesManager
 import com.noticias_now.account.register.IUserRepository
 import com.noticias_now.details.INewsRepository
@@ -14,7 +15,8 @@ import kotlinx.coroutines.launch
 class UserNewsViewModel(
         private val userRepository: IUserRepository,
         private val newsRepository: INewsRepository,
-        private val resourcesManager: IResourcesManager
+        private val resourcesManager: IResourcesManager,
+        private val dispatchers: ICoroutinesDispatcherProvider
 ) : ViewModel() {
 
     private val _news = MutableLiveData<ViewState<List<NewsModel>>>()
@@ -26,7 +28,7 @@ class UserNewsViewModel(
 
     fun getNews() {
         _news.value = ViewState.Loading()
-        viewModelScope.launch {
+        viewModelScope.launch(dispatchers.main()) {
             runCatching {
                 newsRepository.getAllNewsPerson(userRepository.get().id.orEmpty())
             }.onSuccess {
@@ -39,7 +41,7 @@ class UserNewsViewModel(
 
     fun deleteNews(newsModel: NewsModel) {
         _delete.value = ViewState.Loading()
-        viewModelScope.launch {
+        viewModelScope.launch(dispatchers.main()) {
             runCatching {
                 newsRepository.deleteNews(newsModel)
             }.onSuccess {

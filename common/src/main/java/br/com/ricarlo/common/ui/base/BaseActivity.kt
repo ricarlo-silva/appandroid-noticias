@@ -81,7 +81,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
             updateStatus.observe(this@BaseActivity) { updateResult ->
                 when (updateResult) {
                     is AppUpdateResult.NotAvailable -> {
-                        Log.d(br.com.ricarlo.common.inapp.update.TAG_UPDATE, "No update available")
+                        Log.d(TAG_UPDATE, "No update available")
                         snackbar.dismiss()
                     }
                     is AppUpdateResult.Available -> {

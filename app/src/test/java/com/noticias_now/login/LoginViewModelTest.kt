@@ -2,11 +2,11 @@ package com.noticias_now.login
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.Observer
 import br.com.ricarlo.common.di.CommonModule
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
 import br.com.ricarlo.common.util.resources.IResourcesManager
+import br.com.ricarlo.network.ApiException
 import br.com.ricarlo.test.CoroutineTestRule
 import br.com.ricarlo.test.test
 import com.noticias_now.account.register.IUserRepository
@@ -20,9 +20,6 @@ import org.junit.runners.JUnit4
 import org.koin.dsl.module
 import org.koin.test.KoinTestRule
 import org.koin.test.inject
-import org.mockito.Mockito
-import org.mockito.Mockito.*
-
 
 //import org.robolectric.annotation.Config
 
@@ -32,9 +29,8 @@ import org.mockito.Mockito.*
 class LoginViewModelTest : BaseTestCase() {
 
     private val viewModel: LoginViewModel by inject()
-    private val userRepository: IUserRepository by inject()
+    private val userRepository = mockk<IUserRepository>(relaxUnitFun = true)
     private val resourcesManager: IResourcesManager by inject()
-
     private val mContext = mockk<Context>(relaxed = true)
 
     // Executes tasks in the Architecture Components in the same thread
@@ -53,6 +49,7 @@ class LoginViewModelTest : BaseTestCase() {
     var koinTestRule = KoinTestRule.create {
         modules(AppModule.modules + CommonModule.modules + module(override = true) {
             factory<Context> { mContext }
+            single<IUserRepository> { userRepository }
             single<ICoroutinesDispatcherProvider> {
                 coroutinesTestRule.testDispatcherProvider
             }
@@ -71,140 +68,83 @@ class LoginViewModelTest : BaseTestCase() {
 //
 //    }
 
-
     @Test
-    fun login_with_empty_email_and_password() {
+    fun givenWebserviceSuccess_whenCallLoginWithValidEmailAndPassword_thenShowLoadingAndSuccess() {
+        coroutinesTestRule.runBlockingTest {
 
-        // given
-        every { resourcesManager.getString(any()) } returns "Preencha todos os campos."
-        val observer = viewModel.user.test()
-//
-//        // when
-//        viewModel.login("", "")
-//
-//        // then
-//        observer.values { states ->
-////            assertLoading(states[0])
-//            assertError(states[0], "Preencha todos os campos.")
-//        }.assertValueCount(1)
+            // given
+            coEvery {
+                userRepository.login(
+                        match { it.email == "test@email.com" && it.password == "123456" }
+                )
+            } just Runs
 
+            val mockObserver = viewModel.user.test()
 
-//        Mockito.verify(observer, Mockito.times(2))
-//                .onChanged(argumentCaptor.capture())
-// then
-        val slots = mutableListOf<ViewState<Unit>>()
-        verify {
-            observer.onChanged(capture(slots))
+            // when
+            viewModel.login("test@email.com", "123456")
+
+            // then
+            coVerifySequence {
+                mockObserver.onChanged(match { it is ViewState.Loading })
+                mockObserver.onChanged(match { it is ViewState.Success })
+            }
+
+            coVerify(exactly = 0) {
+                mockObserver.onChanged(match { it is ViewState.Error })
+            }
+
+            confirmVerified(mockObserver)
         }
-
-        viewModel.user.observeForever(observer)
-        viewModel.login("", "")
-//        val values = slots.getAllValues();
-
-//        Assert.assertEquals(Status.LOADING,values.get(0).status)
-//
-//        Assert.assertEquals(Status.ERROR, values.get(1).status)
-
-
     }
 
     @Test
-    fun login_with_valid_email_and_password() = coroutinesTestRule.runBlockingTest {
+    fun givenWebserviceError_whenCallLogin_thenShowLoadingAndError() {
+        coroutinesTestRule.runBlockingTest {
 
-        coEvery { userRepository.login(any()) } returns Unit
+            // given
+            coEvery {
+                userRepository.login(
+                        match { it.email == "test@email.com" && it.password == "123456" }
+                )
+            } throws ApiException(statusCode = 500, message = null)
 
+            val mockObserver = viewModel.user.test()
+
+            // when
+            viewModel.login("test@email.com", "123456")
+
+            // then
+            coVerifySequence {
+                mockObserver.onChanged(match { it is ViewState.Loading })
+                mockObserver.onChanged(match { (it is ViewState.Error) && (it.error as ApiException).statusCode == 500 })
+            }
+
+            coVerify(exactly = 0) {
+                mockObserver.onChanged(match { it is ViewState.Success })
+            }
+
+            confirmVerified(mockObserver)
+        }
+    }
+
+    @Test
+    fun givenMockedResources_whenCallLoginWithEmptyEmailAndPassword_thenShowError() {
         // given
         val mockObserver = viewModel.user.test()
-
-        // when
-        viewModel.login("test@email.com", "123456")
-
-        // then
-//        observer.values { states ->
-//            assertLoading(states[0])
-//            assertSuccess(states[1], Unit)
-//        }.assertValueCount(2)
-
-        coVerifySequence {
-            mockObserver.onChanged(any())
-            mockObserver.onChanged(any())
-
-        }
-
-
-
-//
-//        verify(mockObserver).onChanged(isA(Loading::class.java))
-//        verify(mockObserver).onChanged(isA(State.Success::class.java))
-//
-//        verify(mockObserver, times(1)).onChanged(isA(ViewState.Loading<Unit>::class.java))
-//        verify(mockObserver, times(1)).onChanged(isA(State.Success::class.java))
-//
-//        verify(mockObserver, never()).onChanged(isA(ViewState.Error::class.java))
-//
-//        verifyNoMoreInteractions(mockObserver)?
-
-
-    }
-
-    @Test
-    fun test1() {
-        // given
-        val observer = mockk<Observer<ViewState<Unit>>> { every { onChanged(any()) } just  Runs }
-        viewModel.user.observeForever(observer)
         every { resourcesManager.getString(any()) } returns "Preencha todos os campos."
 
-
         // when
-        viewModel.login("test@email.com", "123456")
-
+        viewModel.login("", "")
 
         // then
         val slots = mutableListOf<ViewState<Unit>>()
         verify {
-            observer.onChanged(capture(slots))
+            mockObserver.onChanged(capture(slots))
         }
 
-        assertLoading(slots[0])
-        assertSuccess(slots[1], Unit)
+        assertError(slots[0], "Preencha todos os campos.")
 
     }
-//
-//    @Test
-//    fun login_with_empty_email_and_password() = coroutinesTestRule.runBlockingTest {
-//        // Given
-//        val observer = mockk<Observer<ViewState<Unit>>> { every { onChanged(any()) } just Runs }
-//
-//        viewModel.user.observeForever(observer)
-//
-////        val slot = slot<ViewState<*>>()
-//        every { resourcesManager.getString(any()) } returns "Preencha todos os campos."
-//
-//        // When
-//        viewModel.login("", "")
-//
-//        // Then
-////        coVerify(exactly = 0) { userRepository.login(SessionQuery.SingIn("", "")) }
-//
-//        val expected = Exception("Preencha todos os campos.")
-////        assertEquals(expected, viewModel.user.getOrAwaitValue())
-//
-////        assertThat(expected, equalTo(viewModel.user.getOrAwaitValue()))
-//
-////        val result = viewModel.user.getOrAwaitValue()
-//
-//
-////        assertError(result, expected.message)
-//
-//        verifySequence {
-//            observer.onChanged(any())
-//            observer.onChanged(any())
-////
-////            observer.onChanged(eq(ViewState.Loading()))
-////            observer.onChanged(eq(ViewState.Error(expected)))
-//        }
-//
-//    }
-
 
 }

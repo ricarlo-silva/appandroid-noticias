@@ -1,77 +1,64 @@
 package com.noticias_now.login
 
-import android.view.inputmethod.EditorInfo
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
+import android.app.Activity
 import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import br.com.ricarlo.test.CoroutineTestRule
-import com.noticias_now.R
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import androidx.test.filters.LargeTest
+import br.com.ricarlo.test.EspressoIdlingResourceRule
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@ExperimentalCoroutinesApi
+@LargeTest
 @RunWith(AndroidJUnit4::class)
 class LoginActivityTest {
 
-    @get:Rule
-    var coroutinesTestRule = CoroutineTestRule()
+//    @get:Rule
+//    var idlingResourceRule = EspressoIdlingResourceRule()
 
     @get:Rule
     var activityRule = activityScenarioRule<LoginActivity>()
 
-//    // Executes tasks in the Architecture Components in the same thread
-//    @get:Rule
-//    var instantTaskExecutorRule = InstantTaskExecutorRule()
+    lateinit var activity: Activity
 
-
-    @Test
-    fun test1() = coroutinesTestRule.testDispatcher.runBlockingTest {
-
-
+    @Before
+    fun setUp() {
+        activityRule.scenario.onActivity {
+            activity = it
+        }
     }
 
     @Test
-    fun test() {
-//        onView(withId(R.id.bt_create_account)).perform(click())
-//        Intents.intended(IntentMatchers.toPackage("com.noticias_now.account.register"))
+    fun move_to_register_screen() {
+        login {
+            clickRegister()
+            isRegisterScreen()
+        }
+    }
 
-        onView(withId(R.id.ed_email))
-                .check(matches(withHint("E-mail")))
-                .check(matches(hasImeAction(EditorInfo.IME_ACTION_NEXT)))
-                .perform(typeText("test@email.com"), pressImeActionButton())
-//                .perform(ViewActions.pressKey(EditorInfo.IME_ACTION_NEXT))
+    @Test
+    fun enter_with_empty_email_password() {
+        login {
+            typeEmail("")
+            typePassword("")
+            clickEnter()
 
-        onView(withId(R.id.ed_password))
-                .check(matches(withHint("Senha")))
-                .check(matches(hasImeAction(EditorInfo.IME_ACTION_DONE)))
-                .perform(typeText("123456"), pressImeActionButton())
+//            activity.isDisplayedToast("Ocorreu um problema na conexão.\\nTente mais tarde.")
+        }
+    }
 
+    @Test
+    fun enter_with_valid_email_password() {
+        login {
+            typeEmail("test@email.com")
+            typePassword("123456")
+            clickEnter()
+//            Intents.intended(IntentMatchers.hasComponent(ComponentName(ApplicationProvider.getApplicationContext(), HomeActivity::class.java.name)))
 
-        onView(withId(R.id.bt_login)).perform(click())
-
-        onView(withText("Bem-vindo ao Notícias NOW")).inRoot(ToastMatcher())
-                .check(matches(isDisplayed()))
-
-//        onView(withText(""))
-//                .inRoot(RootMatchers.withDecorView(not(activityRule.getActivity().getWi
-
-//                onView(withText(""))
-//                        .inRoot(RootMatchers.withDecorView(not(activityRule..getDecorView())))
-//                        .check(matches(isDisplayed()))
-
-
-        // check toast visibility
-        // check toast visibility
-//        onView(withText("Pavneet Toast")).inRoot(withDecorView(not(`is`(activity.getWindow().getDecorView())))).check(matches(isDisplayed()))
-
-//        onView(withId(R.id.bt_register)).check(matches(isDisplayed()))
-
+            isHomeScreen()
+//            isDisplayedToast("Bem-vindo ao Notícias NOW")
+        }
     }
 
 }

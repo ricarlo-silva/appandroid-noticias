@@ -9,7 +9,7 @@ import org.koin.dsl.module
 object ResourcesModule {
     val modules = module {
 
-        factory<Context> { androidContext() }
+//        factory<Context> { androidContext() }
 
         single<IResourcesManager> {
             ResourcesManagerImpl(get())

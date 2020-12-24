@@ -15,7 +15,7 @@ class ToastMatcher : TypeSafeMatcher<Root>() {
         if (type == WindowManager.LayoutParams.TYPE_TOAST) {
             val windowToken = root.decorView.windowToken
             val appToken = root.decorView.applicationWindowToken
-            return windowToken === appToken
+            return windowToken == appToken
         }
         return false
     }

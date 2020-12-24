@@ -34,15 +34,15 @@ object AppModule {
                 single<IUserRepositoryLocal> { UserRepositoryLocalImpl(androidContext()) }
                 single<INewsRepository> { NewsRepositoryImpl(get(), get()) }
 
-                viewModel<RegisterViewModel> { RegisterViewModel(get(), get()) }
-                viewModel<EditProfileViewModel> { EditProfileViewModel(get(), get()) }
+                viewModel<RegisterViewModel> { RegisterViewModel(get(), get(), get()) }
+                viewModel<EditProfileViewModel> { EditProfileViewModel(get(), get(), get()) }
                 viewModel<LoginViewModel> { LoginViewModel(get(), get(), get()) }
-                viewModel<DetailsViewModel> { DetailsViewModel(get(), get(), get()) }
-                viewModel<PublishViewModel> { PublishViewModel(get(), get(), get()) }
-                viewModel<HomeViewModel> { HomeViewModel(get(), get()) }
-                viewModel<NewsTypeViewModel> { NewsTypeViewModel(get()) }
-                viewModel<UserNewsViewModel> { UserNewsViewModel(get(), get(), get()) }
-                viewModel<SplashViewModel> { SplashViewModel(get()) }
+                viewModel<DetailsViewModel> { DetailsViewModel(get(), get(), get(), get()) }
+                viewModel<PublishViewModel> { PublishViewModel(get(), get(), get(), get()) }
+                viewModel<HomeViewModel> { HomeViewModel(get(), get(), get()) }
+                viewModel<NewsTypeViewModel> { NewsTypeViewModel(get(), get()) }
+                viewModel<UserNewsViewModel> { UserNewsViewModel(get(), get(), get(), get()) }
+                viewModel<SplashViewModel> { SplashViewModel(get(), get()) }
 
             }
     )

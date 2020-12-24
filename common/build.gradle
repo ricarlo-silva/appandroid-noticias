@@ -82,4 +82,7 @@ dependencies {
     testImplementation deps.junit
     androidTestImplementation deps.androidx.test.junit
     androidTestImplementation deps.androidx.test.espresso
+
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.3.0'
+
 }

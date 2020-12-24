@@ -2,11 +2,13 @@ package com.noticias_now.home
 
 import androidx.lifecycle.*
 import br.com.ricarlo.common.util.ViewState
+import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
 import com.noticias_now.details.INewsRepository
 import com.noticias_now.model.NewsModel
 
 class NewsTypeViewModel(
-        private val newsRepository: INewsRepository
+        private val newsRepository: INewsRepository,
+        private val dispatchers: ICoroutinesDispatcherProvider
 ) : ViewModel() {
 
     private val _type = MutableLiveData<String>()
@@ -18,7 +20,7 @@ class NewsTypeViewModel(
     }
 
     val news: LiveData<ViewState<List<NewsModel>>> = _type.switchMap {
-        liveData {
+        liveData(dispatchers.main()) {
             emit(ViewState.Loading())
             runCatching {
                 newsRepository.getNewsByType(it)

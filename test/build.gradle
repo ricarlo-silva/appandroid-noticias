@@ -61,7 +61,7 @@ dependencies {
 //    api "org.robolectric:robolectric:4.4"
 
     // Instrumented
-    androidTestApi('io.mockk:mockk-android:1.10.0')
+    api('io.mockk:mockk-android:1.10.0')
 
     api deps.coroutines.test
 

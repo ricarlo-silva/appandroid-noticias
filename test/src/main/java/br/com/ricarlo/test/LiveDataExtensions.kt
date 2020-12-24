@@ -3,6 +3,7 @@ package br.com.ricarlo.test
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import io.mockk.*
+import org.junit.Assert
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
@@ -48,16 +49,27 @@ fun <T> LiveData<T>.getOrAwaitValue(
 //    }
 //}
 
+inline  fun <reified T : Any> LiveData<T>.test(): Observer<T> {
+    Assert.assertFalse(hasObservers())
+    val observer = mockk<Observer<T>> { every { onChanged(any()) } just Runs }
+    observeForever(observer)
+    return observer
+}
+
 inline fun <reified T : Any> LiveData<T>.observeForTesting(block: (states: List<T>) -> Unit) {
+    Assert.assertFalse(hasObservers())
     val observer = mockk<Observer<T>> { every { onChanged(any()) } just Runs }
 
     try {
         observeForever(observer)
         val slots = mutableListOf<T>()
+
+        block(slots)
+
         verify {
             observer.onChanged(capture(slots))
         }
-        block(slots)
+        confirmVerified(observer)
     } finally {
         removeObserver(observer)
     }
@@ -163,13 +175,13 @@ class LiveDataTestObserver<T> constructor(
     }
 }
 
-fun <T> LiveData<T>.test(): LiveDataTestObserver<T> {
-
-    val testObserver = LiveDataTestObserver(this)
-
-    // Remove this testObserver that is added in init block of TestObserver, and clears previous data
-    testObserver.clear()
-    observeForever(testObserver)
-
-    return testObserver
-}
+//fun <T> LiveData<T>.test(): LiveDataTestObserver<T> {
+//
+//    val testObserver = LiveDataTestObserver(this)
+//
+//    // Remove this testObserver that is added in init block of TestObserver, and clears previous data
+//    testObserver.clear()
+//    observeForever(testObserver)
+//
+//    return testObserver
+//}

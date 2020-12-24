@@ -33,7 +33,7 @@ class LoginViewModel(
                 }.onSuccess {
                     _user.postValue(ViewState.Success(it))
                 }.onFailure {
-                    _user.value = ViewState.Error(error = it)
+                    _user.postValue(ViewState.Error(error = it))
                 }
 
             } else {

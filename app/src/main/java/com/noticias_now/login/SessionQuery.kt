@@ -4,5 +4,5 @@ import com.noticias_now.model.BaseQuery
 
 sealed class SessionQuery : BaseQuery {
     class SingIn(val email: String, val password: String) : SessionQuery()
-    object SingOut : SessionQuery()
+//    object SingOut : SessionQuery()
 }

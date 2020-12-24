@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.ricarlo.common.util.ViewState
+import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
 import br.com.ricarlo.common.util.resources.IResourcesManager
 import com.noticias_now.R
 import com.noticias_now.account.register.IUserRepository
@@ -15,7 +16,8 @@ import kotlinx.coroutines.launch
 class PublishViewModel(
         private val userRepository: IUserRepository,
         private val newsRepository: INewsRepository,
-        private val resourcesManager: IResourcesManager
+        private val resourcesManager: IResourcesManager,
+        private val dispatchers: ICoroutinesDispatcherProvider
 ) : ViewModel() {
 
     private val _news = MutableLiveData<NewsModel?>()
@@ -40,7 +42,7 @@ class PublishViewModel(
 
             val message = if (isUpdate()) R.string.atualizando_news else R.string.publicando
             _result.value = ViewState.Loading(resourcesManager.getString(message))
-            viewModelScope.launch {
+            viewModelScope.launch(dispatchers.main()) {
                 runCatching {
                     val model = NewsModel(
                             title = title,

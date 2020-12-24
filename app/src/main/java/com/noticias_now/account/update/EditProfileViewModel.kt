@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.ricarlo.common.util.ViewState
+import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
 import br.com.ricarlo.common.util.resources.IResourcesManager
 import com.noticias_now.R
 import com.noticias_now.account.register.IUserRepository
@@ -13,7 +14,8 @@ import kotlinx.coroutines.launch
 
 class EditProfileViewModel(
         private val userRepository: IUserRepository,
-        private val resourcesManager: IResourcesManager
+        private val resourcesManager: IResourcesManager,
+        private val dispatchers: ICoroutinesDispatcherProvider
 ) : ViewModel() {
 
     private val _user = MutableLiveData<ViewState<UserModel>>()
@@ -28,7 +30,7 @@ class EditProfileViewModel(
 
     private fun load() {
         _user.value = ViewState.Loading()
-        viewModelScope.launch {
+        viewModelScope.launch(dispatchers.main()) {
             runCatching {
                 userRepository.get()
             }.onSuccess {
@@ -44,7 +46,7 @@ class EditProfileViewModel(
         if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
             _result.value = ViewState.Loading()
 
-            viewModelScope.launch {
+            viewModelScope.launch(dispatchers.main()) {
                 runCatching {
                     userRepository.update(UserModel(
                             id = userRepository.get().id, //TODO refactor

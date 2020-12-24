@@ -9,7 +9,7 @@ import kotlinx.coroutines.delay
 class MockWebService : IWebService {
 
     private suspend fun <T> createMockResponse(data: T): ApiResponse<T> {
-        delay(200)
+        delay(2000)
         return ApiResponse(
                 error = false,
                 data = data

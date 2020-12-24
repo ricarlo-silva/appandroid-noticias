@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import br.com.ricarlo.common.ui.BaseViewModel
 import br.com.ricarlo.common.util.ViewState
+import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
 import br.com.ricarlo.common.util.resources.IResourcesManager
 import com.noticias_now.R
 import com.noticias_now.model.UserModel
@@ -12,7 +13,8 @@ import kotlinx.coroutines.launch
 
 class RegisterViewModel(
         private val userRepository: IUserRepository,
-        private val resourcesManager: IResourcesManager
+        private val resourcesManager: IResourcesManager,
+        private val dispatchers: ICoroutinesDispatcherProvider
 ) : BaseViewModel() {
 
     private val _user = MutableLiveData<ViewState<Unit>>()
@@ -23,7 +25,7 @@ class RegisterViewModel(
         if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
             _user.value = ViewState.Loading()
 
-            viewModelScope.launch {
+            viewModelScope.launch(dispatchers.main()) {
                 runCatching {
                     userRepository.insert(UserModel(
                             name = name,

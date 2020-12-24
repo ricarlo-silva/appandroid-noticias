@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.ricarlo.common.util.ViewState
+import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
 import br.com.ricarlo.common.util.resources.IResourcesManager
 import com.noticias_now.account.register.IUserRepository
 import com.noticias_now.model.LikeModel
@@ -14,7 +15,8 @@ import kotlinx.coroutines.launch
 class DetailsViewModel(
         private val userRepository: IUserRepository,
         private val newsRepository: INewsRepository,
-        private val resourcesManager: IResourcesManager
+        private val resourcesManager: IResourcesManager,
+        private val dispatchers: ICoroutinesDispatcherProvider
 ) : ViewModel() {
 
     private val _news = MutableLiveData<ViewState<NewsModel>>()
@@ -31,7 +33,7 @@ class DetailsViewModel(
         if (!news.id.isNullOrEmpty()) {
             _news.value = ViewState.Loading()
 
-            viewModelScope.launch {
+            viewModelScope.launch(dispatchers.main()) {
                 runCatching {
                     val news = newsRepository.getNewsById(news.id)
                     val userId = userRepository.get().id
@@ -55,7 +57,7 @@ class DetailsViewModel(
 
         _like.value = ViewState.Loading()
 
-        viewModelScope.launch {
+        viewModelScope.launch(dispatchers.main()) {
             runCatching {
                 val userId = userRepository.get().id
                 val news = newsRepository.createLike(LikeModel(
