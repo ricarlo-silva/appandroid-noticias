@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.Observer
 import br.com.ricarlo.common.ui.base.BaseActivity
 import br.com.ricarlo.common.util.ViewState
 import com.afollestad.materialdialogs.MaterialDialog
@@ -78,7 +79,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), View.OnClickListener {
 
     private fun subscribeUI() {
 
-        viewModel.types.observe(this) {
+        viewModel.types.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
                     showLoading(getString(R.string.loading))
@@ -87,14 +88,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), View.OnClickListener {
                     hideLoading()
                     binding.home.content.tabLayout.setupWithViewPager(binding.home.content.pager)
 
-//                    val list = linkedMapOf(
-//                            "poluição do ar" to NewsTypeFragment.getInstance(TypeNews.POLLUTION.value),
-//                            "trânsito" to NewsTypeFragment.getInstance(TypeNews.TRAFFIC.value),
-//                            "desmatamento" to NewsTypeFragment.getInstance(TypeNews.DEFORESTATION.value)
-//                    )
                     val list = it.data.associateBy({ it.name }, { NewsTypeFragment.getInstance(it.id) })
-
-
                     val adapter = PagerAdapter(list, supportFragmentManager)
 
                     binding.home.content.pager.adapter = adapter
@@ -104,9 +98,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), View.OnClickListener {
                     handlerError(it.error)
                 }
             }
-        }
+        })
 
-        viewModel.logout.observe(this) {
+        viewModel.logout.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
 
@@ -121,13 +115,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), View.OnClickListener {
                     handlerError(it.error)
                 }
             }
-        }
+        })
 
-        viewModel.user.observe(this) {
+        viewModel.user.observe(this, Observer {
             // TODO check if update after edit profile
             binding.navHeader.tvNavHeaderName.text = it.name
             binding.navHeader.tvNavHeaderEmail.text = it.email
-        }
+        })
     }
 
     private fun logout() {

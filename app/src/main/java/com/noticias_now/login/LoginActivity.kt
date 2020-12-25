@@ -2,6 +2,7 @@ package com.noticias_now.login
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import br.com.ricarlo.common.ui.base.BaseActivity
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.extensions.getString
@@ -41,7 +42,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     private fun subscribeUI() {
-        viewModel.user.observe(this) {
+        viewModel.user.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
                     showLoading(getString(R.string.realizando_login))
@@ -55,7 +56,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                     handlerError(it.error)
                 }
             }
-        }
+        })
     }
 
     private fun goToHome() {

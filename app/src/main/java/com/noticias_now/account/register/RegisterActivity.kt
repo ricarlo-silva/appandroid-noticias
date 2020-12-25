@@ -2,6 +2,7 @@ package com.noticias_now.account.register
 
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Observer
 import br.com.ricarlo.common.inapp.review.ReviewFlow
 import br.com.ricarlo.common.inapp.review.ReviewViewModel
 import br.com.ricarlo.common.util.ViewState
@@ -43,7 +44,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     private fun subscribeUI() {
 
-        reviewViewModel.reviewFlow.observe(this, { reviewFlow ->
+        reviewViewModel.reviewFlow.observe(this, Observer { reviewFlow ->
             when (reviewFlow) {
                 is ReviewFlow.LaunchInApp -> {
                     reviewManager.launchReviewFlow(this, reviewFlow.reviewInfo)
@@ -63,7 +64,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
             }
         })
 
-        registerViewModel.user.observe(this) {
+        registerViewModel.user.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
                     showLoading(getString(R.string.criando_usuario))
@@ -78,7 +79,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                     handlerError(it.error)
                 }
             }
-        }
+        })
     }
 
     companion object {

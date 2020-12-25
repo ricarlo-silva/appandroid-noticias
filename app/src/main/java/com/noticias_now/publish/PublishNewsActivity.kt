@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
+import androidx.lifecycle.Observer
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.extensions.getString
 import br.com.ricarlo.common.util.extensions.showToast
@@ -45,7 +46,7 @@ class PublishNewsActivity : BaseActivity<ActivityPublishNewsBinding>() {
     }
 
     private fun subscribeUI() {
-        viewModel.result.observe(this) {
+        viewModel.result.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
                     showLoading(it.message)
@@ -61,9 +62,9 @@ class PublishNewsActivity : BaseActivity<ActivityPublishNewsBinding>() {
                     handlerError(it.error)
                 }
             }
-        }
+        })
 
-        viewModel.news.observe(this) {
+        viewModel.news.observe(this, Observer {
             it?.let {
                 binding.edTitleActivityPublicarNews.setText(it.title)
                 binding.edDescricaoActivityPublicarNews.setText(it.description)
@@ -71,7 +72,7 @@ class PublishNewsActivity : BaseActivity<ActivityPublishNewsBinding>() {
                 setUpToolBar(getString(R.string.atualizar_news))
                 binding.btActivityPublicarNews.text = getString(R.string.atualizar)
             }
-        }
+        })
     }
 
     companion object {

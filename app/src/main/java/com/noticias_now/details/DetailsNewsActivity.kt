@@ -1,6 +1,7 @@
 package com.noticias_now.details
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import br.com.ricarlo.common.util.ViewState
 import com.noticias_now.R
 import com.noticias_now.databinding.ActivityDetailsNewsBinding
@@ -30,7 +31,7 @@ class DetailsNewsActivity : BaseActivity<ActivityDetailsNewsBinding>() {
     }
 
     private fun subscribeUI() {
-        viewModel.news.observe(this) {
+        viewModel.news.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
 
@@ -45,9 +46,9 @@ class DetailsNewsActivity : BaseActivity<ActivityDetailsNewsBinding>() {
                     handlerError(it.error)
                 }
             }
-        }
+        })
 
-        viewModel.like.observe(this) {
+        viewModel.like.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
 
@@ -65,7 +66,7 @@ class DetailsNewsActivity : BaseActivity<ActivityDetailsNewsBinding>() {
                     handlerError(it.error)
                 }
             }
-        }
+        })
     }
 
     companion object {

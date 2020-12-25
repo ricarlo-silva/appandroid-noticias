@@ -3,6 +3,7 @@ package com.noticias_now.list
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.ricarlo.common.ui.base.BaseActivity
 import br.com.ricarlo.common.util.ViewState
@@ -69,7 +70,7 @@ class UserNewsActivity : BaseActivity<ActivityUserNewsBinding>(), OnClickListene
     }
 
     private fun subscribeUI() {
-        viewModel.news.observe(this) {
+        viewModel.news.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
                     showLoading(getString(R.string.loading))
@@ -83,9 +84,9 @@ class UserNewsActivity : BaseActivity<ActivityUserNewsBinding>(), OnClickListene
                     handlerError(it.error)
                 }
             }
-        }
+        })
 
-        viewModel.delete.observe(this){
+        viewModel.delete.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
                     showLoading(getString(R.string.loading))
@@ -100,7 +101,7 @@ class UserNewsActivity : BaseActivity<ActivityUserNewsBinding>(), OnClickListene
                     handlerError(it.error)
                 }
             }
-        }
+        })
     }
 
     private fun dialogDeleteNews(news: NewsModel) {

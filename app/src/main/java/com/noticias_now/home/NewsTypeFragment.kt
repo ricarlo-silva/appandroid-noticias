@@ -2,6 +2,7 @@ package com.noticias_now.home
 
 import android.os.Bundle
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.ricarlo.common.util.ViewState
 import com.noticias_now.R
@@ -51,7 +52,7 @@ class NewsTypeFragment : BaseFragment<FragmentNewsTypeBinding>(), OnClickListene
     }
 
     private fun subscribeUI() {
-        viewModel.news.observe(viewLifecycleOwner) {
+        viewModel.news.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is ViewState.Loading -> {
                     showLoading(null)
@@ -65,11 +66,11 @@ class NewsTypeFragment : BaseFragment<FragmentNewsTypeBinding>(), OnClickListene
                     handlerError(it.error)
                 }
             }
-        }
+        })
 
-        detailsViewModel.like.observe(viewLifecycleOwner) {
+        detailsViewModel.like.observe(viewLifecycleOwner, Observer {
             // TODO
-        }
+        })
     }
 
     override fun onClickItem(item: NewsModel) {

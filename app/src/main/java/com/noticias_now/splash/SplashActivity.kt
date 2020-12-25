@@ -1,6 +1,7 @@
 package com.noticias_now.splash
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import br.com.ricarlo.common.ui.base.BaseActivity
 import br.com.ricarlo.common.util.ViewState
 import com.noticias_now.R
@@ -22,7 +23,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     }
 
     private fun subscribeUI() {
-        viewModel.result.observe(this) {
+        viewModel.result.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
 
@@ -42,7 +43,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                     handlerError(it.error)
                 }
             }
-        }
+        })
     }
 
 }

@@ -1,6 +1,7 @@
 package com.noticias_now.account.update
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.extensions.getString
 import br.com.ricarlo.common.util.extensions.showToast
@@ -31,7 +32,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>() {
     }
 
     private fun subscribeUI() {
-        viewModel.result.observe(this) {
+        viewModel.result.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
                     showLoading(getString(R.string.salvando_usuario))
@@ -46,9 +47,9 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>() {
                     handlerError(it.error)
                 }
             }
-        }
+        })
 
-        viewModel.user.observe(this) {
+        viewModel.user.observe(this, Observer {
             when (it) {
                 is ViewState.Loading -> {
                 }
@@ -61,7 +62,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>() {
                     handlerError(it.error)
                 }
             }
-        }
+        })
     }
 
 }

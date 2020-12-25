@@ -7,6 +7,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import br.com.ricarlo.common.inapp.update.Event
 import br.com.ricarlo.common.inapp.update.IN_APP_UPDATE_REQUEST_CODE
 import br.com.ricarlo.common.inapp.update.TAG_UPDATE
@@ -22,7 +23,6 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.ktx.AppUpdateResult
 import com.google.android.play.core.ktx.bytesDownloaded
 import com.google.android.play.core.ktx.totalBytesToDownload
-//import com.noticias_now.R
 import br.com.ricarlo.common.R
 import org.koin.android.ext.android.inject
 import java.io.IOException
@@ -78,7 +78,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     private fun subscribeUI() {
         with(updateViewModel) {
-            updateStatus.observe(this@BaseActivity) { updateResult ->
+            updateStatus.observe(this@BaseActivity, Observer { updateResult ->
                 when (updateResult) {
                     is AppUpdateResult.NotAvailable -> {
                         Log.d(TAG_UPDATE, "No update available")
@@ -131,8 +131,8 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
                     }
                 }
 
-            }
-            events.observe(this@BaseActivity) { event ->
+            })
+            events.observe(this@BaseActivity, Observer { event ->
                 when (event) {
                     is Event.ToastEvent -> showToast(event.message)
                     is Event.StartUpdateEvent -> {
@@ -145,7 +145,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
                     }
                     else -> throw IllegalStateException("Event type not handled: $event")
                 }
-            }
+            })
         }
     }
 

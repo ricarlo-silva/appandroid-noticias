@@ -20,14 +20,14 @@ class NewsTypeViewModel(
     }
 
     val news: LiveData<ViewState<List<NewsModel>>> = _type.switchMap {
-        liveData(dispatchers.main()) {
+        liveData<ViewState<List<NewsModel>>>(dispatchers.main()) {
             emit(ViewState.Loading())
             runCatching {
                 newsRepository.getNewsByType(it)
             }.onSuccess {
                 emit(ViewState.Success(it))
             }.onFailure {
-                emit(ViewState.Error<List<NewsModel>>(it))
+                emit(ViewState.Error(it))
             }
         }
     }
