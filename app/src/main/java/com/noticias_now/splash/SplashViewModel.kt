@@ -19,8 +19,8 @@ class SplashViewModel(
     }
 
     val result: LiveData<ViewState<SplashEvent>> = liveData(dispatchers.main()) {
-//        emit(ViewState.Loading<SplashEvent>())
-//        withContext(dispatchers.io()) { delay(TIME_DELAY) }
+        emit(ViewState.Loading<SplashEvent>())
+        withContext(dispatchers.io()) { delay(TIME_DELAY) }
         runCatching {
             userRepository.checkIfLogged()
         }.onSuccess { isLogged ->
