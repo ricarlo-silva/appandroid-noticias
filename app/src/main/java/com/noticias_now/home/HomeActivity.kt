@@ -2,12 +2,15 @@ package com.noticias_now.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import br.com.ricarlo.common.ui.base.BaseActivity
 import br.com.ricarlo.common.util.ViewState
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.navigation.NavigationView
 import com.noticias_now.R
 import com.noticias_now.account.update.EditProfileActivity
 import com.noticias_now.databinding.ActivityHomeBinding
@@ -31,6 +34,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), View.OnClickListener {
         binding.drawerLayout.setDrawerListener(toggle)
         toggle.syncState()
 
+        initNavigationView(binding.navView)
         subscribeUI()
 
         viewModel.get()
@@ -44,20 +48,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), View.OnClickListener {
         }
     }
 
-//    private fun initNavigationView(nav: NavigationView) {
-//        // Nav Header
-//        iv_foto = nav.findViewById(R.id.iv_nav_header_photo)
-//        tv_nome = nav.findViewById(R.id.tv_nav_header_name)
-//        tv_email = nav.findViewById(R.id.tv_nav_header_email)
-//        val bt_edit_perfil = nav.findViewById<Button>(R.id.bt_nav_header_edit_perfil)
-//        bt_edit_perfil.setOnClickListener(this)
-//        val tv_home = nav.findViewById<TextView>(R.id.tv_nav_home)
-//        val tv_my_news = nav.findViewById<TextView>(R.id.tv_nav_my_news)
-//        val tv_logout = nav.findViewById<TextView>(R.id.tv_nav_logout)
-//        tv_home.setOnClickListener(this)
-//        tv_my_news.setOnClickListener(this)
-//        tv_logout.setOnClickListener(this)
-//    }
+    // TODO refactor
+    private fun initNavigationView(nav: NavigationView) {
+        // Nav Header
+        val bt_edit_perfil = nav.findViewById<Button>(R.id.bt_nav_header_edit_perfil)
+        bt_edit_perfil.setOnClickListener(this)
+        val tv_home = nav.findViewById<TextView>(R.id.tv_nav_home)
+        val tv_my_news = nav.findViewById<TextView>(R.id.tv_nav_my_news)
+        val tv_logout = nav.findViewById<TextView>(R.id.tv_nav_logout)
+        tv_home.setOnClickListener(this)
+        tv_my_news.setOnClickListener(this)
+        tv_logout.setOnClickListener(this)
+    }
 
     override fun onClick(v: View) {
         when (v.id) {

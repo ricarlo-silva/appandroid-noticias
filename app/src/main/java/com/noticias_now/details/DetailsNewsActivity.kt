@@ -38,7 +38,7 @@ class DetailsNewsActivity : BaseActivity<ActivityDetailsNewsBinding>() {
                 }
                 is ViewState.Success -> {
                     hideLoading()
-                    title = it.data.title
+                    binding.toolbarLayout.title = it.data.title
                     binding.content.tvDescription.text = it.data.description
                 }
                 is ViewState.Error -> {

@@ -19,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="@dimen/margin_3dp"
-        android:paddingBottom="@dimen/margin_3dp">
+        android:paddingTop="@dimen/margin_extra_small"
+        android:paddingBottom="@dimen/margin_extra_small">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
@@ -28,20 +28,20 @@
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
             android:onClick="@{() -> listener.onClickItem(item)}"
-            app:cardCornerRadius="@dimen/margin_5dp"
-            app:cardElevation="@dimen/margin_3dp"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation"
             app:cardUseCompatPadding="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_10dp">
+                android:padding="@dimen/margin_small">
 
                 <ImageView
                     android:id="@+id/iv_photo_background"
-                    android:layout_width="@dimen/margin_30dp"
-                    android:layout_height="@dimen/margin_30dp"
-                    android:layout_marginStart="@dimen/margin_15dp"
+                    android:layout_width="@dimen/card_icon_size"
+                    android:layout_height="@dimen/card_icon_size"
+                    android:layout_marginStart="@dimen/margin_normal"
                     android:background="@drawable/photo_user"
                     app:imageUrl="@{item.user.photo}"
                     app:layout_constraintStart_toStartOf="parent"
@@ -77,8 +77,8 @@
                     android:id="@+id/view1"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
-                    android:layout_marginTop="@dimen/margin_10dp"
-                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_small"
                     android:background="@color/colorGrayText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +89,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:padding="@dimen/margin_5dp"
+                    android:padding="@dimen/margin_extra_small"
                     android:text="@{item.title}"
                     android:textColor="?attr/colorPrimary"
                     android:textSize="@dimen/font_normal"
@@ -102,9 +102,11 @@
                 <TextView
                     android:id="@+id/tv_description"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="6"
+                    android:minHeight="100dp"
                     android:ellipsize="end"
-                    android:padding="@dimen/margin_5dp"
+                    android:padding="@dimen/margin_extra_small"
                     android:text="@{item.description}"
                     android:textSize="@dimen/font_extra_small"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_description"
                     android:onClick="@{() -> listener.onClickItem(item)}"
-                    android:padding="@dimen/margin_5dp"
+                    android:padding="@dimen/margin_extra_small"
                     android:text="@string/action_read_more"
                     android:textColor="@color/colorRed"
                     android:textSize="@dimen/font_extra_small"
@@ -129,7 +131,7 @@
                     android:id="@+id/view2"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
-                    android:layout_marginTop="@dimen/margin_5dp"
+                    android:layout_marginTop="@dimen/margin_extra_small"
                     android:background="@color/colorGrayText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +140,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_5dp"
+                    android:layout_marginTop="@dimen/margin_extra_small"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +149,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/margin_5dp"
+                        android:layout_marginHorizontal="@dimen/margin_extra_small"
                         android:onClick="@{() -> listener.onClickLike(item, true)}">
 
                         <ImageView
@@ -168,7 +170,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/margin_5dp"
+                        android:layout_marginHorizontal="@dimen/margin_extra_small"
                         android:onClick="@{() -> listener.onClickLike(item, false)}">
 
                         <ImageView
@@ -188,18 +190,18 @@
 
                     <ImageView
                         android:id="@+id/iv_update_my_news"
-                        android:layout_width="@dimen/margin_35dp"
-                        android:layout_height="@dimen/margin_35dp"
-                        android:layout_marginHorizontal="@dimen/margin_5dp"
+                        android:layout_width="@dimen/card_icon_size"
+                        android:layout_height="@dimen/card_icon_size"
+                        android:layout_marginHorizontal="@dimen/margin_extra_small"
                         android:background="@drawable/ic_update_news"
                         android:onClick="@{() -> listener.onClickUpdate(item)}"
                         android:visibility="visible" />
 
                     <ImageView
                         android:id="@+id/iv_delete_my_news"
-                        android:layout_width="@dimen/margin_35dp"
-                        android:layout_height="@dimen/margin_35dp"
-                        android:layout_marginHorizontal="@dimen/margin_5dp"
+                        android:layout_width="@dimen/card_icon_size"
+                        android:layout_height="@dimen/card_icon_size"
+                        android:layout_marginHorizontal="@dimen/margin_extra_small"
                         android:background="@drawable/ic_delete_news"
                         android:onClick="@{() -> listener.onClickDelete(item)}"
                         android:visibility="visible" />

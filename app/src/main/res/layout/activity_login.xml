@@ -17,12 +17,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_15dp">
+            android:padding="@dimen/margin_normal">
 
             <ImageView
                 android:id="@+id/layout_photo"
-                android:layout_width="@dimen/margin_100dp"
-                android:layout_height="@dimen/margin_100dp"
+                android:layout_width="@dimen/image_foreground_size"
+                android:layout_height="@dimen/image_foreground_size"
                 android:background="@drawable/logo"
                 android:contentDescription=""
                 app:layout_constraintEnd_toEndOf="parent"
@@ -31,17 +31,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout_email"
-                style="@style/layout_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_50dp"
+                android:layout_marginTop="@dimen/margin_extra_large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layout_photo">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_email"
-                    style="@style/edt_default"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email"
@@ -52,17 +50,16 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout_password"
-                style="@style/layout_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_layout_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_password"
-                    style="@style/edt_default"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/senha"
@@ -71,22 +68,23 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/bt_login"
-                style="@style/bt_default"
-                android:layout_marginTop="@dimen/margin_40dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_extra_large"
                 android:text="@string/login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_layout_password" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/bt_create_account"
-                style="@style/tv_conta"
-                android:layout_marginTop="@dimen/margin_25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
                 android:background="@color/colorWhiteTrans"
                 android:text="@string/criar_conta"
-                android:textColor="@color/colorWhite"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bt_login" />
 

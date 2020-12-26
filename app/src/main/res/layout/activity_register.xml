@@ -14,7 +14,7 @@
         android:fitsSystemWindows="true"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/margin_15dp"
+        android:padding="@dimen/margin_normal"
         tools:context="com.noticias_now.account.register.RegisterActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,8 +24,8 @@
 
             <ImageView
                 android:id="@+id/iv_photo_background"
-                android:layout_width="@dimen/margin_100dp"
-                android:layout_height="@dimen/margin_100dp"
+                android:layout_width="@dimen/image_foreground_size"
+                android:layout_height="@dimen/image_foreground_size"
                 android:background="@drawable/bg_photo_user"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +34,8 @@
 
             <ImageView
                 android:id="@+id/iv_photo"
-                android:layout_width="@dimen/margin_60dp"
-                android:layout_height="@dimen/margin_60dp"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
                 android:background="@drawable/user"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,17 +46,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_name"
-            style="@style/layout_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_50dp"
+            android:layout_marginTop="@dimen/margin_extra_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_photo">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_name"
-                style="@style/edt_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name_user"
@@ -67,7 +65,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_email"
-            style="@style/layout_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +73,6 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_email"
-                style="@style/edt_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
@@ -87,16 +83,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_password"
-            style="@style/layout_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_layout_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_password"
-                style="@style/edt_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/senha"
@@ -105,10 +100,11 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_register"
-            style="@style/bt_default"
-            android:layout_marginTop="@dimen/margin_40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_extra_large"
             android:text="@string/criar_conta" />
 
     </LinearLayout>

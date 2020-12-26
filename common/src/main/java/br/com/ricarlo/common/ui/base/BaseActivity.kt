@@ -3,6 +3,7 @@ package br.com.ricarlo.common.ui.base
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -74,6 +75,16 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         runningBackground = true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun subscribeUI() {

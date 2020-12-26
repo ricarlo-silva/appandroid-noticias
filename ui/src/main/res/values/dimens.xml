@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Margins -->
+    <dimen name="image_foreground_size">100dp</dimen>
+    <dimen name="image_size">60dp</dimen>
+
+    <dimen name="card_icon_size">30dp</dimen>
+    <dimen name="card_elevation">3dp</dimen>
+    <dimen name="card_corner_radius">4dp</dimen>
+
+    <dimen name="app_bar_size">200dp</dimen>
+
+    <dimen name="margin_extra_large">48dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_extra_small">4dp</dimen>
+
+<!--    <dimen name="button_height">56dp</dimen>-->
+
+    <!--  Fonts  -->
+    <dimen name="font_extra_small">12sp</dimen>
+    <dimen name="font_small">14sp</dimen>
+    <dimen name="font_normal">16sp</dimen>
+    <dimen name="font_large">18sp</dimen>
+
+</resources>

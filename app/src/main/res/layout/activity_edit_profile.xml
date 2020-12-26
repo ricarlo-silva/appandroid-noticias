@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -13,95 +14,99 @@
         android:background="@drawable/bg_splash"
         tools:context="com.noticias_now.account.update.EditProfileActivity">
 
-        <!--    <include layout="@layout/toolbar_default" />-->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_normal"
             android:gravity="center"
-            android:layout_margin="@dimen/margin_15dp"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="50dp">
 
                 <ImageView
                     android:id="@+id/iv_activity_editar_perfil_logo"
-                    android:layout_width="@dimen/margin_100dp"
-                    android:layout_height="@dimen/margin_100dp"
-                    android:background="@drawable/bg_photo_user"
-                    android:layout_centerInParent="true" />
+                    android:layout_width="@dimen/image_foreground_size"
+                    android:layout_height="@dimen/image_foreground_size"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/bg_photo_user" />
 
                 <ImageView
                     android:id="@+id/iv_activity_editar_perfil_logor"
-                    android:layout_width="@dimen/margin_60dp"
-                    android:layout_height="@dimen/margin_60dp"
-                    android:background="@drawable/user"
-                    android:layout_centerInParent="true" />
+                    android:layout_width="@dimen/image_size"
+                    android:layout_height="@dimen/image_size"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/user" />
 
             </RelativeLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lv_activity_editar_perfil_usuario"
-                style="@style/layout_edit">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_photo">
 
-                <ImageView
-                    android:layout_width="@dimen/margin_30dp"
-                    android:layout_height="@dimen/margin_30dp"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/logo" />
-
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_nome_editar_activity"
-                    style="@style/edt_default"
-                    android:hint="@string/name_user" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name_user"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName" />
 
-            </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lv_activity_editar_perfil_email"
-                style="@style/layout_edit">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_photo">
 
-                <ImageView
-                    android:layout_width="@dimen/margin_30dp"
-                    android:layout_height="@dimen/margin_30dp"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/logo" />
-
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_email_editar_activity"
-                    style="@style/edt_default"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="@string/email"
+                    android:imeOptions="actionNext"
                     android:inputType="textEmailAddress" />
 
-            </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lv_activity_editar_perfil_senha"
-                style="@style/layout_edit">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                app:endIconMode="password_toggle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_photo">
 
-                <ImageView
-                    android:layout_width="@dimen/margin_30dp"
-                    android:layout_height="@dimen/margin_30dp"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/logo" />
-
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_senha_editar_activity"
-                    style="@style/edt_default"
-                    android:inputType="textPassword"
-                    android:hint="@string/senha" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/senha"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword" />
 
-            </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/bt_activity_editar_perfil_salvar"
-                style="@style/bt_default"
-                android:text="@string/salvar"
-                android:layout_marginTop="@dimen/margin_40dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_extra_large"
+                android:text="@string/salvar" />
 
         </LinearLayout>
 

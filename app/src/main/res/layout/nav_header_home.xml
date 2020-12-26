@@ -27,20 +27,20 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_5dp"
+                android:layout_marginBottom="@dimen/margin_extra_small"
                 android:gravity="center">
 
                 <ImageView
                     android:id="@+id/iv_activity_editar_perfil_logo"
-                    android:layout_width="@dimen/margin_100dp"
-                    android:layout_height="@dimen/margin_100dp"
+                    android:layout_width="@dimen/image_foreground_size"
+                    android:layout_height="@dimen/image_foreground_size"
                     android:background="@drawable/bg_photo_user"
                     android:layout_centerInParent="true" />
 
                 <ImageView
                     android:id="@+id/iv_nav_header_photo"
-                    android:layout_width="@dimen/margin_60dp"
-                    android:layout_height="@dimen/margin_60dp"
+                    android:layout_width="@dimen/image_size"
+                    android:layout_height="@dimen/image_size"
                     android:background="@drawable/user"
                     android:layout_centerInParent="true" />
 
@@ -50,7 +50,7 @@
                 android:id="@+id/tv_nav_header_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_5dp"
+                android:layout_marginBottom="@dimen/margin_extra_small"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/font_normal"
                 tools:text="Ricarlo Silva" />
@@ -59,44 +59,33 @@
                 android:id="@+id/tv_nav_header_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_5dp"
+                android:layout_marginBottom="@dimen/margin_extra_small"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/font_extra_small"
                 tools:text="Ricarlo Silva" />
 
-
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/bt_nav_header_edit_perfil"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_40dp"
-                android:textAllCaps="false"
+                android:layout_height="40dp"
                 android:text="Editar Perfil"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="@dimen/margin_35dp"
-                android:layout_marginLeft="@dimen/margin_15dp"
-                android:layout_marginRight="@dimen/margin_15dp"
-                android:background="@drawable/bg_quadrado_white"
-                android:textColor="@color/colorPrimaryDark" />
+                android:layout_marginBottom="35dp"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginRight="@dimen/margin_normal"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginRight="@dimen/margin_15dp"
-                android:background="@color/colorPrimary" />
+                android:layout_marginRight="@dimen/margin_normal"
+                android:background="?attr/colorPrimary" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_50dp"
-                android:layout_marginRight="@dimen/margin_15dp"
+                android:layout_height="@dimen/margin_extra_large"
+                android:layout_marginRight="@dimen/margin_normal"
                 android:layout_below="@+id/view1"
                 android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/margin_20dp"
-                    android:layout_height="@dimen/margin_20dp"
-                    android:background="@drawable/logo"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true" />
 
                 <TextView
                     android:id="@+id/tv_nav_home"
@@ -111,22 +100,15 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginRight="@dimen/margin_15dp"
-                android:background="@color/colorPrimary" />
+                android:layout_marginRight="@dimen/margin_normal"
+                android:background="?attr/colorPrimary" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_50dp"
-                android:layout_marginRight="@dimen/margin_15dp"
+                android:layout_height="@dimen/margin_extra_large"
+                android:layout_marginRight="@dimen/margin_normal"
                 android:layout_below="@+id/view1"
                 android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/margin_20dp"
-                    android:layout_height="@dimen/margin_20dp"
-                    android:background="@drawable/logo"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true" />
 
                 <TextView
                     android:id="@+id/tv_nav_my_news"
@@ -141,22 +123,15 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginRight="@dimen/margin_15dp"
-                android:background="@color/colorPrimary" />
+                android:layout_marginRight="@dimen/margin_normal"
+                android:background="?attr/colorPrimary" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_50dp"
-                android:layout_marginRight="@dimen/margin_15dp"
+                android:layout_height="@dimen/margin_extra_large"
+                android:layout_marginRight="@dimen/margin_normal"
                 android:layout_below="@id/view2"
                 android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/margin_20dp"
-                    android:layout_height="@dimen/margin_20dp"
-                    android:background="@drawable/logo"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true" />
 
                 <TextView
                     android:id="@+id/tv_nav_logout"
@@ -171,8 +146,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginRight="@dimen/margin_15dp"
-                android:background="@color/colorPrimary" />
+                android:layout_marginRight="@dimen/margin_normal"
+                android:background="?attr/colorPrimary" />
 
         </LinearLayout>
 
