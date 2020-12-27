@@ -39,22 +39,4 @@
     <style name="ThemeOverlay.App.TabLayout" parent="">
     </style>
 
-
-
-
-
-
-    <!--Styles - LEGACY -->
-    <style name="nav_item">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/margin_extra_large</item>
-        <item name="android:layout_marginRight">@dimen/margin_normal</item>
-        <item name="android:paddingLeft">@dimen/margin_large</item>
-        <item name="android:paddingBottom">@dimen/margin_small</item>
-        <item name="android:paddingTop">@dimen/margin_small</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
 </resources>

@@ -9,6 +9,7 @@ import com.noticias_now.account.update.EditProfileViewModel
 import com.noticias_now.details.DetailsViewModel
 import com.noticias_now.details.INewsRepository
 import com.noticias_now.details.NewsRepositoryImpl
+import com.noticias_now.home.AccountViewModel
 import com.noticias_now.home.HomeViewModel
 import com.noticias_now.home.NewsTypeViewModel
 import com.noticias_now.login.LoginViewModel
@@ -40,6 +41,7 @@ object AppModule {
                 viewModel<DetailsViewModel> { DetailsViewModel(get(), get(), get(), get()) }
                 viewModel<PublishViewModel> { PublishViewModel(get(), get(), get(), get()) }
                 viewModel<HomeViewModel> { HomeViewModel(get(), get(), get()) }
+                viewModel { AccountViewModel(get(), get(), get()) }
                 viewModel<NewsTypeViewModel> { NewsTypeViewModel(get(), get()) }
                 viewModel<UserNewsViewModel> { UserNewsViewModel(get(), get(), get(), get()) }
                 viewModel<SplashViewModel> { SplashViewModel(get(), get()) }

@@ -80,10 +80,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bt_create_account"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_large"
-                android:background="@color/colorWhiteTrans"
                 android:text="@string/criar_conta"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bt_login" />

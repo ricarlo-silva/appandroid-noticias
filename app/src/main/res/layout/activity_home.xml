@@ -7,28 +7,27 @@
 
     </data>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:openDrawer="start">
+        tools:context="com.noticias_now.home.HomeActivity">
 
-        <include
-            android:id="@+id/home"
-            layout="@layout/app_bar_home"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:elevation="0dp"
+            app:elevation="0dp">
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            <include android:id="@+id/nav_header" layout="@layout/nav_header_home" />
-        </com.google.android.material.navigation.NavigationView>
+        </com.google.android.material.appbar.AppBarLayout>
 
-    </androidx.drawerlayout.widget.DrawerLayout>
+        <include android:id="@+id/content" layout="@layout/content_home" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

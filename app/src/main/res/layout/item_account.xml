@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="String" />
+
+        <variable
+            name="index"
+            type="int" />
+
+        <variable
+            name="listener"
+            type="com.noticias_now.home.AccountAdapter.OnClickListener" />
+
+    </data>
+
+    <TextView
+        android:background="?android:attr/selectableItemBackground"
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> listener.onClickItem(index)}"
+        android:paddingHorizontal="@dimen/margin_small"
+        android:paddingVertical="@dimen/margin_small"
+        android:text="@{item}"
+        app:drawableStartCompat="@drawable/ic_baseline_arrow_back_24"
+        tools:text="Text" />
+
+</layout>

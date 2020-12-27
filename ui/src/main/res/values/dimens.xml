@@ -17,8 +17,6 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_extra_small">4dp</dimen>
 
-<!--    <dimen name="button_height">56dp</dimen>-->
-
     <!--  Fonts  -->
     <dimen name="font_extra_small">12sp</dimen>
     <dimen name="font_small">14sp</dimen>

@@ -19,7 +19,6 @@
     <!-- Activity Editar perfil -->
     <string name="edit_profile_title">Editar Perfil</string>
     <string name="salvar">Salvar</string>
-    <string name="editar_perfil">Editar perfil</string>
     <string name="salvando_usuario">Salvando usuário…</string>
     <string name="usuario_atualizado">Usuário atualizado com sucesso.</string>
 
@@ -46,11 +45,6 @@
         <item>Desmatamento</item>
     </string-array>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_home">Home</string>
-    <string name="nav_my_news">Minhas Publicações</string>
-    <string name="nav_logout">Logout</string>
     <string name="sair">Deseja realmente sair?</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
@@ -60,5 +54,7 @@
     <string name="title_activity_detalhe_noticia">DetalheNoticiaActivity</string>
     <string name="action_read_more">ver mais</string>
 
+    <string name="option_logout">Logout</string>
+    <string name="option_settings">Settings</string>
 
 </resources>

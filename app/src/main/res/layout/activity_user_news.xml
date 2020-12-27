@@ -17,7 +17,6 @@
             android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorWhite"
             android:paddingLeft="@dimen/margin_small"
             android:paddingTop="5dp"
             android:paddingRight="@dimen/margin_small">

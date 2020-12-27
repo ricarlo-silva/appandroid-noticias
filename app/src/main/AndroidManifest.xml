@@ -47,6 +47,8 @@
         <activity
             android:name="com.noticias_now.list.UserNewsActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.noticias_now.home.AccountActivity" />
+
     </application>
 
 </manifest>

@@ -25,10 +25,6 @@
 
 
     <!--Color palette - LEGACY -->
-    <color name="indigo_200">#9FA8DA</color>
-    <color name="colorWhite">#FFFFFF</color>
     <color name="colorWhiteTrans">#33FFFFFF</color>
-    <color name="colorGrayText">#E0E0E0</color>
-    <color name="colorRed">#FF0000</color>
 
 </resources>

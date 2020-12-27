@@ -1,11 +1,5 @@
 package br.com.ricarlo.common.util;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.util.Log;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,84 +10,6 @@ import java.util.Calendar;
  */
 
 public class ApsNoticiasUtils {
-
-    private static final String TAG = "APS Noticias";
-
-    /**
-     * Method to read a String value of a given key in a given preferences file
-     *
-     * @param context      Context of application
-     * @param file         Name of preferences file
-     * @param key          Name of key to be read
-     * @param defaultValue Value default to returned case the key not exists
-     * @return String
-     */
-    public static String read(Context context, String file, String key, String defaultValue) {
-        String value = null;
-
-        try {
-            SharedPreferences sharedPrefs = context.getApplicationContext().getSharedPreferences(file, Context.MODE_PRIVATE);
-            value = sharedPrefs.getString(key, defaultValue);
-        } catch (Exception e) {
-            value = defaultValue;
-            Log.e(TAG, e.getMessage(), e);
-        }
-
-        return value;
-    }
-
-
-    /**
-     * Method to write a boolean value in a given key in a given file
-     * preferences
-     *
-     * @param context Context of application
-     * @param file    Name of preferences file
-     * @param key     Name of key to be read
-     * @param value   Value to be saved in the key
-     * @return true | false
-     */
-    public static boolean write(Context context, String file, String key, String value) {
-        boolean sucess = false;
-
-        try {
-            SharedPreferences sharedPrefs = context.getApplicationContext().getSharedPreferences(file, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPrefs.edit();
-            editor.putString(key, value);
-            editor.commit();
-            sucess = true;
-        } catch (Exception e) {
-            sucess = false;
-            Log.e(TAG, e.getMessage(), e);
-        }
-
-        return sucess;
-    }
-
-    /**
-     * Method to remove a particular key of a given file preferences
-     *
-     * @param context Context of application
-     * @param file    Name of preferences file
-     * @param key     Name of key to be read
-     * @return true | false
-     */
-    public static boolean remove(Context context, String file, String key) {
-        boolean sucess = false;
-
-        try {
-            SharedPreferences sharedPrefs = context.getApplicationContext().getSharedPreferences(file, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPrefs.edit();
-            editor.remove(key);
-            editor.commit();
-            sucess = true;
-        } catch (Exception e) {
-            sucess = false;
-            Log.e(TAG, e.getMessage(), e);
-        }
-
-        return sucess;
-    }
 
     public static String converteDatePost(String input) throws ParseException {
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.AccountActivity">
+
+        <ImageView
+            android:id="@+id/iv_profile_foreground"
+            android:layout_width="@dimen/image_foreground_size"
+            android:layout_height="@dimen/image_foreground_size"
+            app:srcCompat="@drawable/bg_photo_user"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="@dimen/image_size"
+            android:layout_height="@dimen/image_size"
+            android:background="@drawable/user"
+            app:layout_constraintBottom_toBottomOf="@id/iv_profile_foreground"
+            app:layout_constraintEnd_toEndOf="@id/iv_profile_foreground"
+            app:layout_constraintStart_toStartOf="@id/iv_profile_foreground"
+            app:layout_constraintTop_toTopOf="@id/iv_profile_foreground" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_profile_foreground"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Test" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_profile_foreground"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="test@email.com" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_profile_foreground"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_account" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
