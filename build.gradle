@@ -36,6 +36,12 @@ subprojects {
     pluginManager.withPlugin("com.android.application", flavorsConfig)
     pluginManager.withPlugin("com.android.library", flavorsConfig)
 
+    sonarqube {
+        properties  {
+            property "sonar.androidLint.reportPaths", "$buildDir/reports/lint-results.xml"
+        }
+    }
+
 }
 
 task clean(type: Delete) {
