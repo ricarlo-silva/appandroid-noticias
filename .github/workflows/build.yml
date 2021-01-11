@@ -36,8 +36,12 @@ jobs:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: echo $FIREBASE_CONFIG > app/google-services.json
 
+      # Generate coverage reports with Jacoco
+      - name: Generate coverage reports
+        run: ./gradlew testFreeDebugCoverage
+
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew build sonarqube
+        run: ./gradlew build sonarqube -Dsonar.login=$SONAR_TOKEN
