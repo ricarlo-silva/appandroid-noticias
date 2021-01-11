@@ -6,9 +6,9 @@ plugins {
     id 'com.google.firebase.firebase-perf'
 }
 
-def keystorePropertiesFile = rootProject.file("keystore.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+//def keystorePropertiesFile = rootProject.file("keystore.properties")
+//def keystoreProperties = new Properties()
+//keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdkVersion versions.compileSdkVersion
@@ -25,20 +25,20 @@ android {
         consumerProguardFiles "consumer-rules.pro"
     }
 
-    signingConfigs {
-        release {
-            keyAlias keystoreProperties['key.alias']
-            keyPassword keystoreProperties['key.password']
-            storeFile file(keystoreProperties['store.file'])
-            storePassword keystoreProperties['store.password']
-        }
-    }
+//    signingConfigs {
+//        release {
+//            keyAlias keystoreProperties['key.alias']
+//            keyPassword keystoreProperties['key.password']
+//            storeFile file(keystoreProperties['store.file'])
+//            storePassword keystoreProperties['store.password']
+//        }
+//    }
 
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
         }
     }
 
