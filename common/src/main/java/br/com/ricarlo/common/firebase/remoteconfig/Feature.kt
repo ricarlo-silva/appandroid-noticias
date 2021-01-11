@@ -4,7 +4,7 @@ import androidx.annotation.StringDef
 
 @StringDef(
         Feature.WELCOME_MESSAGE,
-        Feature.WELCOME_MESSAGE,
+        Feature.IN_APP_REVIEW,
         Feature.MIN_VERSION
 )
 @Retention(AnnotationRetention.SOURCE)

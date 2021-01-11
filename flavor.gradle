@@ -1,0 +1,15 @@
+
+android {
+
+    flavorDimensions 'client'
+
+    productFlavors {
+        free {
+            dimension 'client'
+        }
+
+        paid {
+            dimension 'client'
+        }
+    }
+}
