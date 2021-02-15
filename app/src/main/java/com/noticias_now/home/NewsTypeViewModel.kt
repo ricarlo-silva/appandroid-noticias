@@ -14,8 +14,10 @@ class NewsTypeViewModel(
     private val _type = MutableLiveData<String>()
 
     fun setType(type: String?) {
-        if (_type.value != type && !type.isNullOrEmpty()) {
-            _type.value = type
+        type?.let {
+            if (_type.value != it) {
+                _type.value = it
+            }
         }
     }
 
