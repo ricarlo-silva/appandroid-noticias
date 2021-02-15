@@ -37,14 +37,15 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
                 }
                 is ViewState.Success -> {
-                    when (it.data) {
+                    val cls = when (it.data) {
                         is SplashEvent.LaunchLogin -> {
-                            startActivity(Intent(this, LoginActivity::class.java))
+                            LoginActivity::class.java
                         }
                         is SplashEvent.LaunchHome -> {
-                            startActivity(Intent(this, HomeActivity::class.java))
+                            HomeActivity::class.java
                         }
                     }
+                    startActivity(Intent(this, cls))
                     finish()
                 }
                 is ViewState.Error -> {
