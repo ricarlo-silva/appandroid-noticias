@@ -22,7 +22,7 @@ class UserRepositoryImpl(
     }
 
     override suspend fun get(): UserModel {
-        return local.get() ?: throw SessionException()
+        return withContext(dispatchers.io()) { local.get() ?: throw SessionException() }
     }
 
     override suspend fun update(user: UserModel) {
@@ -58,6 +58,6 @@ class UserRepositoryImpl(
     }
 
     override suspend fun checkIfLogged(): Boolean {
-        return local.get() != null
+        return withContext(dispatchers.io()) { local.get() != null }
     }
 }
