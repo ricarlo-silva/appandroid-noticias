@@ -2,7 +2,7 @@ package com.noticias_now.model
 
 import android.os.Parcelable
 import androidx.annotation.Keep
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -12,27 +12,27 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class NewsModel(
 
-        @SerializedName("id")
+        @Json(name = "id")
         val id: String? = null,
 
-        @SerializedName("person")
+        @Json(name = "person")
         val user: UserModel? = null,
 
-        @SerializedName("titulo")
+        @Json(name = "titulo")
         val title: String,
 
-        @SerializedName("tipo")
+        @Json(name = "tipo")
         val type: String,
 
-        @SerializedName("descricao")
+        @Json(name = "descricao")
         val description: String,
 
-        @SerializedName("data_publicacao")
+        @Json(name = "data_publicacao")
         val publicationDate: String? = null,
 
-        @SerializedName("votou")
+        @Json(name = "votou")
         val isVoted: Boolean = false,
 
-        @SerializedName("curtidas")
+        @Json(name = "curtidas")
         val likes: List<LikeModel>? = null
 ) : Parcelable

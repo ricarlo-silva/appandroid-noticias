@@ -2,7 +2,7 @@ package com.noticias_now.model
 
 import android.os.Parcelable
 import androidx.annotation.Keep
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -12,12 +12,12 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class LikeModel(
 
-        @SerializedName("id_person")
+        @Json(name = "id_person")
         val idUser: String,
 
-        @SerializedName("id_news")
+        @Json(name = "id_news")
         val idNews: String,
 
-        @SerializedName("like")
+        @Json(name = "like")
         val like: Boolean
 ) : Parcelable

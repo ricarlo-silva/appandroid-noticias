@@ -1,13 +1,13 @@
 package com.noticias_now.model.request
 
 import androidx.annotation.Keep
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 @Keep
 data class SessionRequest(
-        @SerializedName("email")
+        @Json(name = "email")
         val email: String,
 
-        @SerializedName("senha")
+        @Json(name = "senha")
         val password: String
 )

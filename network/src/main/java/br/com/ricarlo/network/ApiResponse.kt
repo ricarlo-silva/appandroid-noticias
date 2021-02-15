@@ -1,13 +1,13 @@
 package br.com.ricarlo.network
 
 import androidx.annotation.Keep
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 @Keep
 data class ApiResponse<T>(
-        @field:SerializedName("error")
+        @Json(name = "error")
         val error: Boolean,
 
-        @field:SerializedName("data")
+        @Json(name = "data")
         val data: T
 )

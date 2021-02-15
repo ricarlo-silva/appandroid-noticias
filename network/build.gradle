@@ -46,7 +46,7 @@ dependencies {
     // Network
     api deps.retrofit.core
     api deps.retrofit.converter
-    //implementation deps.google.gson
+    implementation deps.retrofit.moshiKotlin
     implementation deps.okhttp.core
 
     // Test

@@ -1,13 +1,13 @@
 package com.noticias_now.model.response
 
 import androidx.annotation.Keep
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 @Keep
 data class TypeResponse(
-        @SerializedName("id")
+        @Json(name = "id")
         val id: String,
 
-        @SerializedName("name")
+        @Json(name = "name")
         val name: String
 )
