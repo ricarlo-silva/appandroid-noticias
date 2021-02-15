@@ -7,14 +7,16 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_splash"
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/splash_motion_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_splash"
+        app:layoutDescription="@xml/activity_splash_xml_scene"
         tools:context="com.noticias_now.splash.SplashActivity">
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="@dimen/image_foreground_size"
             android:layout_height="@dimen/image_foreground_size"
             android:background="@drawable/logo"
@@ -23,5 +25,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

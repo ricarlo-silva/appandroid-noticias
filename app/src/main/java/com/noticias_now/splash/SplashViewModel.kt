@@ -15,12 +15,17 @@ class SplashViewModel(
 ) : ViewModel() {
 
     companion object {
-        private const val TIME_DELAY: Long = 3000
+        private const val TIME_DELAY: Long = 20
+    }
+
+    private var completedAnimation = false
+
+    fun setCompletedAnimation() {
+        completedAnimation = true
     }
 
     val result: LiveData<ViewState<SplashEvent>> = liveData(dispatchers.main()) {
         emit(ViewState.Loading<SplashEvent>())
-        withContext(dispatchers.io()) { delay(TIME_DELAY) }
         runCatching {
             userRepository.checkIfLogged()
         }.onSuccess { isLogged ->
@@ -28,6 +33,10 @@ class SplashViewModel(
                     if (isLogged) SplashEvent.LaunchHome
                     else SplashEvent.LaunchLogin
             )
+            while (completedAnimation.not()) {
+                println("VRAUUUU")
+                withContext(dispatchers.io()) { delay(TIME_DELAY) }
+            }
             emit(event)
         }.onFailure {
             emit(ViewState.Error<SplashEvent>(it))
