@@ -31,6 +31,16 @@ Submit a new Beta Build to Crashlytics Beta
 fastlane android deploy
 ```
 Deploy a new version to the Google Play
+### android upload_test
+```
+fastlane android upload_test
+```
+Uploads build to Browserstack's app automate and app live and runs all the tests on uploaded app.
+### android build
+```
+fastlane android build
+```
+
 
 ----
 

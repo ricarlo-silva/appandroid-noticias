@@ -35,4 +35,38 @@ platform :android do
     gradle(task: "clean assembleRelease")
     upload_to_play_store
   end
+
+  desc "Uploads build to Browserstack's app automate and app live and runs all the tests on uploaded app."
+  lane :upload_test do |options|
+
+    # Uploads app to BrowserStack app automate.
+    upload_to_browserstack_app_automate(
+      browserstack_username: ENV["BROWSERSTACK_USERNAME"],
+      browserstack_access_key: ENV["BROWSERSTACK_ACCESS_KEY"],
+      file_path: options[:path]
+    )
+
+    # Uploads app to BrowserStack app live.
+    upload_to_browserstack_app_live(
+      browserstack_username: ENV["BROWSERSTACK_USERNAME"],
+      browserstack_access_key: ENV["BROWSERSTACK_ACCESS_KEY"],
+      file_path: options[:path]
+    )
+    gradle(task: "test")
+  end
+
+  desc "Build app"
+  lane :build do
+    gradle(task: "clean")
+    gradle(
+      task: "assemble",
+      flavor: "Free",
+      build_type: "Debug"
+    )
+
+    APK_OUTPUT_PATH = "#{lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}"
+    AAB_OUTPUT_PATH = "#{lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]}"
+
+    # upload_test(path: APK_OUTPUT_PATH)
+  end
 end
