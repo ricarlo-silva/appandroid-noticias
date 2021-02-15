@@ -4,37 +4,34 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import io.mockk.*
 import org.junit.Assert
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeoutException
 
-fun <T> LiveData<T>.getOrAwaitValue(
-        time: Long = 2,
-        timeUnit: TimeUnit = TimeUnit.SECONDS,
-        afterObserve: () -> Unit = {}
-): T {
-    var data: T? = null
-    val latch = CountDownLatch(1)
-    val observer = object : Observer<T> {
-        override fun onChanged(o: T?) {
-            data = o
-            latch.countDown()
-            this@getOrAwaitValue.removeObserver(this)
-        }
-    }
-    this.observeForever(observer)
-
-    afterObserve.invoke()
-
-    // Don't wait indefinitely if the LiveData is not set.
-    if (!latch.await(time, timeUnit)) {
-        this.removeObserver(observer)
-        throw TimeoutException("LiveData value was never set.")
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    return data as T
-}
+//fun <T> LiveData<T>.getOrAwaitValue(
+//        time: Long = 2,
+//        timeUnit: TimeUnit = TimeUnit.SECONDS,
+//        afterObserve: () -> Unit = {}
+//): T {
+//    var data: T? = null
+//    val latch = CountDownLatch(1)
+//    val observer = object : Observer<T> {
+//        override fun onChanged(o: T?) {
+//            data = o
+//            latch.countDown()
+//            this@getOrAwaitValue.removeObserver(this)
+//        }
+//    }
+//    this.observeForever(observer)
+//
+//    afterObserve.invoke()
+//
+//    // Don't wait indefinitely if the LiveData is not set.
+//    if (!latch.await(time, timeUnit)) {
+//        this.removeObserver(observer)
+//        throw TimeoutException("LiveData value was never set.")
+//    }
+//
+//    @Suppress("UNCHECKED_CAST")
+//    return data as T
+//}
 
 /**
  * Observes a [LiveData] until the `block` is done executing.
@@ -56,24 +53,24 @@ inline  fun <reified T : Any> LiveData<T>.test(): Observer<T> {
     return observer
 }
 
-inline fun <reified T : Any> LiveData<T>.observeForTesting(block: (states: List<T>) -> Unit) {
-    Assert.assertFalse(hasObservers())
-    val observer = mockk<Observer<T>> { every { onChanged(any()) } just Runs }
-
-    try {
-        observeForever(observer)
-        val slots = mutableListOf<T>()
-
-        block(slots)
-
-        verify {
-            observer.onChanged(capture(slots))
-        }
-        confirmVerified(observer)
-    } finally {
-        removeObserver(observer)
-    }
-}
+//inline fun <reified T : Any> LiveData<T>.observeForTesting(block: (states: List<T>) -> Unit) {
+//    Assert.assertFalse(hasObservers())
+//    val observer = mockk<Observer<T>> { every { onChanged(any()) } just Runs }
+//
+//    try {
+//        observeForever(observer)
+//        val slots = mutableListOf<T>()
+//
+//        block(slots)
+//
+//        verify {
+//            observer.onChanged(capture(slots))
+//        }
+//        confirmVerified(observer)
+//    } finally {
+//        removeObserver(observer)
+//    }
+//}
 
 //inline fun <reified T : Any> LiveData<T>.observeForTesting(block: () -> Unit) {
 //
@@ -109,71 +106,71 @@ inline fun <reified T : Any> LiveData<T>.observeForTesting(block: (states: List<
 //}
 
 
-class LiveDataTestObserver<T> constructor(
-        private val liveData: LiveData<T>
-) : Observer<T> {
-
-    init {
-        liveData.observeForever(this)
-    }
-
-    private val testValues = mutableListOf<T>()
-
-    override fun onChanged(t: T) {
-        if (t != null) testValues.add(t)
-    }
-
-    fun assertNoValues(): LiveDataTestObserver<T> {
-        if (testValues.isNotEmpty()) throw AssertionError(
-                "Assertion error with actual size ${testValues.size}"
-        )
-        return this
-    }
-
-    fun assertValueCount(count: Int): LiveDataTestObserver<T> {
-        if (count < 0) throw AssertionError(
-                "Assertion error! value count cannot be smaller than zero"
-        )
-        if (count != testValues.size) throw AssertionError(
-                "Assertion error! with expected $count while actual ${testValues.size}"
-        )
-        return this
-    }
-
-    fun assertValue(vararg predicates: T): LiveDataTestObserver<T> {
-        if (!testValues.containsAll(predicates.asList())) throw AssertionError("Assertion error!")
-        return this
-    }
-
-    fun assertValue(predicate: (List<T>) -> Boolean): LiveDataTestObserver<T> {
-        predicate(testValues)
-        return this
-    }
-
-    fun values(predicate: (List<T>) -> Unit): LiveDataTestObserver<T> {
-        predicate(testValues)
-        return this
-    }
-
-    fun values(): List<T> {
-        return testValues
-    }
-
-    /**
-     * Removes this observer from the [LiveData] which was observing
-     */
-    fun dispose() {
-        liveData.removeObserver(this)
-    }
-
-    /**
-     * Clears data available in this observer and removes this observer from the [LiveData] which was observing
-     */
-    fun clear() {
-        testValues.clear()
-        dispose()
-    }
-}
+//class LiveDataTestObserver<T> constructor(
+//        private val liveData: LiveData<T>
+//) : Observer<T> {
+//
+//    init {
+//        liveData.observeForever(this)
+//    }
+//
+//    private val testValues = mutableListOf<T>()
+//
+//    override fun onChanged(t: T) {
+//        if (t != null) testValues.add(t)
+//    }
+//
+//    fun assertNoValues(): LiveDataTestObserver<T> {
+//        if (testValues.isNotEmpty()) throw AssertionError(
+//                "Assertion error with actual size ${testValues.size}"
+//        )
+//        return this
+//    }
+//
+//    fun assertValueCount(count: Int): LiveDataTestObserver<T> {
+//        if (count < 0) throw AssertionError(
+//                "Assertion error! value count cannot be smaller than zero"
+//        )
+//        if (count != testValues.size) throw AssertionError(
+//                "Assertion error! with expected $count while actual ${testValues.size}"
+//        )
+//        return this
+//    }
+//
+//    fun assertValue(vararg predicates: T): LiveDataTestObserver<T> {
+//        if (!testValues.containsAll(predicates.asList())) throw AssertionError("Assertion error!")
+//        return this
+//    }
+//
+//    fun assertValue(predicate: (List<T>) -> Boolean): LiveDataTestObserver<T> {
+//        predicate(testValues)
+//        return this
+//    }
+//
+//    fun values(predicate: (List<T>) -> Unit): LiveDataTestObserver<T> {
+//        predicate(testValues)
+//        return this
+//    }
+//
+//    fun values(): List<T> {
+//        return testValues
+//    }
+//
+//    /**
+//     * Removes this observer from the [LiveData] which was observing
+//     */
+//    fun dispose() {
+//        liveData.removeObserver(this)
+//    }
+//
+//    /**
+//     * Clears data available in this observer and removes this observer from the [LiveData] which was observing
+//     */
+//    fun clear() {
+//        testValues.clear()
+//        dispose()
+//    }
+//}
 
 //fun <T> LiveData<T>.test(): LiveDataTestObserver<T> {
 //

@@ -1,12 +1,11 @@
 package com.noticias_now.account.register
 
+import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
 import br.com.ricarlo.common.util.exception.SessionException
 import br.com.ricarlo.network.apiCall
-import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
-import br.com.ricarlo.common.util.test.launchIdling
 import com.noticias_now.login.SessionQuery
-import com.noticias_now.model.request.SessionRequest
 import com.noticias_now.model.UserModel
+import com.noticias_now.model.request.SessionRequest
 import com.noticias_now.services.IWebService
 import kotlinx.coroutines.withContext
 

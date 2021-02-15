@@ -2,7 +2,6 @@ package com.noticias_now.login
 
 import br.com.ricarlo.common.util.ViewState
 import com.google.common.truth.Truth
-import junit.framework.TestCase
 import org.koin.core.module.Module
 import org.koin.test.KoinTest
 

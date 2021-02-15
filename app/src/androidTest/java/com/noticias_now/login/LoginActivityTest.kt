@@ -4,7 +4,6 @@ import android.app.Activity
 import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import br.com.ricarlo.test.EspressoIdlingResourceRule
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -20,7 +19,7 @@ class LoginActivityTest {
     @get:Rule
     var activityRule = activityScenarioRule<LoginActivity>()
 
-    lateinit var activity: Activity
+    private lateinit var activity: Activity
 
     @Before
     fun setUp() {

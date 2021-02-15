@@ -3,15 +3,11 @@ package com.noticias_now
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
-import com.google.android.play.core.review.testing.FakeReviewManager
-import org.junit.Test
-import org.junit.Before
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import br.com.ricarlo.common.inapp.review.ReviewViewModel
-import br.com.ricarlo.test.getOrAwaitValue
+import com.google.android.play.core.review.testing.FakeReviewManager
+import org.junit.Before
 import org.junit.Rule
-import org.junit.Assert.*
-
+import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
@@ -22,7 +18,7 @@ class ReviewViewModelTest {
     @get:Rule
     var rule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: ReviewViewModel
+//    private lateinit var viewModel: ReviewViewModel
     //    private val contextMock = mockk<Context>(relaxed = true)
 
     @Before

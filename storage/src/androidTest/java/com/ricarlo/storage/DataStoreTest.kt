@@ -1,13 +1,14 @@
 package com.ricarlo.storage
 
 import androidx.datastore.preferences.createDataStore
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.Assert.*
-import org.junit.Before
 
 /**
  * Instrumented test, which will execute on an Android device.

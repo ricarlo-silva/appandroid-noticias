@@ -4,18 +4,15 @@ import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.ricarlo.common.ui.base.BaseFragment
 import br.com.ricarlo.common.util.ViewState
 import com.noticias_now.R
 import com.noticias_now.databinding.FragmentNewsTypeBinding
 import com.noticias_now.details.DetailsNewsActivity
 import com.noticias_now.details.DetailsViewModel
 import com.noticias_now.model.NewsModel
-import br.com.ricarlo.common.ui.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
-/**
- * A simple [Fragment] subclass.
- */
 class NewsTypeFragment : BaseFragment<FragmentNewsTypeBinding>(), OnClickListener {
 
     private val _adapter by lazy { RecycleAdapter(this) }

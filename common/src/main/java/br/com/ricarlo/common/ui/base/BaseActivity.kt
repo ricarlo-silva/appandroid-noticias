@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import br.com.ricarlo.common.R
 import br.com.ricarlo.common.inapp.update.Event
 import br.com.ricarlo.common.inapp.update.IN_APP_UPDATE_REQUEST_CODE
 import br.com.ricarlo.common.inapp.update.TAG_UPDATE
@@ -24,7 +25,6 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.ktx.AppUpdateResult
 import com.google.android.play.core.ktx.bytesDownloaded
 import com.google.android.play.core.ktx.totalBytesToDownload
-import br.com.ricarlo.common.R
 import org.koin.android.ext.android.inject
 import java.io.IOException
 

@@ -1,6 +1,5 @@
 package br.com.ricarlo.common.util.extensions
 
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri

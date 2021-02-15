@@ -2,11 +2,11 @@ package com.noticias_now.home
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
+import br.com.ricarlo.common.ui.base.adapter.BaseAdapter
+import br.com.ricarlo.common.ui.base.adapter.BaseViewHolder
 import com.noticias_now.BR
 import com.noticias_now.R
 import com.noticias_now.model.NewsModel
-import br.com.ricarlo.common.ui.base.adapter.BaseAdapter
-import br.com.ricarlo.common.ui.base.adapter.BaseViewHolder
 
 /**
  * Created by ricarlo on 12/11/2016.

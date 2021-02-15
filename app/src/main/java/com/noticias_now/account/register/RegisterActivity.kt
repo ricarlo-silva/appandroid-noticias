@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.Observer
 import br.com.ricarlo.common.inapp.review.ReviewFlow
 import br.com.ricarlo.common.inapp.review.ReviewViewModel
+import br.com.ricarlo.common.ui.base.BaseActivity
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.extensions.getString
 import br.com.ricarlo.common.util.extensions.openPlayStore
@@ -12,7 +13,6 @@ import br.com.ricarlo.common.util.extensions.showToast
 import com.google.android.play.core.review.ReviewManager
 import com.noticias_now.R
 import com.noticias_now.databinding.ActivityRegisterBinding
-import br.com.ricarlo.common.ui.base.BaseActivity
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 

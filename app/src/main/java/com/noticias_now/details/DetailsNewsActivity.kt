@@ -2,11 +2,11 @@ package com.noticias_now.details
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import br.com.ricarlo.common.ui.base.BaseActivity
 import br.com.ricarlo.common.util.ViewState
 import com.noticias_now.R
 import com.noticias_now.databinding.ActivityDetailsNewsBinding
 import com.noticias_now.model.NewsModel
-import br.com.ricarlo.common.ui.base.BaseActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailsNewsActivity : BaseActivity<ActivityDetailsNewsBinding>() {

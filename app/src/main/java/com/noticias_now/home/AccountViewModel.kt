@@ -8,12 +8,10 @@ import br.com.ricarlo.common.ui.BaseViewModel
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
 import com.noticias_now.account.register.IUserRepository
-import com.noticias_now.details.INewsRepository
 import kotlinx.coroutines.launch
 
 class AccountViewModel(
         private val userRepository: IUserRepository,
-        private val newsRepository: INewsRepository,
         private val dispatchers: ICoroutinesDispatcherProvider
 ) : BaseViewModel() {
 

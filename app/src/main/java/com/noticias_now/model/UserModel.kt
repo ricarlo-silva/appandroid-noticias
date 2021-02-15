@@ -3,7 +3,7 @@ package com.noticias_now.model
 import android.os.Parcelable
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by ricarlo on 10/11/2016.

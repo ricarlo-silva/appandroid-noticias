@@ -9,7 +9,6 @@ import br.com.ricarlo.common.firebase.remoteconfig.Feature
 import br.com.ricarlo.common.firebase.remoteconfig.IFirebaseRemoteConfigManager
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager
-import java.lang.Exception
 
 class ReviewViewModel constructor(
         private val reviewManager: ReviewManager,

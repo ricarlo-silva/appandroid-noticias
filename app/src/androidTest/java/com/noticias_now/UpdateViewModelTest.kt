@@ -22,7 +22,7 @@ class UpdateViewModelTest {
     private lateinit var fakeAppUpdateManager : FakeAppUpdateManager
 
     @Before
-    fun sutup() {
+    fun setUp() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         fakeAppUpdateManager = FakeAppUpdateManager(appContext)
     }

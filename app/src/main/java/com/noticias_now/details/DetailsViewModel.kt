@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
-import br.com.ricarlo.common.util.resources.IResourcesManager
 import com.noticias_now.account.register.IUserRepository
 import com.noticias_now.model.LikeModel
 import com.noticias_now.model.NewsModel
@@ -15,7 +14,6 @@ import kotlinx.coroutines.launch
 class DetailsViewModel(
         private val userRepository: IUserRepository,
         private val newsRepository: INewsRepository,
-        private val resourcesManager: IResourcesManager,
         private val dispatchers: ICoroutinesDispatcherProvider
 ) : ViewModel() {
 
@@ -35,10 +33,10 @@ class DetailsViewModel(
 
             viewModelScope.launch(dispatchers.main()) {
                 runCatching {
-                    val news = newsRepository.getNewsById(news.id)
+                    val result = newsRepository.getNewsById(news.id)
                     val userId = userRepository.get().id
-                    val likes = getLikes(news.likes.orEmpty(), userId)
-                    Pair(news, likes) // TODO review
+                    val likes = getLikes(result.likes.orEmpty(), userId)
+                    Pair(result, likes) // TODO review
                 }.onSuccess {
                     _news.value = ViewState.Success(it.first)
                     _like.value = ViewState.Success(it.second)
@@ -75,7 +73,7 @@ class DetailsViewModel(
 
     }
 
-    private suspend fun getLikes(likes: List<LikeModel>, userId: String?): Triple<Int, Int, Boolean> {
+    private fun getLikes(likes: List<LikeModel>, userId: String?): Triple<Int, Int, Boolean> {
         var like = 0
         var unlike = 0
         var currentUserLike = false

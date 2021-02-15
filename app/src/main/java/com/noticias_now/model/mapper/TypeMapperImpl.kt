@@ -1,10 +1,10 @@
 package com.noticias_now.model.mapper
 
 import com.noticias_now.model.TypeModel
-import com.noticias_now.model.response.TypeResponse
 import com.noticias_now.model.mapper.base.DomainMapper
+import com.noticias_now.model.response.TypeResponse
 
-class TypeMapper : DomainMapper<TypeResponse, TypeModel> {
+class TypeMapperImpl : DomainMapper<TypeResponse, TypeModel> {
 
     override fun toDomain(from: TypeResponse): TypeModel {
         return TypeModel(

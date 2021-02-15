@@ -1,7 +1,9 @@
 package com.noticias_now.services
 
 import br.com.ricarlo.network.ApiResponse
-import com.noticias_now.model.*
+import com.noticias_now.model.LikeModel
+import com.noticias_now.model.NewsModel
+import com.noticias_now.model.UserModel
 import com.noticias_now.model.request.SessionRequest
 import com.noticias_now.model.response.TypeResponse
 import retrofit2.http.Body

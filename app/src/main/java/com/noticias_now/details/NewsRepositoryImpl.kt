@@ -1,11 +1,11 @@
 package com.noticias_now.details
 
-import br.com.ricarlo.network.apiCall
 import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
+import br.com.ricarlo.network.apiCall
 import com.noticias_now.model.LikeModel
 import com.noticias_now.model.NewsModel
 import com.noticias_now.model.TypeModel
-import com.noticias_now.model.mapper.TypeMapper
+import com.noticias_now.model.mapper.TypeMapperImpl
 import com.noticias_now.services.IWebService
 
 class NewsRepositoryImpl(
@@ -58,7 +58,7 @@ class NewsRepositoryImpl(
     override suspend fun getTypes(): List<TypeModel> {
         return apiCall(dispatchers.io()) {
             val response = remote.getTypes().data
-            TypeMapper().toDomain(response)
+            TypeMapperImpl().toDomain(response)
         }
     }
 

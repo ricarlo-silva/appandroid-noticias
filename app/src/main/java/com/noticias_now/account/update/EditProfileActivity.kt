@@ -2,12 +2,12 @@ package com.noticias_now.account.update
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import br.com.ricarlo.common.ui.base.BaseActivity
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.extensions.getString
 import br.com.ricarlo.common.util.extensions.showToast
 import com.noticias_now.R
 import com.noticias_now.databinding.ActivityEditProfileBinding
-import br.com.ricarlo.common.ui.base.BaseActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>() {

@@ -4,9 +4,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import br.com.ricarlo.common.R
 import br.com.ricarlo.common.util.ApsNoticiasUtils
+import com.bumptech.glide.Glide
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 
 @BindingAdapter("imageUrl")

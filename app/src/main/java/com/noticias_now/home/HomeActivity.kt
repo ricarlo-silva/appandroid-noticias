@@ -4,14 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.lifecycle.Observer
 import br.com.ricarlo.common.ui.base.BaseActivity
 import br.com.ricarlo.common.util.ViewState
 import com.noticias_now.R
-import com.noticias_now.account.update.EditProfileActivity
 import com.noticias_now.databinding.ActivityHomeBinding
-import com.noticias_now.list.UserNewsActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
@@ -64,8 +61,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     private fun subscribeUI() {
 
-        viewModel.types.observe(this, Observer {
-            when (it) {
+        viewModel.types.observe(this, Observer { result ->
+            when (result) {
                 is ViewState.Loading -> {
                     showLoading(getString(R.string.loading))
                 }
@@ -73,14 +70,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                     hideLoading()
                     binding.content.tabLayout.setupWithViewPager(binding.content.pager)
 
-                    val list = it.data.associateBy({ it.name }, { NewsTypeFragment.getInstance(it.id) })
+                    val list = result.data.associateBy({ it.name }, { NewsTypeFragment.getInstance(it.id) })
                     val adapter = PagerAdapter(list, supportFragmentManager)
 
                     binding.content.pager.adapter = adapter
                 }
                 is ViewState.Error -> {
                     hideLoading()
-                    handlerError(it.error)
+                    handlerError(result.error)
                 }
             }
         })

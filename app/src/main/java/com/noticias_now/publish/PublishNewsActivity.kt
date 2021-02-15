@@ -2,16 +2,16 @@ package com.noticias_now.publish
 
 import android.os.Bundle
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.lifecycle.Observer
+import br.com.ricarlo.common.ui.base.BaseActivity
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.extensions.getString
 import br.com.ricarlo.common.util.extensions.showToast
 import com.noticias_now.R
 import com.noticias_now.databinding.ActivityPublishNewsBinding
 import com.noticias_now.model.NewsModel
-import br.com.ricarlo.common.ui.base.BaseActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class PublishNewsActivity : BaseActivity<ActivityPublishNewsBinding>() {
