@@ -2,29 +2,30 @@ package com.noticias_now.splash
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.lifecycle.Observer
+import br.com.ricarlo.common.ui.base.BaseActivity
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.extensions.doOnTransitionCompleted
 import com.noticias_now.R
+import com.noticias_now.databinding.ActivitySplashBinding
 import com.noticias_now.home.HomeActivity
 import com.noticias_now.login.LoginActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     private val viewModel: SplashViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+    override fun getLayoutRes(): Int {
+        return R.layout.activity_splash
+    }
 
-        val motionLayout = findViewById<MotionLayout>(R.id.splash_motion_layout)
-        motionLayout.doOnTransitionCompleted { _, _ ->
+    override fun initView(savedInstanceState: Bundle?) {
+
+        binding.splashMotionLayout.doOnTransitionCompleted { _, _ ->
             viewModel.setCompletedAnimation()
         }
-        motionLayout.startLayoutAnimation()
+        binding.splashMotionLayout.startLayoutAnimation()
 
         subscribeUI()
     }
@@ -47,8 +48,7 @@ class SplashActivity : AppCompatActivity() {
                     finish()
                 }
                 is ViewState.Error -> {
-                    // TODO review
-//                    handlerError(it.error)
+                    handlerError(it.error)
                 }
             }
         })

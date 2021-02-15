@@ -34,7 +34,6 @@ class SplashViewModel(
                     else SplashEvent.LaunchLogin
             )
             while (completedAnimation.not()) {
-                println("VRAUUUU")
                 withContext(dispatchers.io()) { delay(TIME_DELAY) }
             }
             emit(event)
