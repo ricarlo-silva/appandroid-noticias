@@ -56,12 +56,12 @@ dependencies {
 //
 //    androidTestImplementation deps.androidx.test.espresso
 
-    api 'io.mockk:mockk:1.10.0'
+    api 'io.mockk:mockk:1.10.6'
 
 //    api "org.robolectric:robolectric:4.4"
 
     // Instrumented
-    api('io.mockk:mockk-android:1.10.0')
+    api('io.mockk:mockk-android:1.10.6')
 
     api deps.coroutines.test
 
@@ -78,7 +78,7 @@ dependencies {
     api 'androidx.test.ext:junit:1.1.2'
     api 'androidx.test.ext:junit-ktx:1.1.2'
     api 'androidx.test.ext:truth:1.3.0'
-    api 'com.google.truth:truth:1.0'
+    api 'com.google.truth:truth:1.1.2'
     api deps.hamcrest.library
 
 

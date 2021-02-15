@@ -44,7 +44,7 @@ dependencies {
     implementation deps.koin.core
     implementation deps.koin.android
 
-    api "androidx.datastore:datastore-preferences:1.0.0-alpha05"
+    api "androidx.datastore:datastore-preferences:1.0.0-alpha06"
 
     // Test
     testImplementation deps.junit

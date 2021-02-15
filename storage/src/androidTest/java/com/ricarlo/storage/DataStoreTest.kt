@@ -90,7 +90,7 @@ class DataStoreTest {
             val data1 = dataStore.hasKey<String>(key1)
             assertFalse(data1)
 
-            val data2 = dataStore.hasKey<String>(key2)
+            val data2 = dataStore.hasKey<Double>(key2)
             assertFalse(data2)
         }
     }

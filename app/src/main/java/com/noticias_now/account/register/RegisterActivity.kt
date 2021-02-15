@@ -51,7 +51,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                             .addOnCompleteListener {
                                 Log.e("launchReviewFlow", "$it")
                                 if (!it.isSuccessful) {
-                                    showToast(it.exception.message.orEmpty())
+                                    showToast(it.exception?.message.orEmpty())
                                 }
                             }
                 }
@@ -59,7 +59,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                     openPlayStore()
                 }
                 is ReviewFlow.Error -> {
-                    showToast(reviewFlow.exception.message.orEmpty())
+                    showToast(reviewFlow.exception?.message.orEmpty())
                 }
             }
         })

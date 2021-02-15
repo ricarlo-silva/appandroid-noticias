@@ -52,5 +52,5 @@ class ReviewViewModel constructor(
 sealed class ReviewFlow {
     data class LaunchInApp(val reviewInfo: ReviewInfo) : ReviewFlow()
     object LaunchOutApp : ReviewFlow()
-    data class Error(val exception: Exception) : ReviewFlow()
+    data class Error(val exception: Throwable?) : ReviewFlow()
 }

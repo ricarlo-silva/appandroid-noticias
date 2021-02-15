@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import br.com.ricarlo.common.util.ApsNoticiasUtils
 import com.bumptech.glide.Glide
-import jp.wasabeef.glide.transformations.CropCircleTransformation
 
 @BindingAdapter("imageUrl")
 fun ImageView.imageUrl(url: String?) {
@@ -14,9 +13,8 @@ fun ImageView.imageUrl(url: String?) {
 
     Glide.with(context).load(url)
 //            .placeholder(R.drawable.bg_photo)
-//            .error(R.drawable.bg_photo)
-            .crossFade()
-            .bitmapTransform(CropCircleTransformation(context))
+//            .fallback(R.drawable.bg_photo)
+            .optionalCircleCrop()
             .into(this)
 }
 
