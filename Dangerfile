@@ -9,7 +9,7 @@ end
 
 
 Dir["**/reports/ktlint/ktlint-checkstyle.xml"].each do |file_name|
-  checkstyle_format.gradle_task = "ktlint"
+  # checkstyle_format.gradle_task = "ktlint"
   checkstyle_format.skip_gradle_task = true
   checkstyle_format.base_path = file_name
   checkstyle_format.report(file_name, inline_mode = true)
