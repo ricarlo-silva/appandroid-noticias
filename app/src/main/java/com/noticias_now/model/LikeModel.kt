@@ -12,12 +12,12 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class LikeModel(
 
-        @Json(name = "id_person")
-        val idUser: String,
+    @Json(name = "id_person")
+    val idUser: String,
 
-        @Json(name = "id_news")
-        val idNews: String,
+    @Json(name = "id_news")
+    val idNews: String,
 
-        @Json(name = "like")
-        val like: Boolean
+    @Json(name = "like")
+    val like: Boolean
 ) : Parcelable

@@ -12,21 +12,21 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class UserModel(
 
-        @Json(name = "id")
-        val id: String? = null,
+    @Json(name = "id")
+    val id: String? = null,
 
-        @Json(name = "name")
-        val name: String,
+    @Json(name = "name")
+    val name: String,
 
-        @Json(name = "photo")
-        val photo: String? = null,
+    @Json(name = "photo")
+    val photo: String? = null,
 
-        @Json(name = "email")
-        val email: String,
+    @Json(name = "email")
+    val email: String,
 
-        @Json(name = "token")
-        val token: String? = null,
+    @Json(name = "token")
+    val token: String? = null,
 
-        @Json(name = "senha")
-        val password: String? = null,
+    @Json(name = "senha")
+    val password: String? = null,
 ) : Parcelable

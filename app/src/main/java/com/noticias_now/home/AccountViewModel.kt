@@ -11,8 +11,8 @@ import com.noticias_now.account.register.IUserRepository
 import kotlinx.coroutines.launch
 
 class AccountViewModel(
-        private val userRepository: IUserRepository,
-        private val dispatchers: ICoroutinesDispatcherProvider
+    private val userRepository: IUserRepository,
+    private val dispatchers: ICoroutinesDispatcherProvider
 ) : BaseViewModel() {
 
     private val _logout = MutableLiveData<ViewState<Unit>>()
@@ -34,5 +34,4 @@ class AccountViewModel(
             }
         }
     }
-
 }

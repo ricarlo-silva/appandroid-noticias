@@ -14,10 +14,10 @@ import com.noticias_now.account.register.IUserRepository
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-        private val userRepository: IUserRepository,
-        private val resourcesManager: IResourcesManager,
-        private val dispatchers: ICoroutinesDispatcherProvider,
-        private val firebaseRemoteConfigManager: IFirebaseRemoteConfigManager
+    private val userRepository: IUserRepository,
+    private val resourcesManager: IResourcesManager,
+    private val dispatchers: ICoroutinesDispatcherProvider,
+    private val firebaseRemoteConfigManager: IFirebaseRemoteConfigManager
 ) : ViewModel() {
 
     private val _user = MutableLiveData<ViewState<Unit>>()
@@ -29,17 +29,18 @@ class LoginViewModel(
                 _user.postValue(ViewState.Loading())
 
                 runCatching {
-                    userRepository.login(SessionQuery.SingIn(
+                    userRepository.login(
+                        SessionQuery.SingIn(
                             email = email,
                             password = password,
-                    ))
+                        )
+                    )
                 }.onSuccess {
                     val message = firebaseRemoteConfigManager.fetchSync(Feature.WELCOME_MESSAGE, String::class.java)
                     _user.postValue(ViewState.Success(it))
                 }.onFailure {
                     _user.postValue(ViewState.Error(error = it))
                 }
-
             } else {
                 _user.postValue(ViewState.Error(error = Exception(resourcesManager.getString(R.string.preencher_campos))))
             }

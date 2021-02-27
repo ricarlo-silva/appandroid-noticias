@@ -30,60 +30,64 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
         binding.btRegister.setOnClickListener {
             registerViewModel.insert(
-                    name = binding.edName.getString(),
-                    email = binding.edEmail.getString(),
-                    password = binding.edPassword.getString(),
-                    photo = ""
+                name = binding.edName.getString(),
+                email = binding.edEmail.getString(),
+                password = binding.edPassword.getString(),
+                photo = ""
             )
         }
 
         subscribeUI()
         reviewViewModel.requestReviewFlow()
-
     }
 
     private fun subscribeUI() {
 
-        reviewViewModel.reviewFlow.observe(this, Observer { reviewFlow ->
-            when (reviewFlow) {
-                is ReviewFlow.LaunchInApp -> {
-                    reviewManager.launchReviewFlow(this, reviewFlow.reviewInfo)
+        reviewViewModel.reviewFlow.observe(
+            this,
+            Observer { reviewFlow ->
+                when (reviewFlow) {
+                    is ReviewFlow.LaunchInApp -> {
+                        reviewManager.launchReviewFlow(this, reviewFlow.reviewInfo)
                             .addOnCompleteListener {
                                 Log.e("launchReviewFlow", "$it")
                                 if (!it.isSuccessful) {
                                     showToast(it.exception?.message.orEmpty())
                                 }
                             }
-                }
-                is ReviewFlow.LaunchOutApp -> {
-                    openPlayStore()
-                }
-                is ReviewFlow.Error -> {
-                    showToast(reviewFlow.exception?.message.orEmpty())
+                    }
+                    is ReviewFlow.LaunchOutApp -> {
+                        openPlayStore()
+                    }
+                    is ReviewFlow.Error -> {
+                        showToast(reviewFlow.exception?.message.orEmpty())
+                    }
                 }
             }
-        })
+        )
 
-        registerViewModel.user.observe(this, Observer {
-            when (it) {
-                is ViewState.Loading -> {
-                    showLoading(getString(R.string.criando_usuario))
-                }
-                is ViewState.Success -> {
-                    hideLoading()
-                    setResult(RESULT_OK)
-                    finish()
-                }
-                is ViewState.Error -> {
-                    hideLoading()
-                    handlerError(it.error)
+        registerViewModel.user.observe(
+            this,
+            Observer {
+                when (it) {
+                    is ViewState.Loading -> {
+                        showLoading(getString(R.string.criando_usuario))
+                    }
+                    is ViewState.Success -> {
+                        hideLoading()
+                        setResult(RESULT_OK)
+                        finish()
+                    }
+                    is ViewState.Error -> {
+                        hideLoading()
+                        handlerError(it.error)
+                    }
                 }
             }
-        })
+        )
     }
 
     companion object {
         const val REQUEST_REGISTER = 124
     }
-
 }

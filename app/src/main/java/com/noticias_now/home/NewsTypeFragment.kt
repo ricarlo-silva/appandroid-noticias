@@ -49,30 +49,39 @@ class NewsTypeFragment : BaseFragment<FragmentNewsTypeBinding>(), OnClickListene
     }
 
     private fun subscribeUI() {
-        viewModel.news.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is ViewState.Loading -> {
-                    showLoading(null)
-                }
-                is ViewState.Success -> {
-                    hideLoading()
-                    _adapter.submitList(it.data)
-                }
-                is ViewState.Error -> {
-                    hideLoading()
-                    handlerError(it.error)
+        viewModel.news.observe(
+            viewLifecycleOwner,
+            Observer {
+                when (it) {
+                    is ViewState.Loading -> {
+                        showLoading(null)
+                    }
+                    is ViewState.Success -> {
+                        hideLoading()
+                        _adapter.submitList(it.data)
+                    }
+                    is ViewState.Error -> {
+                        hideLoading()
+                        handlerError(it.error)
+                    }
                 }
             }
-        })
+        )
 
-        detailsViewModel.like.observe(viewLifecycleOwner, Observer {
-            // TODO
-        })
+        detailsViewModel.like.observe(
+            viewLifecycleOwner,
+            Observer {
+                // TODO
+            }
+        )
     }
 
     override fun onClickItem(item: NewsModel) {
-        openActivity(DetailsNewsActivity::class.java, bundleOf(
-                DetailsNewsActivity.BUNDLE_NEWS to item)
+        openActivity(
+            DetailsNewsActivity::class.java,
+            bundleOf(
+                DetailsNewsActivity.BUNDLE_NEWS to item
+            )
         )
     }
 
@@ -81,11 +90,11 @@ class NewsTypeFragment : BaseFragment<FragmentNewsTypeBinding>(), OnClickListene
     }
 
     override fun onClickUpdate(item: NewsModel) {
-        //TODO("Not yet implemented")
+        // TODO("Not yet implemented")
     }
 
     override fun onClickDelete(item: NewsModel) {
-        //TODO("Not yet implemented")
+        // TODO("Not yet implemented")
     }
 
     companion object {

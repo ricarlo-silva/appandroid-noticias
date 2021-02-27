@@ -9,7 +9,6 @@ abstract class BaseTestCase : KoinTest {
 
     open fun testModules() = listOf<Module>()
 
-
     fun assertError(result: ViewState<*>, throwable: String?) {
         //        assertTrue(result is ViewState.Error)
 //

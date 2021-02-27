@@ -19,7 +19,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class UpdateViewModelTest {
 
-    private lateinit var fakeAppUpdateManager : FakeAppUpdateManager
+    private lateinit var fakeAppUpdateManager: FakeAppUpdateManager
 
     @Before
     fun setUp() {

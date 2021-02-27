@@ -33,6 +33,5 @@ class ReviewViewModelTest {
 //        viewModel.requestReviewFlow()
 //        assertNotNull(viewModel.reviewFlow.getOrAwaitValue())
 //        assertTrue(viewModel.reviewFlow.hasObservers())
-
     }
 }

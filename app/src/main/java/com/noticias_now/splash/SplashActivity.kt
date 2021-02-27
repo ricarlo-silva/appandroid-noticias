@@ -31,28 +31,29 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     }
 
     private fun subscribeUI() {
-        viewModel.result.observe(this, Observer {
-            when (it) {
-                is ViewState.Loading -> {
-
-                }
-                is ViewState.Success -> {
-                    val cls = when (it.data) {
-                        is SplashEvent.LaunchLogin -> {
-                            LoginActivity::class.java
-                        }
-                        is SplashEvent.LaunchHome -> {
-                            HomeActivity::class.java
-                        }
+        viewModel.result.observe(
+            this,
+            Observer {
+                when (it) {
+                    is ViewState.Loading -> {
                     }
-                    startActivity(Intent(this, cls))
-                    finish()
-                }
-                is ViewState.Error -> {
-                    handlerError(it.error)
+                    is ViewState.Success -> {
+                        val cls = when (it.data) {
+                            is SplashEvent.LaunchLogin -> {
+                                LoginActivity::class.java
+                            }
+                            is SplashEvent.LaunchHome -> {
+                                HomeActivity::class.java
+                            }
+                        }
+                        startActivity(Intent(this, cls))
+                        finish()
+                    }
+                    is ViewState.Error -> {
+                        handlerError(it.error)
+                    }
                 }
             }
-        })
+        )
     }
-
 }

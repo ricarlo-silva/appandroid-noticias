@@ -12,9 +12,9 @@ import com.noticias_now.model.UserModel
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(
-        private val userRepository: IUserRepository,
-        private val resourcesManager: IResourcesManager,
-        private val dispatchers: ICoroutinesDispatcherProvider
+    private val userRepository: IUserRepository,
+    private val resourcesManager: IResourcesManager,
+    private val dispatchers: ICoroutinesDispatcherProvider
 ) : BaseViewModel() {
 
     private val _user = MutableLiveData<ViewState<Unit>>()
@@ -27,19 +27,20 @@ class RegisterViewModel(
 
             viewModelScope.launch(dispatchers.main()) {
                 runCatching {
-                    userRepository.insert(UserModel(
+                    userRepository.insert(
+                        UserModel(
                             name = name,
                             email = email,
                             password = password,
                             photo = photo
-                    ))
+                        )
+                    )
                 }.onSuccess {
                     _user.value = ViewState.Success(Unit)
                 }.onFailure {
                     _user.value = ViewState.Error(error = it)
                 }
             }
-
         } else {
             _user.value = ViewState.Error(error = Exception(resourcesManager.getString(R.string.preencher_campos)))
         }

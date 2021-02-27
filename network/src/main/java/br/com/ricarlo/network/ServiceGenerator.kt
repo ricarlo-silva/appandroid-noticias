@@ -15,37 +15,39 @@ object ServiceGenerator {
 
     fun httpClient(networkConfig: INetworkConfig): OkHttpClient {
         return OkHttpClient.Builder()
-                .apply {
-                    if (networkConfig.isDebug()) {
-                        addInterceptor(HttpLoggingInterceptor().apply {
+            .apply {
+                if (networkConfig.isDebug()) {
+                    addInterceptor(
+                        HttpLoggingInterceptor().apply {
                             level = HttpLoggingInterceptor.Level.BODY
-                        })
-                    }
-                }
-                .addInterceptor(object : Interceptor {
-                    override fun intercept(chain: Interceptor.Chain): Response {
-                        val response = chain.proceed(chain.request())
-                        if (response.isSuccessful.not()) {
-                            // TODO
                         }
-                        return response
+                    )
+                }
+            }
+            .addInterceptor(object : Interceptor {
+                override fun intercept(chain: Interceptor.Chain): Response {
+                    val response = chain.proceed(chain.request())
+                    if (response.isSuccessful.not()) {
+                        // TODO
                     }
-                })
-                .connectTimeout(networkConfig.connectTimeout(), TimeUnit.SECONDS)
-                .readTimeout(networkConfig.readTimeout(), TimeUnit.SECONDS)
-                .build()
+                    return response
+                }
+            })
+            .connectTimeout(networkConfig.connectTimeout(), TimeUnit.SECONDS)
+            .readTimeout(networkConfig.readTimeout(), TimeUnit.SECONDS)
+            .build()
     }
 
     fun retrofit(
-            networkConfig: INetworkConfig,
-            httpClient: OkHttpClient,
-            converter: Converter.Factory
+        networkConfig: INetworkConfig,
+        httpClient: OkHttpClient,
+        converter: Converter.Factory
     ): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(networkConfig.baseUrl())
-                .addConverterFactory(converter)
-                .client(httpClient)
-                .build()
+            .baseUrl(networkConfig.baseUrl())
+            .addConverterFactory(converter)
+            .client(httpClient)
+            .build()
     }
 }
 

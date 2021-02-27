@@ -12,7 +12,15 @@ import br.com.ricarlo.test.CoroutineTestRule
 import br.com.ricarlo.test.test
 import com.noticias_now.account.register.IUserRepository
 import com.noticias_now.di.AppModule
-import io.mockk.*
+import io.mockk.Runs
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.coVerifySequence
+import io.mockk.confirmVerified
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 import org.junit.Test
@@ -23,12 +31,12 @@ import org.koin.dsl.module
 import org.koin.test.KoinTestRule
 import org.koin.test.inject
 
-//import org.robolectric.annotation.Config
+// import org.robolectric.annotation.Config
 
 @KoinApiExtension
 @ExperimentalCoroutinesApi
 @RunWith(JUnit4::class)
-//@Config(sdk = [Build.VERSION_CODES.P])
+// @Config(sdk = [Build.VERSION_CODES.P])
 class LoginViewModelTest : BaseTestCase() {
 
     private val viewModel: LoginViewModel by inject()
@@ -46,14 +54,16 @@ class LoginViewModelTest : BaseTestCase() {
 
     @get:Rule
     var koinTestRule = KoinTestRule.create {
-        modules(AppModule.modules + CommonModule.modules + module(override = true) {
-            factory { mockk<Context>(relaxed = true) }
-            single { mockk<IUserRepository>(relaxUnitFun = true) }
-            single { mockk<IFirebaseRemoteConfigManager>(relaxUnitFun = true) }
-            single<ICoroutinesDispatcherProvider> {
-                coroutinesTestRule.testDispatcherProvider
+        modules(
+            AppModule.modules + CommonModule.modules + module(override = true) {
+                factory { mockk<Context>(relaxed = true) }
+                single { mockk<IUserRepository>(relaxUnitFun = true) }
+                single { mockk<IFirebaseRemoteConfigManager>(relaxUnitFun = true) }
+                single<ICoroutinesDispatcherProvider> {
+                    coroutinesTestRule.testDispatcherProvider
+                }
             }
-        })
+        )
     }
 
 //    @Test
@@ -75,13 +85,13 @@ class LoginViewModelTest : BaseTestCase() {
             // given
             coEvery {
                 userRepository.login(
-                        match { it.email == "test@email.com" && it.password == "123456" }
+                    match { it.email == "test@email.com" && it.password == "123456" }
                 )
             } just Runs
 
             every {
                 firebaseRemoteConfigManager
-                        .fetchSync("welcome_message", String::class.java)
+                    .fetchSync("welcome_message", String::class.java)
             } returns "nk"
 
             val mockObserver = viewModel.user.test()
@@ -110,7 +120,7 @@ class LoginViewModelTest : BaseTestCase() {
             // given
             coEvery {
                 userRepository.login(
-                        match { it.email == "test@email.com" && it.password == "123456" }
+                    match { it.email == "test@email.com" && it.password == "123456" }
                 )
             } throws ApiException(statusCode = 500, message = null)
 
@@ -149,7 +159,5 @@ class LoginViewModelTest : BaseTestCase() {
         }
 
         assertError(slots[0], "Preencha todos os campos.")
-
     }
-
 }

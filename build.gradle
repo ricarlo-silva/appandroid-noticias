@@ -35,9 +35,18 @@ subprojects {
 
     def flavorsConfig = {
         apply from: "$rootDir/flavor.gradle"
+
+        android {
+            lintOptions {
+                xmlReport true
+            }
+        }
     }
     pluginManager.withPlugin("com.android.application", flavorsConfig)
     pluginManager.withPlugin("com.android.library", flavorsConfig)
+
+    apply from: "$rootDir/config/detekt/detekt.gradle"
+    apply from: "$rootDir/config/ktlint/ktlint.gradle"
 
     apply from: "$rootDir/jacoco.gradle"
 

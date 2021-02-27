@@ -48,12 +48,12 @@ interface IWebService {
     @POST("noticia/inserir")
     suspend fun insertNews(@Body news: NewsModel): ApiResponse<NewsModel>
 
-    @POST("noticia/alterar")// TODO refactor to @PATCH
+    @POST("noticia/alterar") // TODO refactor to @PATCH
     suspend fun updateNews(@Body news: NewsModel): ApiResponse<NewsModel>
 
     @POST("noticia/deletar")
-    suspend fun deleteNews(@Body news: NewsModel) //TODO send only id; change to @DELETE; return message success
+    suspend fun deleteNews(@Body news: NewsModel) // TODO send only id; change to @DELETE; return message success
 
-    @GET("noticias/tipos") //TODO create
+    @GET("noticias/tipos") // TODO create
     suspend fun getTypes(): ApiResponse<List<TypeResponse>>
 }

@@ -54,34 +54,35 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 //                openActivity(UserNewsActivity::class.java, null, null)
 //            }
 //            R.id.tv_nav_logout -> {
-////                logout()
+// //                logout()
 //            }
 //        }
 //    }
 
     private fun subscribeUI() {
 
-        viewModel.types.observe(this, Observer { result ->
-            when (result) {
-                is ViewState.Loading -> {
-                    showLoading(getString(R.string.loading))
-                }
-                is ViewState.Success -> {
-                    hideLoading()
-                    binding.content.tabLayout.setupWithViewPager(binding.content.pager)
+        viewModel.types.observe(
+            this,
+            Observer { result ->
+                when (result) {
+                    is ViewState.Loading -> {
+                        showLoading(getString(R.string.loading))
+                    }
+                    is ViewState.Success -> {
+                        hideLoading()
+                        binding.content.tabLayout.setupWithViewPager(binding.content.pager)
 
-                    val list = result.data.associateBy({ it.name }, { NewsTypeFragment.getInstance(it.id) })
-                    val adapter = PagerAdapter(list, supportFragmentManager)
+                        val list = result.data.associateBy({ it.name }, { NewsTypeFragment.getInstance(it.id) })
+                        val adapter = PagerAdapter(list, supportFragmentManager)
 
-                    binding.content.pager.adapter = adapter
-                }
-                is ViewState.Error -> {
-                    hideLoading()
-                    handlerError(result.error)
+                        binding.content.pager.adapter = adapter
+                    }
+                    is ViewState.Error -> {
+                        hideLoading()
+                        handlerError(result.error)
+                    }
                 }
             }
-        })
-
+        )
     }
-
 }

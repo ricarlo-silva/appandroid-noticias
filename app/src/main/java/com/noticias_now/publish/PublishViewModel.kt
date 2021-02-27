@@ -14,10 +14,10 @@ import com.noticias_now.model.NewsModel
 import kotlinx.coroutines.launch
 
 class PublishViewModel(
-        private val userRepository: IUserRepository,
-        private val newsRepository: INewsRepository,
-        private val resourcesManager: IResourcesManager,
-        private val dispatchers: ICoroutinesDispatcherProvider
+    private val userRepository: IUserRepository,
+    private val newsRepository: INewsRepository,
+    private val resourcesManager: IResourcesManager,
+    private val dispatchers: ICoroutinesDispatcherProvider
 ) : ViewModel() {
 
     private val _news = MutableLiveData<NewsModel?>()
@@ -45,10 +45,10 @@ class PublishViewModel(
             viewModelScope.launch(dispatchers.main()) {
                 runCatching {
                     val model = NewsModel(
-                            title = title,
-                            type = _type,
-                            description = description,
-                            user = userRepository.get()
+                        title = title,
+                        type = _type,
+                        description = description,
+                        user = userRepository.get()
                     )
                     if (isUpdate()) {
                         newsRepository.updateNews(model)
@@ -62,12 +62,10 @@ class PublishViewModel(
                     _result.value = ViewState.Error(it)
                 }
             }
-
         } else {
             _result.value = ViewState.Error(error = Exception(resourcesManager.getString(R.string.preencher_campos)))
         }
     }
 
     private fun isUpdate() = _news.value != null
-
 }

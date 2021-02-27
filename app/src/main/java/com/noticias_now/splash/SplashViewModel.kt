@@ -10,8 +10,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 class SplashViewModel(
-        private val userRepository: IUserRepository,
-        private val dispatchers: ICoroutinesDispatcherProvider
+    private val userRepository: IUserRepository,
+    private val dispatchers: ICoroutinesDispatcherProvider
 ) : ViewModel() {
 
     companion object {
@@ -30,8 +30,8 @@ class SplashViewModel(
             userRepository.checkIfLogged()
         }.onSuccess { isLogged ->
             val event = ViewState.Success(
-                    if (isLogged) SplashEvent.LaunchHome
-                    else SplashEvent.LaunchLogin
+                if (isLogged) SplashEvent.LaunchHome
+                else SplashEvent.LaunchLogin
             )
             while (completedAnimation.not()) {
                 withContext(dispatchers.io()) { delay(TIME_DELAY) }

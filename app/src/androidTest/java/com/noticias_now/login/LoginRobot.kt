@@ -39,7 +39,6 @@ class LoginRobot {
 //        onView(withText(""))
 //            .inRoot(RootMatchers.withDecorView(not(activityRule.getDecorView())))
 //            .check(matches(isDisplayed()))
-
     }
 
     fun Activity.isDisplayedToast(message: String) {

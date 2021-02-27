@@ -26,15 +26,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
         binding.btLogin.setOnClickListener {
             viewModel.login(
-                    email = binding.edEmail.getString(),
-                    password = binding.edPassword.getString()
+                email = binding.edEmail.getString(),
+                password = binding.edPassword.getString()
             )
         }
 
         binding.btCreateAccount.setOnClickListener {
             openActivity(
-                    RegisterActivity::class.java, null,
-                    RegisterActivity.REQUEST_REGISTER
+                RegisterActivity::class.java, null,
+                RegisterActivity.REQUEST_REGISTER
             )
         }
 
@@ -42,21 +42,24 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     private fun subscribeUI() {
-        viewModel.user.observe(this, Observer {
-            when (it) {
-                is ViewState.Loading -> {
-                    showLoading(getString(R.string.realizando_login))
-                }
-                is ViewState.Success -> {
-                    hideLoading()
-                    goToHome()
-                }
-                is ViewState.Error -> {
-                    hideLoading()
-                    handlerError(it.error)
+        viewModel.user.observe(
+            this,
+            Observer {
+                when (it) {
+                    is ViewState.Loading -> {
+                        showLoading(getString(R.string.realizando_login))
+                    }
+                    is ViewState.Success -> {
+                        hideLoading()
+                        goToHome()
+                    }
+                    is ViewState.Error -> {
+                        hideLoading()
+                        handlerError(it.error)
+                    }
                 }
             }
-        })
+        )
     }
 
     private fun goToHome() {
@@ -71,5 +74,4 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             goToHome()
         }
     }
-
 }

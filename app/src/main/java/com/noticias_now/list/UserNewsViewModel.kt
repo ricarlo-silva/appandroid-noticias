@@ -12,9 +12,9 @@ import com.noticias_now.model.NewsModel
 import kotlinx.coroutines.launch
 
 class UserNewsViewModel(
-        private val userRepository: IUserRepository,
-        private val newsRepository: INewsRepository,
-        private val dispatchers: ICoroutinesDispatcherProvider
+    private val userRepository: IUserRepository,
+    private val newsRepository: INewsRepository,
+    private val dispatchers: ICoroutinesDispatcherProvider
 ) : ViewModel() {
 
     private val _news = MutableLiveData<ViewState<List<NewsModel>>>()
@@ -22,7 +22,6 @@ class UserNewsViewModel(
 
     private val _delete = MutableLiveData<ViewState<NewsModel>>()
     val delete: LiveData<ViewState<NewsModel>> get() = _delete
-
 
     fun getNews() {
         _news.value = ViewState.Loading()
@@ -49,5 +48,4 @@ class UserNewsViewModel(
             }
         }
     }
-
 }

@@ -8,7 +8,7 @@ import com.noticias_now.BR
 import com.noticias_now.R
 
 class AccountAdapter(
-        private val listener: OnClickListener
+    private val listener: OnClickListener
 ) : BaseAdapter<Int, AccountAdapter.ViewHolder>(DiffCallback) {
 
     object DiffCallback : DiffUtil.ItemCallback<Int>() {
@@ -42,5 +42,4 @@ class AccountAdapter(
     interface OnClickListener {
         fun onClickItem(item: Int)
     }
-
 }

@@ -8,8 +8,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter
  * Created by ricarlo on 12/11/2016.
  */
 class PagerAdapter(
-        private val pages: Map<String, Fragment>,
-        fragmentManager: FragmentManager
+    private val pages: Map<String, Fragment>,
+    fragmentManager: FragmentManager
 ) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getPageTitle(position: Int): CharSequence {

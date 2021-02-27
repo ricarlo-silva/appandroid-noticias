@@ -6,7 +6,7 @@ import com.google.android.play.core.install.model.AppUpdateType
 sealed class Event {
     data class ToastEvent(val message: String) : Event()
     data class StartUpdateEvent(
-            val updateInfo: AppUpdateInfo,
-            @AppUpdateType val appUpdateType: Int
+        val updateInfo: AppUpdateInfo,
+        @AppUpdateType val appUpdateType: Int
     ) : Event()
 }

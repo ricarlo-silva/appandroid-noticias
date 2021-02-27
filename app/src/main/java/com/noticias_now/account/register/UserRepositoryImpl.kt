@@ -10,9 +10,9 @@ import com.noticias_now.services.IWebService
 import kotlinx.coroutines.withContext
 
 class UserRepositoryImpl(
-        private val remote: IWebService,
-        private val local: IUserRepositoryLocal,
-        private val dispatchers: ICoroutinesDispatcherProvider
+    private val remote: IWebService,
+    private val local: IUserRepositoryLocal,
+    private val dispatchers: ICoroutinesDispatcherProvider
 ) : IUserRepository {
 
     override suspend fun insert(user: UserModel) {
@@ -34,12 +34,16 @@ class UserRepositoryImpl(
     override suspend fun login(session: SessionQuery.SingIn) {
         return withContext(dispatchers.io()) {
 //            launchIdling {
-                apiCall(dispatchers.io()) {
-                    local.save(remote.login(SessionRequest(
-                        email = session.email,
-                        password = session.password
-                    )).data)
-                }
+            apiCall(dispatchers.io()) {
+                local.save(
+                    remote.login(
+                        SessionRequest(
+                            email = session.email,
+                            password = session.password
+                        )
+                    ).data
+                )
+            }
 //            }
         }
 

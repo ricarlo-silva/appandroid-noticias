@@ -38,7 +38,21 @@ jobs:
 
       # Generate coverage reports with Jacoco
       - name: Generate coverage reports
-        run: ./gradlew testFreeDebugCoverage
+        run: ./gradlew testFreeDebugCoverage detektCheck ktlint lintFreeDebug
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+          bundler-cache: true
+
+      - name: Danger JS
+#        uses: danger/danger-js@9.1.6
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bundle exec danger --fail-on-errors=true
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and analyze
         env:

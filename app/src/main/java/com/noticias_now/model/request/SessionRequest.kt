@@ -5,9 +5,9 @@ import com.squareup.moshi.Json
 
 @Keep
 data class SessionRequest(
-        @Json(name = "email")
-        val email: String,
+    @Json(name = "email")
+    val email: String,
 
-        @Json(name = "senha")
-        val password: String
+    @Json(name = "senha")
+    val password: String
 )

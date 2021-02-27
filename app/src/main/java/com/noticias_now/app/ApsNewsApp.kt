@@ -27,12 +27,11 @@ class ApsNewsApp : Application() {
             androidContext(this@ApsNewsApp)
             // modules
             modules(
-                    CommonModule.modules +
-                            AppModule.modules +
-                            NetworkModule.module +
-                            StorageModule.modules
+                CommonModule.modules +
+                    AppModule.modules +
+                    NetworkModule.module +
+                    StorageModule.modules
             )
         }
     }
-
 }

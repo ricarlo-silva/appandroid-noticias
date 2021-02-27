@@ -31,42 +31,46 @@ class DetailsNewsActivity : BaseActivity<ActivityDetailsNewsBinding>() {
     }
 
     private fun subscribeUI() {
-        viewModel.news.observe(this, Observer {
-            when (it) {
-                is ViewState.Loading -> {
-
-                }
-                is ViewState.Success -> {
-                    hideLoading()
-                    binding.toolbarLayout.title = it.data.title
-                    binding.content.tvDescription.text = it.data.description
-                }
-                is ViewState.Error -> {
-                    hideLoading()
-                    handlerError(it.error)
-                }
-            }
-        })
-
-        viewModel.like.observe(this, Observer {
-            when (it) {
-                is ViewState.Loading -> {
-
-                }
-                is ViewState.Success -> {
-                    hideLoading()
-                    binding.content.tvLikeYes.text = "${it.data.first}"
-                    binding.content.tvLikeNo.text = "${it.data.second}"
-
-                    binding.content.ivLikeYes.isSelected = it.data.third
-                    binding.content.ivLikeNo.isSelected = it.data.third
-                }
-                is ViewState.Error -> {
-                    hideLoading()
-                    handlerError(it.error)
+        viewModel.news.observe(
+            this,
+            Observer {
+                when (it) {
+                    is ViewState.Loading -> {
+                    }
+                    is ViewState.Success -> {
+                        hideLoading()
+                        binding.toolbarLayout.title = it.data.title
+                        binding.content.tvDescription.text = it.data.description
+                    }
+                    is ViewState.Error -> {
+                        hideLoading()
+                        handlerError(it.error)
+                    }
                 }
             }
-        })
+        )
+
+        viewModel.like.observe(
+            this,
+            Observer {
+                when (it) {
+                    is ViewState.Loading -> {
+                    }
+                    is ViewState.Success -> {
+                        hideLoading()
+                        binding.content.tvLikeYes.text = "${it.data.first}"
+                        binding.content.tvLikeNo.text = "${it.data.second}"
+
+                        binding.content.ivLikeYes.isSelected = it.data.third
+                        binding.content.ivLikeNo.isSelected = it.data.third
+                    }
+                    is ViewState.Error -> {
+                        hideLoading()
+                        handlerError(it.error)
+                    }
+                }
+            }
+        )
     }
 
     companion object {

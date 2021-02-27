@@ -37,8 +37,8 @@ class PublishNewsActivity : BaseActivity<ActivityPublishNewsBinding>() {
         }
         binding.btActivityPublicarNews.setOnClickListener {
             viewModel.insertOrUpdateNews(
-                    title = binding.edTitleActivityPublicarNews.getString(),
-                    description = binding.edDescricaoActivityPublicarNews.getString()
+                title = binding.edTitleActivityPublicarNews.getString(),
+                description = binding.edDescricaoActivityPublicarNews.getString()
             )
         }
         subscribeUI()
@@ -46,33 +46,39 @@ class PublishNewsActivity : BaseActivity<ActivityPublishNewsBinding>() {
     }
 
     private fun subscribeUI() {
-        viewModel.result.observe(this, Observer {
-            when (it) {
-                is ViewState.Loading -> {
-                    showLoading(it.message)
-                }
-                is ViewState.Success -> {
-                    hideLoading()
-                    showToast(it.data)
-                    setResult(RESULT_OK)
-                    finish()
-                }
-                is ViewState.Error -> {
-                    hideLoading()
-                    handlerError(it.error)
+        viewModel.result.observe(
+            this,
+            Observer {
+                when (it) {
+                    is ViewState.Loading -> {
+                        showLoading(it.message)
+                    }
+                    is ViewState.Success -> {
+                        hideLoading()
+                        showToast(it.data)
+                        setResult(RESULT_OK)
+                        finish()
+                    }
+                    is ViewState.Error -> {
+                        hideLoading()
+                        handlerError(it.error)
+                    }
                 }
             }
-        })
+        )
 
-        viewModel.news.observe(this, Observer {
-            it?.let {
-                binding.edTitleActivityPublicarNews.setText(it.title)
-                binding.edDescricaoActivityPublicarNews.setText(it.description)
-                binding.spTipoActivityPublicarNews.setSelection(it.type.toInt())
-                setUpToolBar(getString(R.string.atualizar_news))
-                binding.btActivityPublicarNews.text = getString(R.string.atualizar)
+        viewModel.news.observe(
+            this,
+            Observer {
+                it?.let {
+                    binding.edTitleActivityPublicarNews.setText(it.title)
+                    binding.edDescricaoActivityPublicarNews.setText(it.description)
+                    binding.spTipoActivityPublicarNews.setSelection(it.type.toInt())
+                    setUpToolBar(getString(R.string.atualizar_news))
+                    binding.btActivityPublicarNews.text = getString(R.string.atualizar)
+                }
             }
-        })
+        )
     }
 
     companion object {

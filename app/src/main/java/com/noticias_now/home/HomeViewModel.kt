@@ -11,8 +11,8 @@ import com.noticias_now.model.TypeModel
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-        private val newsRepository: INewsRepository,
-        private val dispatchers: ICoroutinesDispatcherProvider
+    private val newsRepository: INewsRepository,
+    private val dispatchers: ICoroutinesDispatcherProvider
 ) : BaseViewModel() {
 
     private val _types = MutableLiveData<ViewState<List<TypeModel>>>()
@@ -30,5 +30,4 @@ class HomeViewModel(
             }
         }
     }
-
 }

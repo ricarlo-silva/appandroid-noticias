@@ -24,13 +24,15 @@ class UserNewsActivity : BaseActivity<ActivityUserNewsBinding>(), OnClickListene
     private val viewModel: UserNewsViewModel by viewModel()
 
     override fun onClickItem(item: NewsModel) {
-        openActivity(DetailsNewsActivity::class.java, bundleOf(
-                DetailsNewsActivity.BUNDLE_NEWS to item)
+        openActivity(
+            DetailsNewsActivity::class.java,
+            bundleOf(
+                DetailsNewsActivity.BUNDLE_NEWS to item
+            )
         )
     }
 
     override fun onClickLike(item: NewsModel, like: Boolean) {
-
     }
 
     override fun onClickUpdate(item: NewsModel) {
@@ -70,50 +72,56 @@ class UserNewsActivity : BaseActivity<ActivityUserNewsBinding>(), OnClickListene
     }
 
     private fun subscribeUI() {
-        viewModel.news.observe(this, Observer {
-            when (it) {
-                is ViewState.Loading -> {
-                    showLoading(getString(R.string.loading))
-                }
-                is ViewState.Success -> {
-                    hideLoading()
-                    _adapter.submitList(it.data)
-                }
-                is ViewState.Error -> {
-                    hideLoading()
-                    handlerError(it.error)
+        viewModel.news.observe(
+            this,
+            Observer {
+                when (it) {
+                    is ViewState.Loading -> {
+                        showLoading(getString(R.string.loading))
+                    }
+                    is ViewState.Success -> {
+                        hideLoading()
+                        _adapter.submitList(it.data)
+                    }
+                    is ViewState.Error -> {
+                        hideLoading()
+                        handlerError(it.error)
+                    }
                 }
             }
-        })
+        )
 
-        viewModel.delete.observe(this, Observer {
-            when (it) {
-                is ViewState.Loading -> {
-                    showLoading(getString(R.string.loading))
-                }
-                is ViewState.Success -> {
-                    hideLoading()
+        viewModel.delete.observe(
+            this,
+            Observer {
+                when (it) {
+                    is ViewState.Loading -> {
+                        showLoading(getString(R.string.loading))
+                    }
+                    is ViewState.Success -> {
+                        hideLoading()
 //                    showToast(it.data)
-                    _adapter.currentList.remove(it.data)
-                }
-                is ViewState.Error -> {
-                    hideLoading()
-                    handlerError(it.error)
+                        _adapter.currentList.remove(it.data)
+                    }
+                    is ViewState.Error -> {
+                        hideLoading()
+                        handlerError(it.error)
+                    }
                 }
             }
-        })
+        )
     }
 
     private fun dialogDeleteNews(news: NewsModel) {
         MaterialDialog.Builder(this)
-                .title(R.string.app_name)
-                .content(R.string.deletar_news)
-                .positiveText(R.string.sim)
-                .negativeText(R.string.nao)
-                .onPositive { _, _ ->
-                    viewModel.deleteNews(news)
-                }
-                .show()
+            .title(R.string.app_name)
+            .content(R.string.deletar_news)
+            .positiveText(R.string.sim)
+            .negativeText(R.string.nao)
+            .onPositive { _, _ ->
+                viewModel.deleteNews(news)
+            }
+            .show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

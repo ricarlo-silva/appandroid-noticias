@@ -9,8 +9,8 @@ import com.noticias_now.model.mapper.TypeMapperImpl
 import com.noticias_now.services.IWebService
 
 class NewsRepositoryImpl(
-        private val remote: IWebService,
-        private val dispatchers: ICoroutinesDispatcherProvider
+    private val remote: IWebService,
+    private val dispatchers: ICoroutinesDispatcherProvider
 ) : INewsRepository {
 
     override suspend fun getNewsById(id: String): NewsModel {
@@ -61,5 +61,4 @@ class NewsRepositoryImpl(
             TypeMapperImpl().toDomain(response)
         }
     }
-
 }

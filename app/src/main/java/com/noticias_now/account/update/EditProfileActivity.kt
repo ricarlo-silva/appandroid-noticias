@@ -23,46 +23,51 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>() {
 
         binding.btActivityEditarPerfilSalvar.setOnClickListener {
             viewModel.update(
-                    name = binding.edNomeEditarActivity.getString(),
-                    email = binding.edEmailEditarActivity.getString(),
-                    password = binding.edSenhaEditarActivity.getString()
+                name = binding.edNomeEditarActivity.getString(),
+                email = binding.edEmailEditarActivity.getString(),
+                password = binding.edSenhaEditarActivity.getString()
             )
         }
         subscribeUI()
     }
 
     private fun subscribeUI() {
-        viewModel.result.observe(this, Observer {
-            when (it) {
-                is ViewState.Loading -> {
-                    showLoading(getString(R.string.salvando_usuario))
-                }
-                is ViewState.Success -> {
-                    hideLoading()
-                    showToast(getString(R.string.usuario_atualizado))
-                    finish()
-                }
-                is ViewState.Error -> {
-                    hideLoading()
-                    handlerError(it.error)
+        viewModel.result.observe(
+            this,
+            Observer {
+                when (it) {
+                    is ViewState.Loading -> {
+                        showLoading(getString(R.string.salvando_usuario))
+                    }
+                    is ViewState.Success -> {
+                        hideLoading()
+                        showToast(getString(R.string.usuario_atualizado))
+                        finish()
+                    }
+                    is ViewState.Error -> {
+                        hideLoading()
+                        handlerError(it.error)
+                    }
                 }
             }
-        })
+        )
 
-        viewModel.user.observe(this, Observer {
-            when (it) {
-                is ViewState.Loading -> {
-                }
-                is ViewState.Success -> {
-                    binding.edNomeEditarActivity.setText(it.data.name)
-                    binding.edEmailEditarActivity.setText(it.data.email)
-                }
-                is ViewState.Error -> {
-                    hideLoading()
-                    handlerError(it.error)
+        viewModel.user.observe(
+            this,
+            Observer {
+                when (it) {
+                    is ViewState.Loading -> {
+                    }
+                    is ViewState.Success -> {
+                        binding.edNomeEditarActivity.setText(it.data.name)
+                        binding.edEmailEditarActivity.setText(it.data.email)
+                    }
+                    is ViewState.Error -> {
+                        hideLoading()
+                        handlerError(it.error)
+                    }
                 }
             }
-        })
+        )
     }
-
 }

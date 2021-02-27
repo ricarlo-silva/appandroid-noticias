@@ -40,24 +40,23 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     protected val binding: T by lazy {
         DataBindingUtil.setContentView<T>(this, getLayoutRes())
-                .apply {
-                    lifecycleOwner = this@BaseActivity
-                }
+            .apply {
+                lifecycleOwner = this@BaseActivity
+            }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         snackbar = Snackbar.make(
-                findViewById(android.R.id.content),
-                R.string.update_available,
-                Snackbar.LENGTH_INDEFINITE
+            findViewById(android.R.id.content),
+            R.string.update_available,
+            Snackbar.LENGTH_INDEFINITE
         )
         subscribeUI()
 
         initView(savedInstanceState = savedInstanceState)
     }
-
 
     private val appUpdateManager: AppUpdateManager by inject()
     private val updateViewModel: UpdateViewModel by inject()
@@ -78,7 +77,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
                 true
@@ -89,74 +88,82 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     private fun subscribeUI() {
         with(updateViewModel) {
-            updateStatus.observe(this@BaseActivity, Observer { updateResult ->
-                when (updateResult) {
-                    is AppUpdateResult.NotAvailable -> {
-                        Log.d(TAG_UPDATE, "No update available")
-                        snackbar.dismiss()
-                    }
-                    is AppUpdateResult.Available -> {
-                        // If it's an immediate update, launch it immediately and finish Activity
-                        // to prevent the user from using the app until they update.
-                        if (updateViewModel.shouldLaunchImmediateUpdate(updateResult.updateInfo)) {
-                            if (appUpdateManager.startUpdateFlowForResult(
-                                            updateResult.updateInfo,
-                                            AppUpdateType.IMMEDIATE,
-                                            this@BaseActivity,
-                                            IN_APP_UPDATE_REQUEST_CODE
-                                    )) {
-                                // only exit if update flow really started
-                                finish()
+            updateStatus.observe(
+                this@BaseActivity,
+                Observer { updateResult ->
+                    when (updateResult) {
+                        is AppUpdateResult.NotAvailable -> {
+                            Log.d(TAG_UPDATE, "No update available")
+                            snackbar.dismiss()
+                        }
+                        is AppUpdateResult.Available -> {
+                            // If it's an immediate update, launch it immediately and finish Activity
+                            // to prevent the user from using the app until they update.
+                            if (updateViewModel.shouldLaunchImmediateUpdate(updateResult.updateInfo)) {
+                                if (appUpdateManager.startUpdateFlowForResult(
+                                        updateResult.updateInfo,
+                                        AppUpdateType.IMMEDIATE,
+                                        this@BaseActivity,
+                                        IN_APP_UPDATE_REQUEST_CODE
+                                    )
+                                ) {
+                                    // only exit if update flow really started
+                                    finish()
+                                }
+                            } else {
+                                with(snackbar) {
+                                    setText(R.string.update_available_snackbar)
+                                    setAction(R.string.update_now) {
+                                        updateViewModel.invokeUpdate()
+                                    }
+                                    show()
+                                }
                             }
-                        } else {
+                        }
+                        is AppUpdateResult.InProgress -> {
                             with(snackbar) {
-                                setText(R.string.update_available_snackbar)
-                                setAction(R.string.update_now) {
+                                val updateProgress = if (updateResult.installState.totalBytesToDownload == 0L) {
+                                    0
+                                } else {
+                                    (
+                                        updateResult.installState.bytesDownloaded * 100 /
+                                            updateResult.installState.totalBytesToDownload
+                                        ).toInt()
+                                }
+                                setText(context.getString(R.string.downloading_update, updateProgress))
+                                setAction(null) {}
+                                show()
+                            }
+                        }
+                        is AppUpdateResult.Downloaded -> {
+                            with(snackbar) {
+                                setText(R.string.update_downloaded)
+                                setAction(R.string.complete_update) {
                                     updateViewModel.invokeUpdate()
                                 }
                                 show()
                             }
                         }
                     }
-                    is AppUpdateResult.InProgress -> {
-                        with(snackbar) {
-                            val updateProgress = if (updateResult.installState.totalBytesToDownload == 0L) {
-                                0
-                            } else {
-                                (updateResult.installState.bytesDownloaded * 100 /
-                                        updateResult.installState.totalBytesToDownload).toInt()
-                            }
-                            setText(context.getString(R.string.downloading_update, updateProgress))
-                            setAction(null) {}
-                            show()
-                        }
-                    }
-                    is AppUpdateResult.Downloaded -> {
-                        with(snackbar) {
-                            setText(R.string.update_downloaded)
-                            setAction(R.string.complete_update) {
-                                updateViewModel.invokeUpdate()
-                            }
-                            show()
-                        }
-                    }
                 }
-
-            })
-            events.observe(this@BaseActivity, Observer { event ->
-                when (event) {
-                    is Event.ToastEvent -> showToast(event.message)
-                    is Event.StartUpdateEvent -> {
-                        appUpdateManager.startUpdateFlowForResult(
+            )
+            events.observe(
+                this@BaseActivity,
+                Observer { event ->
+                    when (event) {
+                        is Event.ToastEvent -> showToast(event.message)
+                        is Event.StartUpdateEvent -> {
+                            appUpdateManager.startUpdateFlowForResult(
                                 event.updateInfo,
                                 event.appUpdateType,
                                 this@BaseActivity,
                                 IN_APP_UPDATE_REQUEST_CODE
-                        )
+                            )
+                        }
+                        else -> throw IllegalStateException("Event type not handled: $event")
                     }
-                    else -> throw IllegalStateException("Event type not handled: $event")
                 }
-            })
+            )
         }
     }
 
@@ -200,14 +207,14 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     open fun showLoading(message: String?) {
         if (progressDialog == null) {
             progressDialog = MaterialDialog.Builder(this)
-                    .content(getString(R.string.waiting))
-                    .cancelable(false)
-                    .progress(true, 0)
-                    .build()
+                .content(getString(R.string.waiting))
+                .cancelable(false)
+                .progress(true, 0)
+                .build()
         }
 
         progressDialog?.setContent(
-                if (message.isNullOrEmpty()) getString(R.string.waiting) else message
+            if (message.isNullOrEmpty()) getString(R.string.waiting) else message
         )
 
         if (!runningBackground) {
@@ -228,7 +235,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
             }
             is ApiException -> {
                 val message = throwable.message.takeIf { it.isNullOrEmpty().not() }
-                        ?: getString(R.string.error_generic)
+                    ?: getString(R.string.error_generic)
                 showToast(message)
             }
             is SessionException -> {
@@ -244,12 +251,13 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         supportActionBar?.title = title
     }
 
-    protected fun share(title: String, url_pub: String) {
-        startActivity(Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain"
-            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name))
-            putExtra(Intent.EXTRA_TEXT, "$title$url_pub".trimIndent())
-        })
+    protected fun share(title: String, url: String) {
+        startActivity(
+            Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name))
+                putExtra(Intent.EXTRA_TEXT, "$title$url".trimIndent())
+            }
+        )
     }
-
 }

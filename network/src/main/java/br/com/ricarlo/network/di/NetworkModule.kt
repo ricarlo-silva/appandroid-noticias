@@ -22,7 +22,7 @@ object NetworkModule {
 
         single<Converter.Factory> {
             MoshiConverterFactory.create(
-                    Moshi.Builder()
+                Moshi.Builder()
                     .addLast(KotlinJsonAdapterFactory())
                     .build()
             )

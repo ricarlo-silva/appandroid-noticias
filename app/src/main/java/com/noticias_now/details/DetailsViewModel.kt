@@ -12,9 +12,9 @@ import com.noticias_now.model.NewsModel
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(
-        private val userRepository: IUserRepository,
-        private val newsRepository: INewsRepository,
-        private val dispatchers: ICoroutinesDispatcherProvider
+    private val userRepository: IUserRepository,
+    private val newsRepository: INewsRepository,
+    private val dispatchers: ICoroutinesDispatcherProvider
 ) : ViewModel() {
 
     private val _news = MutableLiveData<ViewState<NewsModel>>()
@@ -26,7 +26,7 @@ class DetailsViewModel(
     fun getNewsById(news: NewsModel?) {
         if (news == null) return
 
-        _news.value = ViewState.Success(news) //TODO review
+        _news.value = ViewState.Success(news) // TODO review
 
         if (!news.id.isNullOrEmpty()) {
             _news.value = ViewState.Loading()
@@ -44,7 +44,6 @@ class DetailsViewModel(
                     _news.value = ViewState.Error(error = it)
                 }
             }
-
         } else {
             _news.value = ViewState.Error(error = RuntimeException())
         }
@@ -58,11 +57,13 @@ class DetailsViewModel(
         viewModelScope.launch(dispatchers.main()) {
             runCatching {
                 val userId = userRepository.get().id
-                val news = newsRepository.createLike(LikeModel(
+                val news = newsRepository.createLike(
+                    LikeModel(
                         idUser = userId.orEmpty(),
                         idNews = idNews,
                         like = like
-                ))
+                    )
+                )
                 getLikes(news.likes.orEmpty(), userId)
             }.onSuccess {
                 _like.value = ViewState.Success(it)
@@ -70,7 +71,6 @@ class DetailsViewModel(
                 _like.value = ViewState.Error(error = it)
             }
         }
-
     }
 
     private fun getLikes(likes: List<LikeModel>, userId: String?): Triple<Int, Int, Boolean> {
@@ -86,5 +86,4 @@ class DetailsViewModel(
         }
         return Triple(like, unlike, currentUserLike)
     }
-
 }

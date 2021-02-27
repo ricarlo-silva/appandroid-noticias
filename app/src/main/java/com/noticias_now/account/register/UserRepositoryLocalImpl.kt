@@ -10,7 +10,7 @@ import com.ricarlo.storage.get
 import com.ricarlo.storage.save
 
 class UserRepositoryLocalImpl(
-        private val storage: DataStore<Preferences>
+    private val storage: DataStore<Preferences>
 ) : IUserRepositoryLocal {
 
     companion object {

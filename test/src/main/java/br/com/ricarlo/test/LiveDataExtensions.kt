@@ -2,14 +2,17 @@ package br.com.ricarlo.test
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import io.mockk.*
+import io.mockk.Runs
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
 import org.junit.Assert
 
-//fun <T> LiveData<T>.getOrAwaitValue(
+// fun <T> LiveData<T>.getOrAwaitValue(
 //        time: Long = 2,
 //        timeUnit: TimeUnit = TimeUnit.SECONDS,
 //        afterObserve: () -> Unit = {}
-//): T {
+// ): T {
 //    var data: T? = null
 //    val latch = CountDownLatch(1)
 //    val observer = object : Observer<T> {
@@ -31,12 +34,12 @@ import org.junit.Assert
 //
 //    @Suppress("UNCHECKED_CAST")
 //    return data as T
-//}
+// }
 
 /**
  * Observes a [LiveData] until the `block` is done executing.
  */
-//fun <T> LiveData<T>.observeForTesting(block: () -> Unit) {
+// fun <T> LiveData<T>.observeForTesting(block: () -> Unit) {
 //    val observer = Observer<T> { }
 //    try {
 //        observeForever(observer)
@@ -44,16 +47,16 @@ import org.junit.Assert
 //    } finally {
 //        removeObserver(observer)
 //    }
-//}
+// }
 
-inline  fun <reified T : Any> LiveData<T>.test(): Observer<T> {
+inline fun <reified T : Any> LiveData<T>.test(): Observer<T> {
     Assert.assertFalse(hasObservers())
     val observer = mockk<Observer<T>> { every { onChanged(any()) } just Runs }
     observeForever(observer)
     return observer
 }
 
-//inline fun <reified T : Any> LiveData<T>.observeForTesting(block: (states: List<T>) -> Unit) {
+// inline fun <reified T : Any> LiveData<T>.observeForTesting(block: (states: List<T>) -> Unit) {
 //    Assert.assertFalse(hasObservers())
 //    val observer = mockk<Observer<T>> { every { onChanged(any()) } just Runs }
 //
@@ -70,9 +73,9 @@ inline  fun <reified T : Any> LiveData<T>.test(): Observer<T> {
 //    } finally {
 //        removeObserver(observer)
 //    }
-//}
+// }
 
-//inline fun <reified T : Any> LiveData<T>.observeForTesting(block: () -> Unit) {
+// inline fun <reified T : Any> LiveData<T>.observeForTesting(block: () -> Unit) {
 //
 //    val observer = mockk<Observer<T>>()
 //
@@ -83,7 +86,7 @@ inline  fun <reified T : Any> LiveData<T>.test(): Observer<T> {
 //    val list = arrayListOf<T>()
 //
 //    //start observing
-////    viewModel.postStateWithSuspend.observeForever(observer)
+// //    viewModel.postStateWithSuspend.observeForever(observer)
 //
 //
 //    //capture value on every call
@@ -103,12 +106,11 @@ inline  fun <reified T : Any> LiveData<T>.test(): Observer<T> {
 //    } finally {
 //        removeObserver(observer)
 //    }
-//}
+// }
 
-
-//class LiveDataTestObserver<T> constructor(
+// class LiveDataTestObserver<T> constructor(
 //        private val liveData: LiveData<T>
-//) : Observer<T> {
+// ) : Observer<T> {
 //
 //    init {
 //        liveData.observeForever(this)
@@ -170,9 +172,9 @@ inline  fun <reified T : Any> LiveData<T>.test(): Observer<T> {
 //        testValues.clear()
 //        dispose()
 //    }
-//}
+// }
 
-//fun <T> LiveData<T>.test(): LiveDataTestObserver<T> {
+// fun <T> LiveData<T>.test(): LiveDataTestObserver<T> {
 //
 //    val testObserver = LiveDataTestObserver(this)
 //
@@ -181,4 +183,4 @@ inline  fun <reified T : Any> LiveData<T>.test(): Observer<T> {
 //    observeForever(testObserver)
 //
 //    return testObserver
-//}
+// }

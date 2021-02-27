@@ -12,7 +12,7 @@ import com.noticias_now.model.NewsModel
  * Created by ricarlo on 12/11/2016.
  */
 class RecycleAdapter(
-        private val listener: OnClickListener
+    private val listener: OnClickListener
 ) : BaseAdapter<NewsModel, RecycleAdapter.ViewHolder>(DiffCallback) {
 
     object DiffCallback : DiffUtil.ItemCallback<NewsModel>() {
@@ -44,7 +44,6 @@ class RecycleAdapter(
         return ViewHolder.News(view, listener)
     }
 }
-
 
 interface OnClickListener {
     fun onClickItem(item: NewsModel)

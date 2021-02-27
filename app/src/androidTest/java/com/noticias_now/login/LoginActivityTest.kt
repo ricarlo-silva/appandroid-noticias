@@ -59,5 +59,4 @@ class LoginActivityTest {
 //            isDisplayedToast("Bem-vindo ao Notícias NOW")
         }
     }
-
 }

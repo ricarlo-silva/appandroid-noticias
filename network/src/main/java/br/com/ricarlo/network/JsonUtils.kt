@@ -7,8 +7,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 val moshi: Moshi = Moshi.Builder()
-        .addLast(KotlinJsonAdapterFactory())
-        .build()
+    .addLast(KotlinJsonAdapterFactory())
+    .build()
 
 inline fun <reified T> T.toJson(): String? {
     return try {
@@ -27,13 +27,13 @@ inline fun <reified T> fromJson(json: String?): T? {
 fun String.readFileFromAssetsOrResources(context: Context? = null): String {
     return try {
         context?.assets?.readAssetsFile(this)
-                ?: throw Resources.NotFoundException()
+            ?: throw Resources.NotFoundException()
     } catch (ex: Exception) {
         this::javaClass::class.java.classLoader
-                ?.getResource(this)?.readText()
-                ?: throw Resources.NotFoundException()
+            ?.getResource(this)?.readText()
+            ?: throw Resources.NotFoundException()
     }
 }
 
 fun AssetManager.readAssetsFile(fileName: String): String = open(fileName)
-        .bufferedReader().use { it.readText() }
+    .bufferedReader().use { it.readText() }

@@ -20,5 +20,4 @@ interface INewsRepository {
     suspend fun deleteNews(news: NewsModel)
 
     suspend fun getTypes(): List<TypeModel>
-
 }

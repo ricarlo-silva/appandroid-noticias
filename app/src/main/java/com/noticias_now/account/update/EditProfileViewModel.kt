@@ -13,9 +13,9 @@ import com.noticias_now.model.UserModel
 import kotlinx.coroutines.launch
 
 class EditProfileViewModel(
-        private val userRepository: IUserRepository,
-        private val resourcesManager: IResourcesManager,
-        private val dispatchers: ICoroutinesDispatcherProvider
+    private val userRepository: IUserRepository,
+    private val resourcesManager: IResourcesManager,
+    private val dispatchers: ICoroutinesDispatcherProvider
 ) : ViewModel() {
 
     private val _user = MutableLiveData<ViewState<UserModel>>()
@@ -48,20 +48,21 @@ class EditProfileViewModel(
 
             viewModelScope.launch(dispatchers.main()) {
                 runCatching {
-                    userRepository.update(UserModel(
-                            id = userRepository.get().id, //TODO refactor
+                    userRepository.update(
+                        UserModel(
+                            id = userRepository.get().id, // TODO refactor
                             name = name,
                             email = email,
                             password = password,
                             photo = null
-                    ))
+                        )
+                    )
                 }.onSuccess {
                     _result.value = ViewState.Success(it)
                 }.onFailure {
                     _result.value = ViewState.Error(error = it)
                 }
             }
-
         } else {
             _result.value = ViewState.Error(error = Exception(resourcesManager.getString(R.string.preencher_campos)))
         }
