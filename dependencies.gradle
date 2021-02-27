@@ -1,6 +1,6 @@
 ext.versions = [
         kotlin           : '1.4.30',
-        koin             : '2.1.0',
+        koin             : '2.2.2',
         retrofit         : '2.9.0',
         okhttp           : '4.7.2',
         coroutines       : '1.3.0',
@@ -34,8 +34,8 @@ ext.deps = [
         ],
 
         'retrofit': [
-                core     : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
-                converter: "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
+                core       : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                converter  : "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
                 moshiKotlin: "com.squareup.moshi:moshi-kotlin:1.11.0"
         ],
 

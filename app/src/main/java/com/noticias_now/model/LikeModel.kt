@@ -3,7 +3,7 @@ package com.noticias_now.model
 import android.os.Parcelable
 import androidx.annotation.Keep
 import com.squareup.moshi.Json
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by ricarlo on 19/11/2016.

@@ -1,8 +1,11 @@
 package br.com.ricarlo.network
 
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Converter
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -10,20 +13,44 @@ import java.util.concurrent.TimeUnit
  */
 object ServiceGenerator {
 
-    private val httpClient = OkHttpClient.Builder()
-
-    private fun retrofit(baseUrl: String): Retrofit {
-        return Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .client(httpClient.build())
+    fun httpClient(networkConfig: INetworkConfig): OkHttpClient {
+        return OkHttpClient.Builder()
+                .apply {
+                    if (networkConfig.isDebug()) {
+                        addInterceptor(HttpLoggingInterceptor().apply {
+                            level = HttpLoggingInterceptor.Level.BODY
+                        })
+                    }
+                }
+                .addInterceptor(object : Interceptor {
+                    override fun intercept(chain: Interceptor.Chain): Response {
+                        val response = chain.proceed(chain.request())
+                        if (response.isSuccessful.not()) {
+                            // TODO
+                        }
+                        return response
+                    }
+                })
+                .connectTimeout(networkConfig.connectTimeout(), TimeUnit.SECONDS)
+                .readTimeout(networkConfig.readTimeout(), TimeUnit.SECONDS)
                 .build()
     }
 
-    @JvmStatic
-    fun <S> createService(serviceClass: Class<S>, baseUrl: String): S {
-        httpClient.connectTimeout(40, TimeUnit.SECONDS)
-        httpClient.readTimeout(60, TimeUnit.SECONDS)
-        return retrofit(baseUrl).create(serviceClass)
+    fun retrofit(
+            networkConfig: INetworkConfig,
+            httpClient: OkHttpClient,
+            converter: Converter.Factory
+    ): Retrofit {
+        return Retrofit.Builder()
+                .baseUrl(networkConfig.baseUrl())
+                .addConverterFactory(converter)
+                .client(httpClient)
+                .build()
+    }
+}
+
+class Service(private val retrofit: Retrofit) {
+    fun <T> createService(serviceClass: Class<T>): T {
+        return retrofit.create(serviceClass)
     }
 }

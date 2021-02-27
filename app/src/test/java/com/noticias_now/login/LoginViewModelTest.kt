@@ -3,6 +3,7 @@ package com.noticias_now.login
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.ricarlo.common.di.CommonModule
+import br.com.ricarlo.common.firebase.remoteconfig.IFirebaseRemoteConfigManager
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
 import br.com.ricarlo.common.util.resources.IResourcesManager
@@ -17,21 +18,24 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
 import org.koin.test.KoinTestRule
 import org.koin.test.inject
 
 //import org.robolectric.annotation.Config
 
+@KoinApiExtension
 @ExperimentalCoroutinesApi
 @RunWith(JUnit4::class)
 //@Config(sdk = [Build.VERSION_CODES.P])
 class LoginViewModelTest : BaseTestCase() {
 
     private val viewModel: LoginViewModel by inject()
-    private val userRepository = mockk<IUserRepository>(relaxUnitFun = true)
+    private val userRepository: IUserRepository by inject()
     private val resourcesManager: IResourcesManager by inject()
-    private val mContext = mockk<Context>(relaxed = true)
+    private val mContext: Context by inject()
+    private val firebaseRemoteConfigManager: IFirebaseRemoteConfigManager by inject()
 
     // Executes tasks in the Architecture Components in the same thread
     @get:Rule
@@ -40,16 +44,12 @@ class LoginViewModelTest : BaseTestCase() {
     @get:Rule
     var coroutinesTestRule = CoroutineTestRule()
 
-    //    Sets the main coroutines dispatcher to a TestCoroutineScope for unit testing.
-//    @ExperimentalCoroutinesApi
-//    @get:Rule
-//    var mainCoroutineRule = MainCoroutineRule()
-
     @get:Rule
     var koinTestRule = KoinTestRule.create {
         modules(AppModule.modules + CommonModule.modules + module(override = true) {
-            factory<Context> { mContext }
-            single<IUserRepository> { userRepository }
+            factory { mockk<Context>(relaxed = true) }
+            single { mockk<IUserRepository>(relaxUnitFun = true) }
+            single { mockk<IFirebaseRemoteConfigManager>(relaxUnitFun = true) }
             single<ICoroutinesDispatcherProvider> {
                 coroutinesTestRule.testDispatcherProvider
             }
@@ -78,6 +78,11 @@ class LoginViewModelTest : BaseTestCase() {
                         match { it.email == "test@email.com" && it.password == "123456" }
                 )
             } just Runs
+
+            every {
+                firebaseRemoteConfigManager
+                        .fetchSync("welcome_message", String::class.java)
+            } returns "nk"
 
             val mockObserver = viewModel.user.test()
 

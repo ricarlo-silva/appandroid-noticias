@@ -2,9 +2,11 @@ package com.noticias_now.app
 
 import android.app.Application
 import br.com.ricarlo.common.di.CommonModule
+import br.com.ricarlo.network.di.NetworkModule
 import com.noticias_now.di.AppModule
 import com.ricarlo.storage.di.StorageModule
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.component.KoinApiExtension
 import org.koin.core.context.startKoin
 
 /**
@@ -12,11 +14,13 @@ import org.koin.core.context.startKoin
  */
 class ApsNewsApp : Application() {
 
+    @KoinApiExtension
     override fun onCreate() {
         super.onCreate()
         startDI()
     }
 
+    @KoinApiExtension
     private fun startDI() {
         startKoin {
             // Android context
@@ -25,6 +29,7 @@ class ApsNewsApp : Application() {
             modules(
                     CommonModule.modules +
                             AppModule.modules +
+                            NetworkModule.module +
                             StorageModule.modules
             )
         }

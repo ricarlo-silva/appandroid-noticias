@@ -56,9 +56,4 @@ interface IWebService {
 
     @GET("noticias/tipos") //TODO create
     suspend fun getTypes(): ApiResponse<List<TypeResponse>>
-
-    companion object {
-        //String URL_BASE = "http://ec2-52-67-105-44.sa-east-1.compute.amazonaws.com:8080/MongoDBWebapp/";
-        const val URL_BASE = "http://201.52.174.54:8080/MongoDBWebapp/"
-    }
 }

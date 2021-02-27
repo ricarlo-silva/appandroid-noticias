@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.ricarlo.common.firebase.remoteconfig.Feature
+import br.com.ricarlo.common.firebase.remoteconfig.IFirebaseRemoteConfigManager
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
 import br.com.ricarlo.common.util.resources.IResourcesManager
@@ -14,7 +16,8 @@ import kotlinx.coroutines.launch
 class LoginViewModel(
         private val userRepository: IUserRepository,
         private val resourcesManager: IResourcesManager,
-        private val dispatchers: ICoroutinesDispatcherProvider
+        private val dispatchers: ICoroutinesDispatcherProvider,
+        private val firebaseRemoteConfigManager: IFirebaseRemoteConfigManager
 ) : ViewModel() {
 
     private val _user = MutableLiveData<ViewState<Unit>>()
@@ -31,6 +34,7 @@ class LoginViewModel(
                             password = password,
                     ))
                 }.onSuccess {
+                    val message = firebaseRemoteConfigManager.fetchSync(Feature.WELCOME_MESSAGE, String::class.java)
                     _user.postValue(ViewState.Success(it))
                 }.onFailure {
                     _user.postValue(ViewState.Error(error = it))
