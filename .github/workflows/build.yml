@@ -50,7 +50,7 @@ jobs:
 #        uses: danger/danger-js@9.1.6
 #        env:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bundle exec danger --fail-on-errors=true
+        run: bundle exec danger --fail-on-errors=false
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
