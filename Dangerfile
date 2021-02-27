@@ -32,7 +32,7 @@ end
 # end
 
 
-# jacoco.minimum_project_coverage_percentage = 50 # default 0
+# jacoco.minimum_project_coverage_percentage=50
 # jacoco.minimum_package_coverage_map = { # optional (default is empty)
 #   'com/noticias_now/' => 55,
 #   'br/com/ricarlo/common/' => 15
@@ -41,5 +41,6 @@ end
 #   'com/noticias_now/login/LoginViewModel' => 15
 # }
 # jacoco.minimum_class_coverage_percentage = 75 # default 0
-# jacoco.minimum_coverage_percentage=80
-# jacoco.report("**/reports/jacoco/**/*.xml")
+jacoco.minimum_coverage_percentage=80
+jacoco.report("**/reports/jacoco/**/*.xml")
+

@@ -55,6 +55,9 @@ GEM
     danger-checkstyle_format (0.1.1)
       danger-plugin-api (~> 1.0)
       ox (~> 2.0)
+    danger-jacoco (0.1.6)
+      danger-plugin-api (~> 1.0)
+      nokogiri-happymapper (~> 0.6)
     danger-kotlin_detekt (0.0.3)
       danger-plugin-api (~> 1.0)
     danger-plugin-api (1.0.0)
@@ -191,6 +194,14 @@ GEM
     naturally (2.2.1)
     netrc (0.11.0)
     no_proxy_fix (0.1.2)
+    nokogiri (1.11.1-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.11.1-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.11.1-x86_64-linux)
+      racc (~> 1.4)
+    nokogiri-happymapper (0.8.1)
+      nokogiri (~> 1.5)
     octokit (4.20.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
@@ -202,6 +213,7 @@ GEM
     ox (2.14.1)
     plist (3.6.0)
     public_suffix (4.0.6)
+    racc (1.5.2)
     rake (13.0.3)
     rchardet (1.8.0)
     representable (3.0.4)
@@ -260,13 +272,13 @@ GEM
       xcpretty (~> 0.2, >= 0.0.7)
 
 PLATFORMS
-  universal-darwin-20
-  x86_64-linux
+  ruby
 
 DEPENDENCIES
   danger (~> 8.2)
   danger-android_lint
   danger-checkstyle_format
+  danger-jacoco
   danger-kotlin_detekt
   fastlane
   fastlane-plugin-browserstack
