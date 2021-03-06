@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_splash"
         app:layoutDescription="@xml/activity_splash_xml_scene"
-        tools:context="com.noticias_now.splash.SplashActivity">
+        tools:context="com.noticiasnow.splash.SplashActivity">
 
         <ImageView
             android:id="@+id/imageView"

@@ -15,7 +15,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/margin_normal"
-        tools:context="com.noticias_now.account.update.EditProfileActivity">
+        tools:context="com.noticiasnow.account.update.EditProfileActivity">
 
         <RelativeLayout
             android:layout_width="wrap_content"

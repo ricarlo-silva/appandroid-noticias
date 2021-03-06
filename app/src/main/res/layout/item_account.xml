@@ -15,7 +15,7 @@
 
         <variable
             name="listener"
-            type="com.noticias_now.home.AccountAdapter.OnClickListener" />
+            type="com.noticiasnow.home.AccountAdapter.OnClickListener" />
 
     </data>
 

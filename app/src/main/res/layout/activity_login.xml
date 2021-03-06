@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_splash"
         android:fillViewport="true"
-        tools:context="com.noticias_now.login.LoginActivity">
+        tools:context="com.noticiasnow.login.LoginActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

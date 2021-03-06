@@ -7,11 +7,11 @@
 
         <variable
             name="item"
-            type="com.noticias_now.model.NewsModel" />
+            type="com.noticiasnow.model.NewsModel" />
 
         <variable
             name="listener"
-            type="com.noticias_now.home.OnClickListener" />
+            type="com.noticiasnow.home.OnClickListener" />
 
     </data>
 
