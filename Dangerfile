@@ -26,11 +26,11 @@ Dir["**/reports/*.xml"].each do |file_name|
 end
 
 
-Dir["**/reports/jacoco/**/*.xml"].each do |file_name|
-  junit.parse file_name
-  junit.show_skipped_tests = true
-  junit.report
-end
+# Dir["**/reports/jacoco/**/*.xml"].each do |file_name|
+#   junit.parse file_name
+#   junit.show_skipped_tests = true
+#   junit.report
+# end
 
 
 jacoco.minimum_project_coverage_percentage = 50
