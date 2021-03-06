@@ -46,4 +46,6 @@ Dir["**/reports/jacoco/**/*.xml"].each do |file_name|
   # jacoco.report(file_name)
 end
 
-jacoco.report("app/build/reports/jacoco/testFreeDebugCoverage/testFreeDebugCoverage.xml")
+jacoco.report("storage/build/reports/jacoco/testFreeDebugCoverage/testFreeDebugCoverage.xml")
+jacoco.report("network/build/reports/jacoco/testFreeDebugCoverage/testFreeDebugCoverage.xml")
+jacoco.report("test/build/reports/jacoco/testFreeDebugCoverage/testFreeDebugCoverage.xml")
