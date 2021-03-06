@@ -33,7 +33,7 @@ end
 # end
 
 
-jacoco.minimum_project_coverage_percentage = 50
+# jacoco.minimum_project_coverage_percentage = 5
 # jacoco.minimum_package_coverage_map = { # optional (default is empty)
 #   'com/noticias_now/' => 55,
 #   'br/com/ricarlo/common/' => 15
@@ -45,3 +45,5 @@ jacoco.minimum_project_coverage_percentage = 50
 Dir["**/reports/jacoco/**/*.xml"].each do |file_name|
   # jacoco.report(file_name)
 end
+
+jacoco.report("app/build/reports/jacoco/testFreeDebugCoverage/testFreeDebugCoverage.xml")
