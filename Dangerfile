@@ -26,13 +26,14 @@ Dir["**/reports/*.xml"].each do |file_name|
 end
 
 
-# Dir["**/test-results/**/*.xml"].each do |file_name|
-#   junit.parse file_name
-#   junit.report
-# end
+Dir["**/reports/jacoco/**/*.xml"].each do |file_name|
+  junit.parse file_name
+  junit.show_skipped_tests = true
+  junit.report
+end
 
 
-jacoco.minimum_project_coverage_percentage=50
+jacoco.minimum_project_coverage_percentage = 50
 # jacoco.minimum_package_coverage_map = { # optional (default is empty)
 #   'com/noticias_now/' => 55,
 #   'br/com/ricarlo/common/' => 15
@@ -41,9 +42,6 @@ jacoco.minimum_project_coverage_percentage=50
 #   'com/noticias_now/login/LoginViewModel' => 15
 # }
 # jacoco.minimum_class_coverage_percentage = 75 # default 0
-# jacoco.minimum_coverage_percentage=80
-# jacoco.report("**/reports/jacoco/**/*.xml")
-
 Dir["**/reports/jacoco/**/*.xml"].each do |file_name|
   jacoco.report(file_name)
 end

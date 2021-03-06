@@ -58,6 +58,9 @@ GEM
     danger-jacoco (0.1.6)
       danger-plugin-api (~> 1.0)
       nokogiri-happymapper (~> 0.6)
+    danger-junit (1.0.2)
+      danger (> 2.0)
+      ox (~> 2.0)
     danger-kotlin_detekt (0.0.3)
       danger-plugin-api (~> 1.0)
     danger-plugin-api (1.0.0)
@@ -187,6 +190,7 @@ GEM
     mime-types-data (3.2020.1104)
     mini_magick (4.11.0)
     mini_mime (1.0.2)
+    mini_portile2 (2.5.0)
     multi_json (1.15.0)
     multipart-post (2.0.0)
     nanaimo (0.3.0)
@@ -194,11 +198,8 @@ GEM
     naturally (2.2.1)
     netrc (0.11.0)
     no_proxy_fix (0.1.2)
-    nokogiri (1.11.1-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.11.1-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.11.1-x86_64-linux)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     nokogiri-happymapper (0.8.1)
       nokogiri (~> 1.5)
@@ -279,6 +280,7 @@ DEPENDENCIES
   danger-android_lint
   danger-checkstyle_format
   danger-jacoco
+  danger-junit
   danger-kotlin_detekt
   fastlane
   fastlane-plugin-browserstack
