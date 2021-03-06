@@ -43,5 +43,5 @@ jacoco.minimum_project_coverage_percentage = 50
 # }
 # jacoco.minimum_class_coverage_percentage = 75 # default 0
 Dir["**/reports/jacoco/**/*.xml"].each do |file_name|
-  jacoco.report(file_name)
+  # jacoco.report(file_name)
 end
