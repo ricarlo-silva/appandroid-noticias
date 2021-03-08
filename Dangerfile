@@ -34,16 +34,17 @@ end
 
 
 # jacoco.minimum_project_coverage_percentage = 5
-jacoco.minimum_package_coverage_map = {
-  'com/noticiasnow/' => 5,
-  'br/com/ricarlo/network/' => 50
-}
-# jacoco.minimum_class_coverage_map = { # optional (default is empty)
+# jacoco.minimum_package_coverage_map = {
+#   'com/noticiasnow/' => 5,
+#   'br/com/ricarlo/network/' => 50
+# }
+# jacoco.minimum_class_coverage_map = {
 #   'com/noticias_now/login/LoginViewModel' => 15
 # }
-# jacoco.minimum_class_coverage_percentage = 75 # default 0
+# jacoco.minimum_class_coverage_percentage = 75
 Dir["**/reports/jacoco/**/*.xml"].each do |file_name|
   unless file_name.start_with?("ui")
     jacoco.report(file_name, fail_no_coverage_data_found: false)
   end
 end
+# jacoco.report(Dir.glob("**/reports/jacoco/**/*.xml"), fail_no_coverage_data_found: false)
