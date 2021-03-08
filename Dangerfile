@@ -26,26 +26,24 @@ Dir["**/reports/*.xml"].each do |file_name|
 end
 
 
-# Dir["**/reports/jacoco/**/*.xml"].each do |file_name|
-#   junit.parse file_name
-#   junit.show_skipped_tests = true
-#   junit.report
-# end
+Dir["**/test-results/**/*.xml"].each do |file_name|
+  junit.parse file_name
+  junit.show_skipped_tests = true
+  junit.report
+end
 
 
 # jacoco.minimum_project_coverage_percentage = 5
-# jacoco.minimum_package_coverage_map = { # optional (default is empty)
-#   'com/noticias_now/' => 55,
-#   'br/com/ricarlo/common/' => 15
-# }
+jacoco.minimum_package_coverage_map = {
+  'com/noticiasnow/' => 5,
+  'br/com/ricarlo/network/' => 50
+}
 # jacoco.minimum_class_coverage_map = { # optional (default is empty)
 #   'com/noticias_now/login/LoginViewModel' => 15
 # }
 # jacoco.minimum_class_coverage_percentage = 75 # default 0
 Dir["**/reports/jacoco/**/*.xml"].each do |file_name|
-  # jacoco.report(file_name)
+  unless file_name.start_with?("ui")
+    jacoco.report(file_name, fail_no_coverage_data_found: false)
+  end
 end
-
-jacoco.report("storage/build/reports/jacoco/testFreeDebugCoverage/testFreeDebugCoverage.xml")
-jacoco.report("network/build/reports/jacoco/testFreeDebugCoverage/testFreeDebugCoverage.xml")
-jacoco.report("test/build/reports/jacoco/testFreeDebugCoverage/testFreeDebugCoverage.xml")

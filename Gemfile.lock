@@ -279,7 +279,7 @@ DEPENDENCIES
   danger (~> 8.2)
   danger-android_lint
   danger-checkstyle_format
-  danger-jacoco
+  danger-jacoco (~> 0.1.6)
   danger-junit
   danger-kotlin_detekt
   fastlane
