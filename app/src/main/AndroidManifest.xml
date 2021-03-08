@@ -12,6 +12,7 @@
         <activity
             android:name="com.noticiasnow.splash.SplashActivity"
             android:noHistory="true"
+            android:exported="false"
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.MyApp.FullScreen">
