@@ -5,7 +5,10 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
-suspend inline fun <T> apiCall(dispatcher: CoroutineDispatcher, crossinline block: suspend () -> T): T {
+suspend inline fun <T> apiCall(
+    dispatcher: CoroutineDispatcher,
+    crossinline block: suspend () -> T
+): T {
 //    return wrapEspressoIdlingResource {
     return withContext(dispatcher) {
         try {

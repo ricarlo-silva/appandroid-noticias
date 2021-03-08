@@ -27,7 +27,10 @@ class RecycleAdapter(
     }
 
     sealed class ViewHolder(view: ViewDataBinding) : BaseViewHolder<NewsModel>(view) {
-        class News(private val binding: ViewDataBinding, private val listener: OnClickListener) : ViewHolder(binding) {
+        class News(
+            private val binding: ViewDataBinding,
+            private val listener: OnClickListener
+        ) : ViewHolder(binding) {
             override fun onBind(item: NewsModel, position: Int) {
                 binding.setVariable(BR.item, item)
                 binding.setVariable(BR.listener, listener)

@@ -33,7 +33,9 @@ class PublishNewsActivity : BaseActivity<ActivityPublishNewsBinding>() {
                 viewModel.setType(type)
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                /* do nothing */
+            }
         }
         binding.btActivityPublicarNews.setOnClickListener {
             viewModel.insertOrUpdateNews(

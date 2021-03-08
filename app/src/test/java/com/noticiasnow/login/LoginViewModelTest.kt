@@ -132,7 +132,11 @@ class LoginViewModelTest : BaseTestCase() {
             // then
             coVerifySequence {
                 mockObserver.onChanged(match { it is ViewState.Loading })
-                mockObserver.onChanged(match { (it is ViewState.Error) && (it.error as ApiException).statusCode == 500 })
+                mockObserver.onChanged(
+                    match {
+                        (it is ViewState.Error) && (it.error as ApiException).statusCode == 500
+                    }
+                )
             }
 
             coVerify(exactly = 0) {

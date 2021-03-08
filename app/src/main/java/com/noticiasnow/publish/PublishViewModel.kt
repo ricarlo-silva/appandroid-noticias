@@ -56,14 +56,19 @@ class PublishViewModel(
                         newsRepository.insertNews(model)
                     }
                 }.onSuccess {
-                    val success = if (isUpdate()) R.string.atualizando_news_sucesso else R.string.sucesso_publicao
+                    val success = if (isUpdate())
+                        R.string.atualizando_news_sucesso
+                    else
+                        R.string.sucesso_publicao
                     _result.value = ViewState.Success(resourcesManager.getString(success))
                 }.onFailure {
                     _result.value = ViewState.Error(it)
                 }
             }
         } else {
-            _result.value = ViewState.Error(error = Exception(resourcesManager.getString(R.string.preencher_campos)))
+            _result.value = ViewState.Error(
+                error = Exception(resourcesManager.getString(R.string.preencher_campos))
+            )
         }
     }
 

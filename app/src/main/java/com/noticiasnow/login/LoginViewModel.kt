@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.ricarlo.common.firebase.remoteconfig.Feature
 import br.com.ricarlo.common.firebase.remoteconfig.IFirebaseRemoteConfigManager
 import br.com.ricarlo.common.util.ViewState
 import br.com.ricarlo.common.util.coroutines.ICoroutinesDispatcherProvider
@@ -36,13 +35,16 @@ class LoginViewModel(
                         )
                     )
                 }.onSuccess {
-                    val message = firebaseRemoteConfigManager.fetchSync(Feature.WELCOME_MESSAGE, String::class.java)
                     _user.postValue(ViewState.Success(it))
                 }.onFailure {
                     _user.postValue(ViewState.Error(error = it))
                 }
             } else {
-                _user.postValue(ViewState.Error(error = Exception(resourcesManager.getString(R.string.preencher_campos))))
+                _user.postValue(
+                    ViewState.Error(
+                        error = Exception(resourcesManager.getString(R.string.preencher_campos))
+                    )
+                )
             }
         }
     }

@@ -33,10 +33,15 @@ class UserNewsActivity : BaseActivity<ActivityUserNewsBinding>(), OnClickListene
     }
 
     override fun onClickLike(item: NewsModel, like: Boolean) {
+        // TODO("Not yet implemented")
     }
 
     override fun onClickUpdate(item: NewsModel) {
-        openActivity(PublishNewsActivity::class.java, bundleOf(PublishNewsActivity.BUNDLE_NEWS to item), PublishNewsActivity.REQUEST_PUBLISH)
+        openActivity(
+            PublishNewsActivity::class.java,
+            bundleOf(PublishNewsActivity.BUNDLE_NEWS to item),
+            PublishNewsActivity.REQUEST_PUBLISH
+        )
     }
 
     override fun onClickDelete(item: NewsModel) {
@@ -100,7 +105,6 @@ class UserNewsActivity : BaseActivity<ActivityUserNewsBinding>(), OnClickListene
                     }
                     is ViewState.Success -> {
                         hideLoading()
-//                    showToast(it.data)
                         _adapter.currentList.remove(it.data)
                     }
                     is ViewState.Error -> {

@@ -130,7 +130,9 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
                                             updateResult.installState.totalBytesToDownload
                                         ).toInt()
                                 }
-                                setText(context.getString(R.string.downloading_update, updateProgress))
+                                setText(context.getString(
+                                        R.string.downloading_update, updateProgress
+                                ))
                                 setAction(null) {}
                                 show()
                             }

@@ -42,7 +42,9 @@ class RegisterViewModel(
                 }
             }
         } else {
-            _user.value = ViewState.Error(error = Exception(resourcesManager.getString(R.string.preencher_campos)))
+            _user.value = ViewState.Error(
+                error = Exception(resourcesManager.getString(R.string.preencher_campos))
+            )
         }
     }
 }

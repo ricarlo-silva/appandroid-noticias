@@ -51,8 +51,8 @@ interface IWebService {
     @POST("noticia/alterar") // TODO refactor to @PATCH
     suspend fun updateNews(@Body news: NewsModel): ApiResponse<NewsModel>
 
-    @POST("noticia/deletar")
-    suspend fun deleteNews(@Body news: NewsModel) // TODO send only id; change to @DELETE; return message success
+    @POST("noticia/deletar") // TODO send only id; change to @DELETE; return message success
+    suspend fun deleteNews(@Body news: NewsModel)
 
     @GET("noticias/tipos") // TODO create
     suspend fun getTypes(): ApiResponse<List<TypeResponse>>

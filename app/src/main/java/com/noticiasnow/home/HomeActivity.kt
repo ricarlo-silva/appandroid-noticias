@@ -45,20 +45,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         }
     }
 
-//    override fun onClick(v: View) {
-//        when (v.id) {
-//            R.id.bt_nav_header_edit_perfil -> {
-//                openActivity(EditProfileActivity::class.java, null, null)
-//            }
-//            R.id.tv_nav_my_news -> {
-//                openActivity(UserNewsActivity::class.java, null, null)
-//            }
-//            R.id.tv_nav_logout -> {
-// //                logout()
-//            }
-//        }
-//    }
-
     private fun subscribeUI() {
 
         viewModel.types.observe(
@@ -72,7 +58,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                         hideLoading()
                         binding.content.tabLayout.setupWithViewPager(binding.content.pager)
 
-                        val list = result.data.associateBy({ it.name }, { NewsTypeFragment.getInstance(it.id) })
+                        val list = result.data.associateBy(
+                            { it.name }, { NewsTypeFragment.getInstance(it.id) }
+                        )
                         val adapter = PagerAdapter(list, supportFragmentManager)
 
                         binding.content.pager.adapter = adapter

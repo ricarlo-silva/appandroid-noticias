@@ -64,7 +64,9 @@ class EditProfileViewModel(
                 }
             }
         } else {
-            _result.value = ViewState.Error(error = Exception(resourcesManager.getString(R.string.preencher_campos)))
+            _result.value = ViewState.Error(
+                error = Exception(resourcesManager.getString(R.string.preencher_campos))
+            )
         }
     }
 }

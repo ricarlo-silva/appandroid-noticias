@@ -47,7 +47,9 @@ class UpdateViewModelTest {
         // Perform a click on the Snackbar to complete the update process.
         Espresso.onView(
             CoreMatchers.allOf(
-                ViewMatchers.isDescendantOfA(CoreMatchers.instanceOf(Snackbar.SnackbarLayout::class.java)),
+                ViewMatchers.isDescendantOfA(
+                    CoreMatchers.instanceOf(Snackbar.SnackbarLayout::class.java)
+                ),
                 CoreMatchers.instanceOf(AppCompatButton::class.java)
             )
         ).perform(ViewActions.click())
