@@ -11,7 +11,7 @@
         android:id="@+id/activity_lista_noticias_usuario"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.noticias_now.list.UserNewsActivity">
+        tools:context="com.noticiasnow.list.UserNewsActivity">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh"

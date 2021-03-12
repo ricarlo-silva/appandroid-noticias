@@ -32,7 +32,7 @@ object EspressoIdlingResource {
     private const val RESOURCE = "GLOBAL"
 
     @JvmField
-    val countingIdlingResource = CountingIdlingResource(RESOURCE)//SimpleCountingIdlingResource(RESOURCE)
+    val countingIdlingResource = CountingIdlingResource(RESOURCE) // SimpleCountingIdlingResource(RESOURCE)
 
     fun increment() {
         countingIdlingResource.increment()
@@ -57,9 +57,9 @@ inline fun <T> wrapEspressoIdlingResource(function: () -> T): T {
 }
 
 fun CoroutineScope.launchIdling(
-        context: CoroutineContext = EmptyCoroutineContext,
-        start: CoroutineStart = CoroutineStart.DEFAULT,
-        block: suspend CoroutineScope.() -> Unit
+    context: CoroutineContext = EmptyCoroutineContext,
+    start: CoroutineStart = CoroutineStart.DEFAULT,
+    block: suspend CoroutineScope.() -> Unit
 ): Job {
     EspressoIdlingResource.increment()
     val job = this.launch(context, start, block)

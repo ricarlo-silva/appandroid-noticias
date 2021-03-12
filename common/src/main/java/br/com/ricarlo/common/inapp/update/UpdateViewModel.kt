@@ -1,19 +1,29 @@
 package br.com.ricarlo.common.inapp.update
 
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import br.com.ricarlo.common.firebase.remoteconfig.Feature
 import br.com.ricarlo.common.firebase.remoteconfig.IFirebaseRemoteConfigManager
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.ktx.*
+import com.google.android.play.core.ktx.AppUpdateResult
+import com.google.android.play.core.ktx.BuildConfig
+import com.google.android.play.core.ktx.clientVersionStalenessDays
+import com.google.android.play.core.ktx.isFlexibleUpdateAllowed
+import com.google.android.play.core.ktx.isImmediateUpdateAllowed
+import com.google.android.play.core.ktx.requestUpdateFlow
+import com.google.android.play.core.ktx.updatePriority
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class UpdateViewModel constructor(
-        manager: AppUpdateManager,
-        private val remoteConfigManager: IFirebaseRemoteConfigManager
+    manager: AppUpdateManager,
+    private val remoteConfigManager: IFirebaseRemoteConfigManager
 ) : ViewModel() {
 
     companion object {
@@ -23,27 +33,28 @@ class UpdateViewModel constructor(
     }
 
     val updateStatus = manager.requestUpdateFlow()
-            .catch {
-                _events.postValue(Event.ToastEvent("Update info not available"))
-            }
-            .asLiveData()
+        .catch {
+            _events.postValue(Event.ToastEvent("Update info not available"))
+        }
+        .asLiveData()
 
     private val _events = MutableLiveData<Event>()
     val events: LiveData<Event> = _events
 
     fun shouldLaunchImmediateUpdate(updateInfo: AppUpdateInfo): Boolean {
         with(updateInfo) {
-            return isImmediateUpdateAllowed
-                    &&
-                    (currentIsOldVersion()
-                            || clientVersionStalenessDays ?: 0 > DAYS
-                            || updatePriority > PRIORITY)
+            return isImmediateUpdateAllowed &&
+                (
+                    currentIsOldVersion() ||
+                        clientVersionStalenessDays ?: 0 > DAYS ||
+                        updatePriority > PRIORITY
+                    )
         }
     }
 
     private fun currentIsOldVersion(): Boolean {
         return remoteConfigManager
-                .fetchSync(Feature.MIN_VERSION, clazz = Long::class.java) > BuildConfig.VERSION_CODE
+            .fetchSync(Feature.MIN_VERSION, clazz = Long::class.java) > BuildConfig.VERSION_CODE
     }
 
     fun invokeUpdate() {
@@ -57,16 +68,16 @@ class UpdateViewModel constructor(
                     when {
                         shouldLaunchImmediateUpdate(this) -> {
                             _events.postValue(
-                                    Event.StartUpdateEvent(
-                                            updateResult.updateInfo, AppUpdateType.IMMEDIATE
-                                    )
+                                Event.StartUpdateEvent(
+                                    updateResult.updateInfo, AppUpdateType.IMMEDIATE
+                                )
                             )
                         }
                         isFlexibleUpdateAllowed -> {
                             _events.postValue(
-                                    Event.StartUpdateEvent(
-                                            updateResult.updateInfo, AppUpdateType.FLEXIBLE
-                                    )
+                                Event.StartUpdateEvent(
+                                    updateResult.updateInfo, AppUpdateType.FLEXIBLE
+                                )
                             )
                         }
                         else -> {
@@ -81,9 +92,9 @@ class UpdateViewModel constructor(
             is AppUpdateResult.Downloaded -> {
                 viewModelScope.launch {
                     runCatching { updateResult.completeUpdate() }
-                            .onFailure {
-                                _events.postValue(Event.ToastEvent("No complete update"))
-                            }
+                        .onFailure {
+                            _events.postValue(Event.ToastEvent("No complete update"))
+                        }
                 }
             }
         }

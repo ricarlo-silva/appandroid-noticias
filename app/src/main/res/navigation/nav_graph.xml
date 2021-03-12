@@ -6,7 +6,7 @@
 
     <activity
         android:id="@+id/splashActivity"
-        android:name="com.noticias_now.splash.SplashActivity"
+        android:name="com.noticiasnow.splash.SplashActivity"
         android:label="SplashActivity"
         tools:layout="@layout/activity_splash">
         <action
@@ -19,13 +19,13 @@
 
     <activity
         android:id="@+id/homeActivity"
-        android:name="com.noticias_now.home.HomeActivity"
+        android:name="com.noticiasnow.home.HomeActivity"
         android:label="HomeActivity"
         tools:layout="@layout/activity_home"/>
 
     <fragment
         android:id="@+id/newsTypeFragment"
-        android:name="com.noticias_now.home.NewsTypeFragment"
+        android:name="com.noticiasnow.home.NewsTypeFragment"
         android:label="NewsTypeFragment"
         tools:layout="@layout/fragment_news_type">
         <action
@@ -35,19 +35,19 @@
 
     <activity
         android:id="@+id/detailsNewsActivity"
-        android:name="com.noticias_now.details.DetailsNewsActivity"
+        android:name="com.noticiasnow.details.DetailsNewsActivity"
         android:label="DetailsNewsActivity"
         tools:layout="@layout/activity_details_news"/>
 
     <activity
         android:id="@+id/editProfileActivity"
-        android:name="com.noticias_now.account.update.EditProfileActivity"
+        android:name="com.noticiasnow.account.update.EditProfileActivity"
         android:label="EditProfileActivity"
         tools:layout="@layout/activity_edit_profile"/>
 
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.noticias_now.login.LoginActivity"
+        android:name="com.noticiasnow.login.LoginActivity"
         android:label="LoginActivity"
         tools:layout="@layout/activity_login">
         <action
@@ -57,13 +57,13 @@
 
     <activity
         android:id="@+id/publishNewsActivity"
-        android:name="com.noticias_now.publish.PublishNewsActivity"
+        android:name="com.noticiasnow.publish.PublishNewsActivity"
         android:label="PublishNewsActivity"
         tools:layout="@layout/activity_publish_news"/>
 
     <activity
         android:id="@+id/registerActivity"
-        android:name="com.noticias_now.account.register.RegisterActivity"
+        android:name="com.noticiasnow.account.register.RegisterActivity"
         android:label="RegisterActivity"
         tools:layout="@layout/activity_register">
         <deepLink
@@ -74,7 +74,7 @@
 
     <activity
         android:id="@+id/userNewsActivity"
-        android:name="com.noticias_now.list.UserNewsActivity"
+        android:name="com.noticiasnow.list.UserNewsActivity"
         android:label="UserNewsActivity"
         tools:layout="@layout/activity_user_news">
         <action

@@ -1,8 +1,15 @@
 package com.ricarlo.storage
 
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.*
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.Preferences.Key
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.doublePreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.floatPreferencesKey
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 
@@ -38,7 +45,10 @@ inline fun <reified T : Any> getKey(name: String): Key<T> {
     return key as Key<T>
 }
 
-suspend inline fun <reified T : Any> DataStore<Preferences>.get(key: String, defaultValue: T? = null): T? {
+suspend inline fun <reified T : Any> DataStore<Preferences>.get(
+    key: String,
+    defaultValue: T? = null
+): T? {
     return data.map {
         it[getKey<T>(key)] ?: defaultValue
     }.firstOrNull()

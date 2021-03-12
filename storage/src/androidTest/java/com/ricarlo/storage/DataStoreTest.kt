@@ -94,5 +94,4 @@ class DataStoreTest {
             assertFalse(data2)
         }
     }
-
 }

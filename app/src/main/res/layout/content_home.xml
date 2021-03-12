@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.noticias_now.home.HomeActivity"
+        tools:context="com.noticiasnow.home.HomeActivity"
         tools:showIn="@layout/activity_home">
 
         <com.google.android.material.tabs.TabLayout

@@ -16,7 +16,10 @@ ext.versions = [
         compileSdkVersion: 30,
         versionCode      : 118,
         versionName      : '1.2.6',
-        buildToolsVersion: '30.0.2'
+        buildToolsVersion: '30.0.2',
+
+        detekt           : '1.0.1',
+        ktlint           : '0.40.0'
 
 ]
 
@@ -109,4 +112,7 @@ ext.deps = [
                 core   : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
                 logging: "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
         ],
+
+        'detekt'  : "io.gitlab.arturbosch.detekt:detekt-cli:${versions.detekt}",
+        'ktlint'  : "com.pinterest:ktlint:${versions.ktlint}"
 ]

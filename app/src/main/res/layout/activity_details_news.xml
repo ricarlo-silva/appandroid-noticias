@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="com.noticias_now.details.DetailsNewsActivity">
+        tools:context="com.noticiasnow.details.DetailsNewsActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"

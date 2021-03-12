@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
 abstract class BaseAdapter<T, VH : BaseViewHolder<T>>(
-        diffCallback: DiffUtil.ItemCallback<T>
+    diffCallback: DiffUtil.ItemCallback<T>
 ) : ListAdapter<T, VH>(diffCallback) {
 
     @LayoutRes
@@ -18,18 +18,18 @@ abstract class BaseAdapter<T, VH : BaseViewHolder<T>>(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<ViewDataBinding>(
-                layoutInflater,
-                getItemView(viewType),
-                parent,
-                false
+            layoutInflater,
+            getItemView(viewType),
+            parent,
+            false
         )
         return instantiateViewHolder(binding, viewType)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.onBind(
-                item = getItem(position),
-                position = position
+            item = getItem(position),
+            position = position
         )
     }
 

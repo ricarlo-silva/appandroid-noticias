@@ -2,7 +2,9 @@ package br.com.ricarlo.network
 
 import br.com.ricarlo.network.di.NetworkModule
 import kotlinx.coroutines.runBlocking
-import org.junit.*
+import org.junit.Assert
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.koin.core.logger.Level
@@ -78,11 +80,9 @@ class ServiceGeneratorTest : KoinTest {
         runBlocking {
 
             runCatching { service.get() }
-                    .onFailure {
-                        Assert.assertTrue(it is HttpException)
-                    }
-
+                .onFailure {
+                    Assert.assertTrue(it is HttpException)
+                }
         }
     }
-
 }

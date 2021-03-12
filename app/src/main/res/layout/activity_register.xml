@@ -15,7 +15,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/margin_normal"
-        tools:context="com.noticias_now.account.register.RegisterActivity">
+        tools:context="com.noticiasnow.account.register.RegisterActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_photo"

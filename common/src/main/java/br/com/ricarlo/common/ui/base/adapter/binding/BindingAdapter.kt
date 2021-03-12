@@ -14,8 +14,8 @@ fun ImageView.imageUrl(url: String?) {
     Glide.with(context).load(url)
 //            .placeholder(R.drawable.bg_photo)
 //            .fallback(R.drawable.bg_photo)
-            .optionalCircleCrop()
-            .into(this)
+        .optionalCircleCrop()
+        .into(this)
 }
 
 @BindingAdapter("date")

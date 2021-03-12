@@ -5,9 +5,9 @@ import com.squareup.moshi.Json
 
 @Keep
 data class ApiResponse<T>(
-        @Json(name = "error")
-        val error: Boolean = false,
+    @Json(name = "error")
+    val error: Boolean = false,
 
-        @Json(name = "data")
-        val data: T
+    @Json(name = "data")
+    val data: T
 )

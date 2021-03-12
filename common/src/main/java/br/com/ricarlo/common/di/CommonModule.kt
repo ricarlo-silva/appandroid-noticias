@@ -10,12 +10,12 @@ import org.koin.dsl.module
 
 object CommonModule {
     val modules = FirebaseRemoteConfigModule.module +
-            InAppReviewModule.module +
-            InAppUpdateModule.module +
-            ResourcesModule.modules +
-            module {
-                single<ICoroutinesDispatcherProvider> {
-                    CoroutinesDispatcherProvider()
-                }
+        InAppReviewModule.module +
+        InAppUpdateModule.module +
+        ResourcesModule.modules +
+        module {
+            single<ICoroutinesDispatcherProvider> {
+                CoroutinesDispatcherProvider()
             }
+        }
 }

@@ -1,19 +1,19 @@
 package br.com.ricarlo.network
 
-//import android.content.Context
-//import android.net.ConnectivityManager
-//import android.net.Network
-//import android.os.Build
-//import androidx.lifecycle.Lifecycle
-//import androidx.lifecycle.LifecycleObserver
-//import androidx.lifecycle.OnLifecycleEvent
-//import kotlinx.coroutines.CoroutineScope
-//import kotlinx.coroutines.Dispatchers
-//import kotlinx.coroutines.SupervisorJob
-//import kotlinx.coroutines.channels.Channel
-//import kotlinx.coroutines.launch
+// import android.content.Context
+// import android.net.ConnectivityManager
+// import android.net.Network
+// import android.os.Build
+// import androidx.lifecycle.Lifecycle
+// import androidx.lifecycle.LifecycleObserver
+// import androidx.lifecycle.OnLifecycleEvent
+// import kotlinx.coroutines.CoroutineScope
+// import kotlinx.coroutines.Dispatchers
+// import kotlinx.coroutines.SupervisorJob
+// import kotlinx.coroutines.channels.Channel
+// import kotlinx.coroutines.launch
 
-//class ConnectionViewModel(private val context: Context) : LifecycleObserver {
+// class ConnectionViewModel(private val context: Context) : LifecycleObserver {
 //
 //    private val job = SupervisorJob()
 //    private val coroutineScope = CoroutineScope(Dispatchers.Main + job)
@@ -60,4 +60,4 @@ package br.com.ricarlo.network
 //        job.cancel()
 //    }
 //
-//}
+// }

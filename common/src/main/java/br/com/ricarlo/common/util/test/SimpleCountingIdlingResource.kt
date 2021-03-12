@@ -1,4 +1,4 @@
-///*
+// /*
 // * Copyright (C) 2019 The Android Open Source Project
 // *
 // * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,13 +13,13 @@
 // * See the License for the specific language governing permissions and
 // * limitations under the License.
 // */
-//package br.com.ricarlo.common.util.test
+// package br.com.ricarlo.common.util.test
 //
-//import androidx.test.espresso.IdlingResource
+// import androidx.test.espresso.IdlingResource
 //
-//import java.util.concurrent.atomic.AtomicInteger
+// import java.util.concurrent.atomic.AtomicInteger
 //
-///**
+// /**
 // * An simple counter implementation of [IdlingResource] that determines idleness by
 // * maintaining an internal counter. When the counter is 0 - it is considered to be idle, when it is
 // * non-zero it is not idle. This is very similar to the way a [java.util.concurrent.Semaphore]
@@ -29,7 +29,7 @@
 // * This class can then be used to wrap up operations that while in progress should block tests from
 // * accessing the UI.
 // */
-//class SimpleCountingIdlingResource(private val resourceName: String) : IdlingResource {
+// class SimpleCountingIdlingResource(private val resourceName: String) : IdlingResource {
 //
 //    private val counter = AtomicInteger(0)
 //
@@ -67,4 +67,4 @@
 //            throw IllegalStateException("Counter has been corrupted!")
 //        }
 //    }
-//}
+// }

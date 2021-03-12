@@ -6,6 +6,6 @@ import com.squareup.moshi.Json
 @Keep
 data class ApiErrorResponse(
 
-	@Json(name = "message")
-	val message: String? = null
+    @Json(name = "message")
+    val message: String? = null
 )

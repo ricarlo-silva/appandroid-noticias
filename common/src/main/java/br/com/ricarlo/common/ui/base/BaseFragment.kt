@@ -22,9 +22,9 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     protected lateinit var binding: T
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, getLayoutRes(), container, false)
         return binding.apply {
