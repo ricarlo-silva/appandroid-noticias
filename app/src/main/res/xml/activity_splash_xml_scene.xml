@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:autoTransition="animateToEnd"
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="2000">
+        <KeyFrameSet>
+            <KeyAttribute
+                android:scaleX="1.0"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/imageView" />
+            <KeyAttribute
+                android:scaleY="1.0"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/imageView" />
+
+            <KeyAttribute
+                android:scaleX="0.7"
+                motion:framePosition="20"
+                motion:motionTarget="@+id/imageView" />
+            <KeyAttribute
+                android:scaleY="0.7"
+                motion:framePosition="20"
+                motion:motionTarget="@+id/imageView" />
+
+            <KeyAttribute
+                android:scaleX="0.7"
+                motion:framePosition="40"
+                motion:motionTarget="@+id/imageView" />
+            <KeyAttribute
+                android:scaleY="0.7"
+                motion:framePosition="40"
+                motion:motionTarget="@+id/imageView" />
+
+            <KeyAttribute
+                android:scaleX="3.0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/imageView" />
+            <KeyAttribute
+                android:scaleY="3.0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/imageView" />
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/image_foreground_size"
+            android:layout_height="@dimen/image_foreground_size"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:transitionEasing="accelerate" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end" />
+</MotionScene>

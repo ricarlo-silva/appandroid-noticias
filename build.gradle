@@ -2,16 +2,18 @@
 
 buildscript {
     apply from: 'dependencies.gradle'
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:4.1.2'
         classpath deps.kotlin.plugin
-        classpath 'com.google.gms:google-services:4.3.4'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.3.0'
-        classpath 'com.google.firebase:perf-plugin:1.3.2'  // Performance Monitoring plugin
+        classpath 'com.google.gms:google-services:4.3.5'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.5.0'
+        classpath 'com.google.firebase:perf-plugin:1.3.4'  // Performance Monitoring plugin
+        classpath deps.androidx.navigation.plugin
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0"
         classpath "org.jacoco:org.jacoco.core:0.8.6"
 
@@ -33,9 +35,18 @@ subprojects {
 
     def flavorsConfig = {
         apply from: "$rootDir/flavor.gradle"
+
+        android {
+            lintOptions {
+                xmlReport true
+            }
+        }
     }
     pluginManager.withPlugin("com.android.application", flavorsConfig)
     pluginManager.withPlugin("com.android.library", flavorsConfig)
+
+    apply from: "$rootDir/config/detekt/detekt.gradle"
+    apply from: "$rootDir/config/ktlint/ktlint.gradle"
 
     apply from: "$rootDir/jacoco.gradle"
 

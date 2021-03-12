@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="waiting">Aguarde…</string>
+
+    <string name="sem_conexao">Sua conexão parece estar offline</string>
+    <string name="error_generic">Ocorreu um problema na conexão.\nTente mais tarde.</string>
+    <string name="loading">Carregando…</string>
+
+    <string name="update_available">Update available</string>
+    <string name="downloading_update">Downloading update… %1$d%%</string>
+    <string name="update_now">Update now</string>
+    <string name="update_available_snackbar">An update is available</string>
+    <string name="update_downloaded">Update downloaded successfully</string>
+    <string name="complete_update">Complete update</string>
+
+</resources>

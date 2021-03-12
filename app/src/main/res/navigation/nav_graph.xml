@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/splashActivity">
+
+    <activity
+        android:id="@+id/splashActivity"
+        android:name="com.noticiasnow.splash.SplashActivity"
+        android:label="SplashActivity"
+        tools:layout="@layout/activity_splash">
+        <action
+            android:id="@+id/action_splashActivity_to_homeActivity"
+            app:destination="@id/homeActivity" />
+        <action
+            android:id="@+id/action_splashActivity_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </activity>
+
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.noticiasnow.home.HomeActivity"
+        android:label="HomeActivity"
+        tools:layout="@layout/activity_home"/>
+
+    <fragment
+        android:id="@+id/newsTypeFragment"
+        android:name="com.noticiasnow.home.NewsTypeFragment"
+        android:label="NewsTypeFragment"
+        tools:layout="@layout/fragment_news_type">
+        <action
+            android:id="@+id/action_newsTypeFragment_to_detailsNewsActivity"
+            app:destination="@id/detailsNewsActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/detailsNewsActivity"
+        android:name="com.noticiasnow.details.DetailsNewsActivity"
+        android:label="DetailsNewsActivity"
+        tools:layout="@layout/activity_details_news"/>
+
+    <activity
+        android:id="@+id/editProfileActivity"
+        android:name="com.noticiasnow.account.update.EditProfileActivity"
+        android:label="EditProfileActivity"
+        tools:layout="@layout/activity_edit_profile"/>
+
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.noticiasnow.login.LoginActivity"
+        android:label="LoginActivity"
+        tools:layout="@layout/activity_login">
+        <action
+            android:id="@+id/action_loginActivity_to_registerActivity"
+            app:destination="@id/registerActivity" />
+    </activity>
+
+    <activity
+        android:id="@+id/publishNewsActivity"
+        android:name="com.noticiasnow.publish.PublishNewsActivity"
+        android:label="PublishNewsActivity"
+        tools:layout="@layout/activity_publish_news"/>
+
+    <activity
+        android:id="@+id/registerActivity"
+        android:name="com.noticiasnow.account.register.RegisterActivity"
+        android:label="RegisterActivity"
+        tools:layout="@layout/activity_register">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:action="ACTION_SEND"
+            app:uri="https://ricarlo.com/cadastro" />
+    </activity>
+
+    <activity
+        android:id="@+id/userNewsActivity"
+        android:name="com.noticiasnow.list.UserNewsActivity"
+        android:label="UserNewsActivity"
+        tools:layout="@layout/activity_user_news">
+        <action
+            android:id="@+id/action_userNewsActivity_to_detailsNewsActivity"
+            app:destination="@id/detailsNewsActivity" />
+    </activity>
+
+</navigation>

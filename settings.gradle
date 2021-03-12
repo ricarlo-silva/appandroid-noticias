@@ -1,2 +1,6 @@
+include ':storage'
+include ':test'
+include ':ui'
+include ':network'
 include ':common'
 include ':app'

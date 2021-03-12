@@ -3,9 +3,9 @@ package br.com.ricarlo.common.firebase.remoteconfig
 import androidx.annotation.StringDef
 
 @StringDef(
-        Feature.WELCOME_MESSAGE,
-        Feature.IN_APP_REVIEW,
-        Feature.MIN_VERSION
+    Feature.WELCOME_MESSAGE,
+    Feature.IN_APP_REVIEW,
+    Feature.MIN_VERSION
 )
 @Retention(AnnotationRetention.SOURCE)
 annotation class Feature {
