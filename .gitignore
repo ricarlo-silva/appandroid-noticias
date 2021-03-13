@@ -8,3 +8,4 @@
 /build
 /captures
 /fastlane/report.xml
+*/jacoco.exec

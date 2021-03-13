@@ -37,6 +37,17 @@ subprojects {
         apply from: "$rootDir/flavor.gradle"
 
         android {
+
+            buildTypes {
+                debug {
+                    testCoverageEnabled true // required by instrumented test
+                }
+            }
+
+            testOptions {
+                animationsDisabled true
+            }
+
             lintOptions {
                 xmlReport true
             }

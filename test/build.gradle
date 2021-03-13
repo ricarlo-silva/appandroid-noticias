@@ -56,14 +56,20 @@ dependencies {
 //
 //    androidTestImplementation deps.androidx.test.espresso
 
-    api 'io.mockk:mockk:1.10.6'
+    api ('io.mockk:mockk:1.10.6'){
+        exclude group: 'org.objenesis'
+    }
 
 //    api "org.robolectric:robolectric:4.4"
 
     // Instrumented
-    api('io.mockk:mockk-android:1.10.6')
+    api('io.mockk:mockk-android:1.10.6'){
+        exclude group: 'org.objenesis'
+    }
 
-    api deps.coroutines.test
+    api (deps.coroutines.test){
+        exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
+    }
 
     // Core library
     api deps.androidx.test.arch

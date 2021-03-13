@@ -6,6 +6,29 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: Nexus 6
+          script: ./gradlew testFreeDebugCoverage
+
+      - name: Upload Coverage to GH-Actions
+        uses: actions/upload-artifact@v2
+        if: ${{ always()  }}
+        with:
+          name: Tests Coverage Report
+          path: |
+            **/reports/
+          retention-days: 5
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -38,7 +61,7 @@ jobs:
 
       # Generate coverage reports with Jacoco
       - name: Generate coverage reports
-        run: ./gradlew testFreeDebugCoverage detektCheck ktlint lintFreeDebug
+        run: ./gradlew detektCheck ktlint lintFreeDebug
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1

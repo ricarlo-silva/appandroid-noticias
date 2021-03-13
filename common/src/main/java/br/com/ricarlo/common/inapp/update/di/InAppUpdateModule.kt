@@ -8,11 +8,11 @@ import org.koin.dsl.module
 internal object InAppUpdateModule {
     val module = module {
 
-        single<AppUpdateManager> {
+        factory<AppUpdateManager> {
             AppUpdateManagerFactory.create(get())
         }
 
-        single {
+        factory {
             UpdateViewModel(get(), get())
         }
     }
