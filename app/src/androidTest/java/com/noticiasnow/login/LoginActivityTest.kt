@@ -55,6 +55,7 @@ class LoginActivityTest {
             clickEnter()
 //            Intents.intended(IntentMatchers.hasComponent(ComponentName(ApplicationProvider.getApplicationContext(), HomeActivity::class.java.name)))
 
+            Thread.sleep(4000)
             isHomeScreen()
 //            isDisplayedToast("Bem-vindo ao Notícias NOW")
         }

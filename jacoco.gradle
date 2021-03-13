@@ -31,8 +31,8 @@ project.afterEvaluate {
 
             def coverageTaskName = "test${sourceName.capitalize()}Coverage"
             tasks.create(name: coverageTaskName, type: JacocoReport, dependsOn: [
-                    "$localTestCoverageTask"
-//                    "$uiTestCoverageTask"
+                    "$localTestCoverageTask",
+                    "$uiTestCoverageTask"
             ]) {
                 group = "Reporting"
                 description = "Generate Jacoco coverage reports on the ${sourceName.capitalize()} build."
@@ -86,6 +86,9 @@ project.afterEvaluate {
                     print "file://${reports.html.destination}/index.html\n"
                 }
             }
+//            tasks.withType(Test) {
+//                maxParallelForks = 1
+//            }
         }
     }
 }

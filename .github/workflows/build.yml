@@ -6,23 +6,17 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
+  test:
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
+
       - name: Cache Gradle packages
         uses: actions/cache@v1
         with:
@@ -36,23 +30,70 @@ jobs:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: echo $FIREBASE_CONFIG > app/google-services.json
 
-      # Generate coverage reports with Jacoco
-      - name: Generate coverage reports
-        run: ./gradlew testFreeDebugCoverage detektCheck ktlint lintFreeDebug
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Run tests
+        uses: reactivecircus/android-emulator-runner@v2
         with:
-          ruby-version: 2.6
-          bundler-cache: true
+          api-level: 23
+          arch: x86
+          profile: Nexus One
+          script: ./gradlew testFreeDebugCoverage
 
-      - name: Danger JS
-        run: bundle exec danger --fail-on-errors=false
-        env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Coverage to GH-Actions
+        uses: actions/upload-artifact@v2
+        if: ${{ always()  }}
+        with:
+          name: Tests Coverage Report
+          path: |
+            **/reports/**/*.xml
+          retention-days: 5
 
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew build sonarqube -Dsonar.login=$SONAR_TOKEN
+#  build:
+#    name: Build
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+#      - name: Set up JDK 11
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 11
+#      - name: Cache SonarCloud packages
+#        uses: actions/cache@v1
+#        with:
+#          path: ~/.sonar/cache
+#          key: ${{ runner.os }}-sonar
+#          restore-keys: ${{ runner.os }}-sonar
+#      - name: Cache Gradle packages
+#        uses: actions/cache@v1
+#        with:
+#          path: ~/.gradle/caches
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+#          restore-keys: ${{ runner.os }}-gradle
+#
+#      # Decode Google services configuration file
+#      - name: Decode google-services.json
+#        env:
+#          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+#        run: echo $FIREBASE_CONFIG > app/google-services.json
+#
+#      # Generate coverage reports with Jacoco
+#      - name: Generate coverage reports
+#        run: ./gradlew detektCheck ktlint lintFreeDebug
+#
+#      - name: Set up Ruby
+#        uses: ruby/setup-ruby@v1
+#        with:
+#          ruby-version: 2.6
+#          bundler-cache: true
+#
+#      - name: Danger JS
+#        run: bundle exec danger --fail-on-errors=false
+#        env:
+#          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#
+#      - name: Build and analyze
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#        run: ./gradlew build sonarqube -Dsonar.login=$SONAR_TOKEN
