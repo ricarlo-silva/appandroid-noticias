@@ -35,7 +35,7 @@ jobs:
         with:
           api-level: 23
           arch: x86
-#          profile: Nexus 6
+          profile: Nexus One
           script: ./gradlew testFreeDebugCoverage
 
       - name: Upload Coverage to GH-Actions
@@ -44,7 +44,7 @@ jobs:
         with:
           name: Tests Coverage Report
           path: |
-            **/reports/
+            **/reports/**/*.xml
           retention-days: 5
 
 #  build:
