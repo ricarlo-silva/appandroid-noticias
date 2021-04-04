@@ -16,6 +16,6 @@ class EspressoIdlingResourceRule : TestWatcher() {
 
     override fun finished(description: Description?) {
         IdlingRegistry.getInstance().unregister(idlingResource)
-        super.starting(description)
+        super.finished(description)
     }
 }

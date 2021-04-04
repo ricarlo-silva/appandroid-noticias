@@ -79,6 +79,8 @@ dependencies {
     testImplementation project(path: ':test')
     androidTestImplementation project(path: ':test')
 
+//    androidTestImplementation("org.robolectric:robolectric:4.5.1")
+
 //    // Test
 //    testImplementation deps.junit
 //
