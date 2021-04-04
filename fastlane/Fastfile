@@ -52,7 +52,7 @@ platform :android do
       browserstack_access_key: ENV["BROWSERSTACK_ACCESS_KEY"],
       file_path: options[:path]
     )
-    gradle(task: "test")
+    gradle(task: "testFreeDebugCoverage")
   end
 
   desc "Build app"

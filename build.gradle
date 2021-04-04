@@ -46,6 +46,7 @@ subprojects {
 
             testOptions {
                 animationsDisabled true
+                unitTests.includeAndroidResources = true
             }
 
             lintOptions {

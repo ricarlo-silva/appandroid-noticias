@@ -111,25 +111,37 @@ class LoginRobot {
 //        )
 //        textView3.check(matches(withText("test")))
 
-        val textView4 = onView(
-            Matchers.allOf(
-                withId(R.id.tv_title),
-                withText("test 1"),
-                ViewMatchers.withParent(ViewMatchers.withParent(withId(R.id.card_view))),
-                isDisplayed()
-            )
-        )
-        textView4.check(matches(withText("test 1")))
+//        val textView4 = onView(
+//            Matchers.allOf(
+//                withId(R.id.tv_title),
+//                withText("test 1"),
+//                ViewMatchers.withParent(ViewMatchers.withParent(withId(R.id.card_view))),
+//                isDisplayed()
+//            )
+//        )
+//        textView4.check(matches(withText("test 1")))
 
-        val textView5 = onView(
-            Matchers.allOf(
-                withId(R.id.tv_description),
-                withText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-                ViewMatchers.withParent(ViewMatchers.withParent(withId(R.id.card_view))),
-                isDisplayed()
-            )
-        )
-        textView5.check(matches(withText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")))
+//        val textView5 = onView(
+//            Matchers.allOf(
+//                withId(R.id.tv_description),
+//                withText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed " +
+//                        "do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut " +
+//                        "enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+//                        "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+//                        "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
+//                        "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in " +
+//                        "culpa qui officia deserunt mollit anim id est laborum."),
+//                ViewMatchers.withParent(ViewMatchers.withParent(withId(R.id.card_view))),
+//                isDisplayed()
+//            )
+//        )
+//        textView5.check(matches(withText("Lorem ipsum dolor sit amet, consectetur " +
+//                "adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna " +
+//                "aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
+//                "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in " +
+//                "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " +
+//                "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
+//                "deserunt mollit anim id est laborum.")))
 
     }
 }
