@@ -4,17 +4,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion versions.compileSdkVersion
-    buildToolsVersion versions.buildToolsVersion
+    compileSdk versions.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion versions.minSdkVersion
-        targetSdkVersion versions.targetSdkVersion
-        versionCode versions.versionCode
-        versionName versions.versionName
+        minSdk versions.minSdkVersion
+        targetSdk versions.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -34,8 +30,6 @@ android {
 
 dependencies {
 
-    implementation deps.kotlin.jdk
-
     // Android
     implementation deps.androidx.core
     implementation deps.androidx.appcompat
@@ -44,7 +38,7 @@ dependencies {
     implementation deps.koin.core
     implementation deps.koin.android
 
-    api "androidx.datastore:datastore-preferences:1.0.0-alpha06"
+    api "androidx.datastore:datastore-preferences:1.0.0"
 
     // Test
     testImplementation deps.junit

@@ -11,7 +11,7 @@ import com.noticiasnow.databinding.FragmentNewsTypeBinding
 import com.noticiasnow.details.DetailsNewsActivity
 import com.noticiasnow.details.DetailsViewModel
 import com.noticiasnow.model.NewsModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsTypeFragment : BaseFragment<FragmentNewsTypeBinding>(), OnClickListener {
 
@@ -27,9 +27,9 @@ class NewsTypeFragment : BaseFragment<FragmentNewsTypeBinding>(), OnClickListene
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        binding.swipeRefresh.setOnRefreshListener {
-            viewModel.setType(_type)
-        }
+//        binding.swipeRefresh.setOnRefreshListener {
+//            viewModel.setType(_type)
+//        }
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
@@ -41,11 +41,11 @@ class NewsTypeFragment : BaseFragment<FragmentNewsTypeBinding>(), OnClickListene
     }
 
     override fun showLoading(message: String?) {
-        binding.swipeRefresh.isRefreshing = true
+//        binding.swipeRefresh.isRefreshing = true
     }
 
     override fun hideLoading() {
-        binding.swipeRefresh.isRefreshing = false
+//        binding.swipeRefresh.isRefreshing = false
     }
 
     private fun subscribeUI() {

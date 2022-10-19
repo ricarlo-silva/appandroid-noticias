@@ -12,7 +12,7 @@ import br.com.ricarlo.common.util.extensions.showToast
 import com.noticiasnow.R
 import com.noticiasnow.databinding.ActivityPublishNewsBinding
 import com.noticiasnow.model.NewsModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PublishNewsActivity : BaseActivity<ActivityPublishNewsBinding>() {
 

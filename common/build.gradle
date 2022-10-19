@@ -5,17 +5,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion versions.compileSdkVersion
-    buildToolsVersion versions.buildToolsVersion
+    compileSdk versions.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion versions.minSdkVersion
-        targetSdkVersion versions.targetSdkVersion
-        versionCode versions.versionCode
-        versionName versions.versionName
+        minSdk versions.minSdkVersion
+        targetSdk versions.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -39,7 +35,6 @@ android {
 }
 
 dependencies {
-    api deps.kotlin.jdk
 
     implementation project(path: ':network')
     implementation project(path: ':ui')
@@ -83,6 +78,5 @@ dependencies {
     androidTestImplementation deps.androidx.test.junit
     androidTestImplementation deps.androidx.test.espresso
 
-    implementation 'androidx.test.espresso:espresso-idling-resource:3.3.0'
-
+    implementation deps.androidx.test.idling_resource
 }

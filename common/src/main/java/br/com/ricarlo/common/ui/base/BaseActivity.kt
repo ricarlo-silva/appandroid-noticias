@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -130,9 +131,11 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
                                             updateResult.installState.totalBytesToDownload
                                         ).toInt()
                                 }
-                                setText(context.getString(
+                                setText(
+                                    context.getString(
                                         R.string.downloading_update, updateProgress
-                                ))
+                                    )
+                                )
                                 setAction(null) {}
                                 show()
                             }
@@ -169,10 +172,10 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    private fun onActivityResult(requestCode: Int, result: androidx.activity.result.ActivityResult) {
         when (requestCode) {
             IN_APP_UPDATE_REQUEST_CODE -> {
-                when (resultCode) {
+                when (result.resultCode) {
                     RESULT_OK -> {
                         Log.e(TAG_UPDATE, "Update flow RESULT_OK")
                     }
@@ -183,12 +186,9 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
                         Log.e(TAG_UPDATE, "Update flow RESULT_IN_APP_UPDATE_FAILED")
                     }
                     else -> {
-                        Log.e(TAG_UPDATE, "Update flow failed! Result code: $resultCode")
+                        Log.e(TAG_UPDATE, "Update flow failed! Result code: ${result.resultCode}")
                     }
                 }
-            }
-            else -> {
-                super.onActivityResult(requestCode, resultCode, data)
             }
         }
     }
@@ -202,7 +202,9 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         if (requestCode == null) {
             startActivity(intent)
         } else {
-            startActivityForResult(intent, requestCode)
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                onActivityResult(requestCode, result)
+            }.launch(intent)
         }
     }
 
@@ -257,7 +259,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         startActivity(
             Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
-                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name))
+//                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name)) TODO review
                 putExtra(Intent.EXTRA_TEXT, "$title$url".trimIndent())
             }
         )

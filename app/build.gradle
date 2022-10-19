@@ -5,7 +5,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
-    id 'com.google.firebase.firebase-perf'
+//    id 'com.google.firebase.firebase-perf'
 }
 
 //def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -13,18 +13,16 @@ plugins {
 //keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-    compileSdkVersion versions.compileSdkVersion
-    buildToolsVersion versions.buildToolsVersion
+    compileSdk versions.compileSdkVersion
 
     defaultConfig {
         applicationId "com.noticias_now"
-        minSdkVersion versions.minSdkVersion
-        targetSdkVersion versions.targetSdkVersion
+        minSdk versions.minSdkVersion
+        targetSdk versions.targetSdkVersion
         versionCode versions.versionCode
         versionName versions.versionName
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        consumerProguardFiles "consumer-rules.pro"
     }
 
 //    signingConfigs {

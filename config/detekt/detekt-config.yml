@@ -79,7 +79,7 @@ complexity:
     threshold: 60
   LongParameterList:
     active: true
-    threshold: 6
+    constructorThreshold: 6
     ignoreDefaultParameters: false
   MethodOverloading:
     active: false
@@ -132,7 +132,6 @@ empty-blocks:
     active: true
   EmptyFunctionBlock:
     active: true
-    threshold: 4
     ignoreOverridden: false
   EmptyIfBlock:
     active: true
@@ -344,7 +343,6 @@ naming:
     functionPattern: '^([a-z$][a-zA-Z$0-9]*)|(`.*`)$'
     excludeClassPattern: '$^'
     ignoreOverridden: true
-    threshold: 4
   FunctionParameterNaming:
     active: true
     excludes: "**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"
@@ -357,7 +355,6 @@ naming:
   MatchingDeclarationName:
     active: true
     mustBeFirst: true
-    threshold: 4
   MemberNameEqualsClassName:
     active: true
     ignoreOverridden: true

@@ -8,7 +8,7 @@ import br.com.ricarlo.common.util.extensions.getString
 import br.com.ricarlo.common.util.extensions.showToast
 import com.noticiasnow.R
 import com.noticiasnow.databinding.ActivityEditProfileBinding
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>() {
 

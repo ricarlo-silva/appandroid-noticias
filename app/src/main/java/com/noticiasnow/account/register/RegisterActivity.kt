@@ -14,7 +14,7 @@ import com.google.android.play.core.review.ReviewManager
 import com.noticiasnow.R
 import com.noticiasnow.databinding.ActivityRegisterBinding
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 

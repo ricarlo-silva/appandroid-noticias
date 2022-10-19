@@ -11,7 +11,7 @@ import com.noticiasnow.R
 import com.noticiasnow.account.register.RegisterActivity
 import com.noticiasnow.databinding.ActivityLoginBinding
 import com.noticiasnow.home.HomeActivity
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 

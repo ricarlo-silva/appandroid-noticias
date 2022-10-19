@@ -15,7 +15,7 @@ import com.noticiasnow.home.OnClickListener
 import com.noticiasnow.home.RecycleAdapter
 import com.noticiasnow.model.NewsModel
 import com.noticiasnow.publish.PublishNewsActivity
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserNewsActivity : BaseActivity<ActivityUserNewsBinding>(), OnClickListener {
 
@@ -55,9 +55,9 @@ class UserNewsActivity : BaseActivity<ActivityUserNewsBinding>(), OnClickListene
     override fun initView(savedInstanceState: Bundle?) {
         setUpToolBar(getString(R.string.title_my_publish))
 
-        binding.swipeRefresh.setOnRefreshListener {
-            viewModel.getNews()
-        }
+//        binding.swipeRefresh.setOnRefreshListener {
+//            viewModel.getNews()
+//        }
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@UserNewsActivity)
@@ -69,11 +69,11 @@ class UserNewsActivity : BaseActivity<ActivityUserNewsBinding>(), OnClickListene
     }
 
     override fun showLoading(message: String?) {
-        binding.swipeRefresh.isRefreshing = true
+//        binding.swipeRefresh.isRefreshing = true
     }
 
     override fun hideLoading() {
-        binding.swipeRefresh.isRefreshing = false
+//        binding.swipeRefresh.isRefreshing = false
     }
 
     private fun subscribeUI() {

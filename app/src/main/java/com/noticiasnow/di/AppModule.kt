@@ -22,7 +22,7 @@ import com.noticiasnow.publish.PublishViewModel
 import com.noticiasnow.services.IWebService
 import com.noticiasnow.services.MockWebService
 import com.noticiasnow.splash.SplashViewModel
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.module
 

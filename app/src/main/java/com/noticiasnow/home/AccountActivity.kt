@@ -9,7 +9,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.noticiasnow.R
 import com.noticiasnow.databinding.ActivityAccountBinding
 import com.noticiasnow.login.LoginActivity
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AccountActivity : BaseActivity<ActivityAccountBinding>(), AccountAdapter.OnClickListener {
 

@@ -4,17 +4,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion versions.compileSdkVersion
-    buildToolsVersion versions.buildToolsVersion
+    compileSdk versions.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion versions.minSdkVersion
-        targetSdkVersion versions.targetSdkVersion
-        versionCode versions.versionCode
-        versionName versions.versionName
+        minSdk versions.minSdkVersion
+        targetSdk versions.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -34,7 +30,11 @@ android {
 
 dependencies {
 
-    api deps.kotlin.jdk
+//    implementation deps.kotlin.jdk
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+//    implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 
     // Android
     implementation deps.androidx.core
@@ -58,8 +58,6 @@ dependencies {
     testImplementation deps.junit
     androidTestImplementation deps.androidx.test.junit
     androidTestImplementation deps.androidx.test.espresso
-//    implementation 'androidx.test.espresso:espresso-idling-resource:3.3.0'
-//    implementation project(path: ':common')
-
+//    implementation deps.androidx.test.idling_resource
 
 }
