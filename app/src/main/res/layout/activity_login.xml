@@ -1,83 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/space_colors_blue_purple_stars"
-    tools:context="com.noticias_now.ui.activity.LoginActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!--<include layout="@layout/toolbar_default" />-->
+    <data>
 
-    <LinearLayout
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_margin="@dimen/margin_15dp"
-        android:orientation="vertical">
+        android:background="@drawable/bg_splash"
+        android:fillViewport="true"
+        tools:context="com.noticiasnow.login.LoginActivity">
 
-        <ImageView
-            android:id="@+id/iv_activity_login_logo"
-            android:layout_width="@dimen/margin_100dp"
-            android:layout_height="@dimen/margin_100dp"
-            android:layout_marginBottom="50dp"
-            android:background="@drawable/logo"
-            android:contentDescription=""
-            android:layout_gravity="center_horizontal"/>
-
-        <LinearLayout
-            android:id="@+id/lv_activity_login_usuario"
-            style="@style/layout_edit"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_normal">
 
             <ImageView
-                android:layout_width="@dimen/margin_30dp"
-                android:layout_height="@dimen/margin_30dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/logo"/>
+                android:id="@+id/layout_photo"
+                android:layout_width="@dimen/image_foreground_size"
+                android:layout_height="@dimen/image_foreground_size"
+                android:background="@drawable/logo"
+                android:contentDescription=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/ed_email_login_activity"
-                style="@style/edt_default"
-                android:hint="@string/email"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_extra_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_photo">
 
-        </LinearLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress" />
 
-        <LinearLayout
-            android:id="@+id/lv_activity_login_senha"
-            style="@style/layout_edit"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:layout_width="@dimen/margin_30dp"
-                android:layout_height="@dimen/margin_30dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/logo"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:endIconMode="password_toggle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_layout_email">
 
-            <EditText
-                android:id="@+id/ed_password_login_activity"
-                style="@style/edt_default"
-                android:inputType="textPassword"
-                android:hint="@string/senha"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/senha"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword" />
 
-        </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/bt_activity_login_logar"
-            style="@style/bt_default"
-            android:text="@string/login"
-            android:layout_marginTop="@dimen/margin_40dp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bt_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_extra_large"
+                android:text="@string/login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_layout_password" />
 
-        <TextView
-            android:id="@+id/tv_activity_login_criar_conta"
-            style="@style/tv_conta"
-            android:layout_marginTop="@dimen/margin_25dp"
-            android:layout_marginLeft="@dimen/margin_5dp"
-            android:textColor="@color/colorWhite"
-            android:text="@string/criar_conta"
-            android:layout_gravity="left"/>
-    </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bt_create_account"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:text="@string/criar_conta"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bt_login" />
 
-</RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

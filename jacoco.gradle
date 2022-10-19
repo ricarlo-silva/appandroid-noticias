@@ -43,7 +43,16 @@ project.afterEvaluate {
                         '**/BuildConfig.*',
                         '**/Manifest*.*',
                         '**/*Test*.*',
-                        'android/**/*.*'
+                        'android/**/*.*',
+                        '**/*Companion*.*',
+                        '**/BR.*',
+                        'androidx/databinding/*.*',
+                        '**/*Binding*.*',
+                        '**/DataBinderMapperImpl*.*',
+                        '**/generated/**/*.*',
+                        '**/*Creator.class',
+                        '**/*\$Lambda$*.*',
+                        '**/*\$inlined$*.*'
                 ]
                 def debugTree = fileTree(dir: "${buildDir}/intermediates/javac/$sourceName/classes", excludes: fileFilter)
                 def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/$sourceName", excludes: fileFilter)

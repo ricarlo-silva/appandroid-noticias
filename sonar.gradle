@@ -11,6 +11,22 @@ sonarqube {
         property "sonar.verbose", "true"
         property "sonar.exclusions", "**/*.json"
         // taken from `jacoco.gradle`
-        property "sonar.coverage.exclusions", "**/test/**,**/androidTest/**,**/R.class,**/R\$*.class,**/BuildConfig.*,**/Manifest*.*,**/*Test*.*,**/*Companion*.*"
+        property "sonar.coverage.exclusions",
+                "**/test/**," +
+                        "**/androidTest/**," +
+                        "**/R.class," +
+                        "**/R\$*.class," +
+                        "**/BuildConfig.*," +
+                        "**/Manifest*.*," +
+                        "**/*Test*.*," +
+                        "**/*Companion*.*," +
+                        "**/BR.*," +
+                        "androidx/databinding/*.*," +
+                        "**/*Binding*.*," +
+                        "**/DataBinderMapperImpl*.*," +
+                        "**/generated/**/*.*," +
+                        "**/*Creator.class," +
+                        "**/*\$Lambda\$*.*," +
+                        "**/*\$inlined\$*.*"
     }
 }

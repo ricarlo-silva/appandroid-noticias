@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.noticias_now">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    package="com.noticiasnow">
 
     <application
-        android:name="com.noticias_now.app.ApsNoticiasApp"
+        android:name="com.noticiasnow.app.ApsNewsApp"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.MyApp">
         <activity
-            android:name="com.noticias_now.ui.activity.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreen">
+            android:name="com.noticiasnow.splash.SplashActivity"
+            android:noHistory="true"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.MyApp.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,33 +23,44 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.noticias_now.ui.activity.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreen" />
+            android:name="com.noticiasnow.login.LoginActivity"
+            android:label="@string/titulo_login"
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.MyApp.FullScreen" />
         <activity
-            android:name="com.noticias_now.ui.activity.CriarContaActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreen" />
+            android:name="com.noticiasnow.account.register.RegisterActivity"
+            android:exported="false"
+            android:screenOrientation="fullSensor">
+            <nav-graph android:value="@navigation/nav_graph" />
+        </activity>
         <activity
-            android:name="com.noticias_now.ui.activity.EditarPerfilActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreen" />
+            android:name="com.noticiasnow.account.update.EditProfileActivity"
+            android:exported="false"
+            android:screenOrientation="fullSensor" />
         <activity
-            android:name="com.noticias_now.ui.activity.HomeActivity"
+            android:name="com.noticiasnow.home.HomeActivity"
+            android:exported="false"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.MyApp.NoActionBar" />
         <activity
-            android:name="com.noticias_now.ui.activity.DetalheNoticiaActivity"
+            android:name="com.noticiasnow.details.DetailsNewsActivity"
+            android:exported="false"
             android:label="@string/title_activity_detalhe_noticia"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.MyApp.NoActionBar" />
         <activity
-            android:name="com.noticias_now.ui.activity.PublicarNoticiaActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreen" />
+            android:name="com.noticiasnow.publish.PublishNewsActivity"
+            android:exported="false"
+            android:screenOrientation="fullSensor" />
         <activity
-            android:name="com.noticias_now.ui.activity.ListaNoticiasUsuarioActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreen" />
+            android:name="com.noticiasnow.list.UserNewsActivity"
+            android:exported="false"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.noticiasnow.home.AccountActivity"
+            android:exported="false"
+            android:screenOrientation="fullSensor"/>
+
     </application>
 
 </manifest>

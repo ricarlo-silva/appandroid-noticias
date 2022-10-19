@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk versions.compileSdkVersion
+
+    defaultConfig {
+        minSdk versions.minSdkVersion
+        targetSdk versions.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility versions.javaVersion
+        targetCompatibility versions.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = versions.javaVersion
+    }
+}
+
+dependencies {
+
+//    implementation deps.kotlin.jdk
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+//    implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+
+    // Android
+    implementation deps.androidx.core
+    implementation deps.androidx.appcompat
+
+    // Coroutines
+    implementation deps.coroutines.android
+
+    // Network
+    api deps.retrofit.core
+    api deps.retrofit.converter
+    implementation deps.retrofit.moshiKotlin
+    implementation deps.okhttp.core
+    implementation deps.okhttp.logging
+
+    // DI
+    implementation deps.koin.core
+    testImplementation deps.koin.test
+
+    // Test
+    testImplementation deps.junit
+    androidTestImplementation deps.androidx.test.junit
+    androidTestImplementation deps.androidx.test.espresso
+//    implementation deps.androidx.test.idling_resource
+
+}
